@@ -1,0 +1,35 @@
+<header>
+  <!-- <nav>
+    <ul>
+      <li><a href="Anmelden.html"> Anmelden </a></li>
+      <li><a href="Registrieren.html"> Registrieren </a></li>
+    </ul>
+  </nav> -->
+  <div class="container">
+    <img class="logo" [src]="netImage" alt="Logo" />
+
+    <div class="buttons">
+      <!-- <app-header-login class="header-login"></app-header-login> -->
+
+      <button class="login">
+        Registrieren
+      </button>
+
+      <button class="login" (click)="toggle()" *ngIf="!show0">
+        Anmelden
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- <ng-container *ngIf="!show">
+  <app-middle></app-middle>
+</ng-container>
+
+<ng-container *ngIf="!show">
+  <app-bottom></app-bottom>
+</ng-container>
+
+<ng-container *ngIf="show">
+  <app-signin></app-signin>
+</ng-container> -->

@@ -1,0 +1,24 @@
+.container {
+  height: px;
+}
+
+.detail {
+  float: right;
+  background-color: #3b3b3b;
+  color: white;
+  border-color: white;
+  border: 1px solid white;
+  width: 300px;
+  text-align: center;
+  border-radius: 15px;
+  height: 500px;
+}
+
+.hr {
+  width: 150px;
+}
+
+.price {
+  text-align: left;
+  margin-left: 10px;
+}

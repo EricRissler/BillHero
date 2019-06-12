@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <img class="Billy" [src]="Billy" alt="Billy" />
+
+    <h2>Du hast {{ billcount }} neue Rechnungen</h2>
+
+    <ul class="list-group">
+      <div class="list-group-item" id="bill" *ngFor="let bill of bill">
+        <div class="company">{{ bill.name }}</div>
+
+        {{ bill.deadline }}
+
+        <div class="price">{{ bill.price }}</div>
+      </div>
+    </ul>
+  </div>
+</div>

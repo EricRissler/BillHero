@@ -1,0 +1,28 @@
+.Billy {
+  float: left;
+  width: 300px;
+  height: 300px;
+  margin-left: 20px;
+}
+
+ul {
+  float: right;
+}
+
+#bill {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 450px;
+  height: 45px;
+  text-align: center;
+}
+
+.company {
+  float: left;
+}
+
+.price {
+  float: right;
+  text-align: center;
+}
