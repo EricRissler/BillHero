@@ -1,28 +1,54 @@
-.Billy {
-  float: left;
-  width: 300px;
-  height: 300px;
-  margin-left: 20px;
+.container {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 2px solid #05619b;
+  border-radius: 10px;
+  height: 600px;
 }
 
-ul {
+.title {
+  margin-right: 70px;
   float: right;
 }
 
-#bill {
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+.Billy {
+  float: left;
+  width: 350px;
+  height: 350px;
+  margin-left: 20px;
+  margin-top: 80px;
+}
+
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  display: inline;
+  margin-right: 40px;
+}
+
+.rightcontainer {
+  float: right;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+#list {
   border: 1px solid black;
   border-radius: 10px;
-  margin-top: 10px;
-  width: 450px;
   height: 45px;
   text-align: center;
 }
 
-.company {
-  float: left;
-}
-
-.price {
-  float: right;
-  text-align: center;
+.left {
+  margin-bottom: 20px;
 }
