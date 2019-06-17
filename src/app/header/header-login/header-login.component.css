@@ -1,0 +1,57 @@
+.login {
+  background-color: transparent;
+  border: 3px solid white;
+  border-radius: 50px;
+  color: white;
+  margin-right: 20px;
+  float: right;
+  font-size: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  height: 80px;
+  text-align: center;
+}
+
+.logo {
+  width: 150px;
+  height: 70px;
+  float: left;
+  margin-top: 7px;
+
+  position: relative;
+}
+
+.buttons {
+  position: relative;
+  float: right;
+  margin-top: 22px;
+  margin-left: 70px;
+}
+
+header {
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  height: 80px;
+
+  background-color: #05619b;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+/* .header.login {
+  float: left;
+} */
+
+/* .headbutton {
+  margin-right: 30px;
+  margin-top: 25px;
+} */
+
+/* .register {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 6px;
+  color: white;
+} */

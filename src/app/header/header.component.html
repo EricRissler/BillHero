@@ -5,31 +5,14 @@
       <li><a href="Registrieren.html"> Registrieren </a></li>
     </ul>
   </nav> -->
-  <div class="container">
-    <img class="logo" [src]="netImage" alt="Logo" />
 
-    <div class="buttons">
-      <!-- <app-header-login class="header-login"></app-header-login> -->
+  <!-- <app-signin (changeEvent)="receiveChange($event)"></app-signin> -->
 
-      <button class="login">
-        Registrieren
-      </button>
+  <ng-container *ngIf="tausch == true">
+    <app-header-login></app-header-login>
+  </ng-container>
 
-      <button class="login" (click)="toggle()" *ngIf="!show0">
-        Anmelden
-      </button>
-    </div>
-  </div>
+  <ng-container *ngIf="tausch == false">
+    <app-header-dash></app-header-dash>
+  </ng-container>
 </header>
-
-<!-- <ng-container *ngIf="!show">
-  <app-middle></app-middle>
-</ng-container>
-
-<ng-container *ngIf="!show">
-  <app-bottom></app-bottom>
-</ng-container>
-
-<ng-container *ngIf="show">
-  <app-signin></app-signin>
-</ng-container> -->

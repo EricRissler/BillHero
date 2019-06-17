@@ -1,3 +1,7 @@
 div {
   width: 900px;
 }
+
+#methode {
+  visibility: hidden;
+}
