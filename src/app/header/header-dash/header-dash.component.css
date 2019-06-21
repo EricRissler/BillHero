@@ -18,24 +18,16 @@ li {
   margin-right: 50px;
 }
 
-.dieter {
-  width: 550px;
+.menu {
+  /* width: 550px; */
   margin-left: 25%;
   margin-top: 25px;
 }
 
 ul {
   list-style: none;
-
+  margin-top: 30px;
   text-align: center;
-}
-
-.buttons {
-  /* position: relative; */
-  float: right;
-  /* margin-top: 22px; */
-  color: red;
-  margin-bottom: 50px !important;
 }
 
 .logout {
@@ -43,7 +35,7 @@ ul {
   border: 3px solid white;
   border-radius: 50px;
   /* color: white; */
-  margin-right: 20px;
+
   float: right;
   font-size: 20px;
 }

@@ -2,23 +2,18 @@
   <div class="container">
     <img [src]="logo" alt="Logo" class="logo" />
 
-    <div class="dieter">
-      <ul>
-        <li>Übersicht</li>
-        <li>meine Rechnungen</li>
-        <li>Aktivitäten</li>
-      </ul>
-    </div>
+    <ul>
+      <li>Übersicht</li>
+      <li>meine Rechnungen</li>
+      <li>Aktivitäten</li>
 
-    <div class="buttons">
-      <button
-        class="logout"
-        (click)="toggle()"
-        routerLink="/logout"
-        *ngIf="!show"
-      >
+      <button class="logout" (click)="toggle()" routerLink="/logout">
         Abmelden
       </button>
-    </div>
+    </ul>
+
+    <!-- <div class="buttons">
+      
+    </div> -->
   </div>
 </header>
