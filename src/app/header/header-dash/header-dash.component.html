@@ -1,15 +1,20 @@
 <header>
   <div class="container">
-    <img [src]="logo" alt="Logo" class="logo" />
+    <a href="#" routerLink="/dashboard"
+      ><img class="logo" [src]="logo" alt="Logo"
+    /></a>
 
     <ul>
-      <li>Übersicht</li>
-      <li>meine Rechnungen</li>
-      <li>Aktivitäten</li>
-
-      <button class="logout" (click)="toggle()" routerLink="/logout">
-        Abmelden
-      </button>
+      <li><button class="menu" routerLink="/dashboard">Übersicht</button></li>
+      <li>
+        <button class="menu" routerLink="/mybills">meine Rechnungen</button>
+      </li>
+      <li><button class="menu" routerLink="/activity">Aktivitäten</button></li>
+      <li>
+        <button class="logout" (click)="toggle()" routerLink="/logout">
+          Abmelden
+        </button>
+      </li>
     </ul>
 
     <!-- <div class="buttons">

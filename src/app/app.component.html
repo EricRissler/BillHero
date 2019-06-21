@@ -1,12 +1,16 @@
-<ng-container *ngIf="tausch == false">
+<ng-container *ngIf="tausch == true">
   <app-header-login></app-header-login>
 </ng-container>
 
-<ng-container *ngIf="tausch == true">
+<ng-container *ngIf="tausch == false">
   <app-header-dash></app-header-dash>
 </ng-container>
 
-<app-dashboard></app-dashboard>
+<app-mybills></app-mybills>
+
+<!-- <ng-container *ngIf="login == true">
+  <router-outlet></router-outlet>
+</ng-container> -->
 
 <!-- <app-signin (changeEvent)="receiveChange($event)"></app-signin> -->
 

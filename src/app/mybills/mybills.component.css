@@ -1,0 +1,9 @@
+.category {
+  float: left;
+  width: 200px;
+  text-align: center;
+}
+
+.bills {
+  float: right;
+}
