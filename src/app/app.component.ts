@@ -6,8 +6,7 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  public penis: string = "comp1";
-  public tausch: boolean = true;
+  public tausch: boolean = false;
 
   receiveChange($event) {
     this.tausch = $event;
