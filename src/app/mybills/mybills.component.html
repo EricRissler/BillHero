@@ -4,8 +4,29 @@
     <p>Bezahlte Rechnungen</p>
     <p>Unbezahlte Rechnungen</p>
 
-    <button>neue Kategorie</button>
+    <hr />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="neue Kategorie"
+      [(ngModel)]="input"
+    />
+    <p *ngFor="let category of category">{{ input }}</p>
+
+    <button class="new" (click)="newCategory()">
+      neue Kategorie
+    </button>
   </div>
 
-  <div class="bills"></div>
+  <div class="rightcontainer">
+    <div class="billList" *ngFor="let bill of bill">
+      <ul class="list-group-item" id="list">
+        <li class="list-group">{{ bill.billnr }}</li>
+        <li class="list-group">{{ bill.name }}</li>
+        <li class="list-group">{{ bill.deadline }}</li>
+        <li class="list-group">{{ bill.price }}€</li>
+        <li class="list-group">{{ bill.status }}</li>
+      </ul>
+    </div>
+  </div>
 </div>
