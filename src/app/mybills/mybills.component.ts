@@ -8,7 +8,11 @@ import { Category } from "../shared/category.model";
   styleUrls: ["./mybills.component.css"]
 })
 export class MybillsComponent implements OnInit {
-  category: Category[];
+  category: Category[]=[
+    new Category("Arzt"),
+    new Category("Technik")
+  ]    
+
   public input: string = "";
 
   bill: Bill[] = [
@@ -28,11 +32,7 @@ export class MybillsComponent implements OnInit {
   ];
 
   newCategory() {
-    this.category = [new Category(this.input)];
-  }
-
-  onUpdateServerName(event: any) {
-    this.input = (<HTMLInputElement>event.target).value;
+    this.category.push((new Category(this.input)));
   }
 
   ngOnInit() {}
