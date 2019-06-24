@@ -10,15 +10,15 @@ import { Category } from "../shared/category.model";
 export class MybillsComponent implements OnInit {
   category: Category[]=[
     new Category("Arzt"),
-    new Category("Technik")
+    new Category("Auto")
   ]    
 
   public input: string = "";
 
   bill: Bill[] = [
-    new Bill("Media Markt", "05.08.2019", 900, true),
-    new Bill("Schreiner", "14.06.2019", 750, true),
-    new Bill("Zahnarzt", "24.12.2019", 750, true),
+    new Bill("Media Markt", "05.08.2019", 900, false),
+    new Bill("Schreiner", "14.06.2019", 750, false),
+    new Bill("Zahnarzt", "24.12.2019", 750, false),
     new Bill("MEWA", "01.01.2020", 750, false),
     new Bill("Media Markt", "05.08.2019", 900, true),
     new Bill("Schreiner", "14.06.2019", 750, true),
