@@ -27,6 +27,18 @@ header {
   position: relative;
 }
 
+.settings {
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin-right: 2%;
+}
+
+.setting {
+  height: 20px;
+  width: 20px;
+}
+
 li {
   display: inline;
 }

@@ -1,8 +1,6 @@
 <header>
   <div class="container">
-    <a href="#" routerLink="/dashboard"
-      ><img class="logo" [src]="logo" alt="Logo"
-    /></a>
+    <a href="#"><img class="logo" [src]="logo" alt="Logo"/></a>
 
     <ul class="nav">
       <li>
@@ -20,6 +18,7 @@
           Aktivitäten
         </button>
       </li>
+
       <li>
         <button
           id="buttons"
@@ -30,6 +29,16 @@
           Abmelden
         </button>
       </li>
+
+      <!-- <li>
+        <img
+          *ngIf="!this.tausch"
+          routerLink="/settings"
+          class="settings"
+          [src]="settings"
+          alt="settings"
+        />
+      </li> -->
 
       <li *ngIf="this.tausch">
         <button id="buttons" routerLink="/register">
