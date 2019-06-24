@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public tausch: boolean = true;
 
   private logo = require("../../assets/img/Logo3.png");
-
+  private settings = require("../../assets/img/settings.png");
   receiveChange($event) {
     this.tausch = $event;
   }

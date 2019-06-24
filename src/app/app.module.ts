@@ -18,6 +18,7 @@ import { MybillsComponent } from "./mybills/mybills.component";
 import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
+import { SettingsComponent } from "./settings/settings.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RegisterComponent } from "./register/register.component";
     LogoutComponent,
     MybillsComponent,
     ActivityComponent,
-    RegisterComponent
+    RegisterComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { RegisterComponent } from "./register/register.component";
       { path: "activity", component: ActivityComponent },
       { path: "mybills", component: MybillsComponent },
       { path: "header", component: HeaderComponent },
-      { path: "register", component: RegisterComponent }
+      { path: "register", component: RegisterComponent },
+      { path: "settings", component: SettingsComponent }
     ])
   ],
   providers: [SigninComponent],

@@ -9,15 +9,16 @@ declare var require: any;
 })
 export class SigninComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
-  // public login: boolean = true;
 
-  public change: boolean = false;
+  mail: string;
 
-  @Output() changeEvent = new EventEmitter<boolean>();
+  // public change: boolean = false;
 
-  sendChange() {
-    this.changeEvent.emit(this.change);
-  }
+  // @Output() changeEvent = new EventEmitter<boolean>();
+
+  // sendChange() {
+  //   this.changeEvent.emit(this.change);
+  // }
 
   ngOnInit() {}
 }

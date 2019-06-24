@@ -8,6 +8,14 @@ import { Component } from "@angular/core";
 export class AppComponent {
   public tausch: boolean = false;
 
+  public userid: string;
+
+  headerChange() {
+    if (this.userid == null) {
+    } else {
+    }
+  }
+
   receiveChange($event) {
     this.tausch = $event;
   }
