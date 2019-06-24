@@ -3,6 +3,7 @@
   margin-bottom: 5px;
   height: 579px;
 }
+
 .category {
   background-color: #05619b;
   float: left;
@@ -15,6 +16,14 @@
   margin-top: 15px;
   color: white;
 }
+
+.billStatus{
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 1px solid black;
+}
+
 .rightcontainer {
   width: 78%;
   float: right;
