@@ -1,3 +1,7 @@
 export class Category {
-  constructor(public name: string) {}
+  public name:string;
+
+  constructor(public names: string) {
+    this.name = names;
+  }
 }
