@@ -10,8 +10,32 @@
   display: flex;
   margin-top: 20px;
 }
+
+
 .list-group-item{
-  width: 80%;
+  width: 450px;
+  height: 45px;
+ 
+}
+
+#billName{
+  width: 40%;
+}
+
+#billDeadline{
+  width: 20%;
+}
+
+#billPrice{
+  width: 20%;
+}
+
+.billStatus{
+width: 15px;
+height: 15px;
+border-radius: 100%;
+border: 1px solid black;
+
 }
 
 .standardPay {
@@ -31,11 +55,13 @@
   border-color: black;
   background-color: #bc0000;
   color: white;
+  margin-right: 2%;
 }
 
-.title {
-  margin-right: 70px;
-  float: right;
+.title{
+  position: relative;
+  left: 3% ;
+ 
 }
 
 h1 {
@@ -60,17 +86,20 @@ h2 {
 ul {
   list-style: none;
   margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 li {
   display: inline;
-  margin-right: 40px;
+ margin-right: 10px;
+ margin-left: 10px;
 }
 
 .rightcontainer {
   
   float: right;
-  height: 380px;
+  height: 390px;
   overflow-y: scroll;
   margin-right: 50px;
 }

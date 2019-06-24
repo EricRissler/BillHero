@@ -1,25 +1,24 @@
 <div class="container">
+  <div class="col-xs-3">
+    <img class="Billy" [src]="Billy" alt="Billy" />
+  </div>
+  <div class="centerTitle">
   <div class="title">
     <h1>Hallo {{ user }}!</h1>
 
     <h2>Du hast {{ billcount }} neue Rechnungen</h2>
   </div>
-
-  <div class="col-xs-3">
-    <img class="Billy" [src]="Billy" alt="Billy" />
-  </div>
-
   <div class="rightcontainer">
-
     <div class="billList" *ngFor="let bill of bill">
-      <button class="standardPay">Pay Standard</button>
+      <button  class="standardPay">Pay Standard</button>
       <ul class="list-group-item">
-        <li class="list-group">{{ bill.billnr }}</li>
-        <li class="list-group">{{ bill.name }}</li>
-        <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}€</li>
+        <li id="billName" class="list-group">{{ bill.name }}</li>
+        <li id="billDeadline" class="list-group">{{ bill.deadline }}</li>
+        <li id="billPrice" class="list-group">{{ bill.price }}€</li>
+        <li><Button id="status" class="billStatus" disabled=false [ngStyle]="{'background-color': bill.status? 'green' : 'red'}"></Button></li>
       </ul>
       <button class="alternativePay">Pay alternative</button>
     </div>
+  </div>
   </div>
 </div>
