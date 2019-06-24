@@ -6,39 +6,101 @@
   height: 600px;
 }
 
-.title {
-  margin-right: 70px;
-  float: right;
+.billList {
+  display: flex;
+  margin-top: 20px;
+}
+
+
+.list-group-item{
+  width: 450px;
+  height: 45px;
+ 
+}
+
+#billName{
+  width: 40%;
+}
+
+#billDeadline{
+  width: 20%;
+}
+
+#billPrice{
+  width: 20%;
+}
+
+.billStatus{
+width: 15px;
+height: 15px;
+border-radius: 100%;
+border: 1px solid black;
+
+}
+
+.standardPay {
+
+  margin-right: 0.5%;
+  border:none;
+  border-radius: 8px 0px 0px 8px;
+  border-color: black;
+  background-color: #05619b;
+  color: white;
+}
+
+.alternativePay {  
+  margin-left: 0.5%;
+  border:none;
+  border-radius: 0px 8px 8px 0px;
+  border-color: black;
+  background-color: #bc0000;
+  color: white;
+  margin-right: 2%;
+}
+
+.title{
+  position: relative;
+  left: 3% ;
+ 
 }
 
 h1 {
   text-align: center;
+  margin-left: 0;
 }
 
 h2 {
   text-align: center;
+  margin-left: 0;
 }
 .Billy {
   float: left;
-  width: 350px;
   height: 350px;
-  margin-left: 20px;
-  margin-top: 80px;
+  width: 350px;
+  
+  margin-left: 10%;
+  margin-top: 55%;
+  
 }
 
 ul {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 li {
   display: inline;
-  margin-right: 40px;
+ margin-right: 10px;
+ margin-left: 10px;
 }
 
 .rightcontainer {
+  
   float: right;
-  margin-top: 20px;
+  height: 390px;
+  overflow-y: scroll;
   margin-right: 50px;
 }
 
@@ -46,7 +108,7 @@ li {
   border: 1px solid black;
   border-radius: 10px;
   height: 45px;
-  text-align: center;
+  text-align: justify;
 }
 
 .left {
