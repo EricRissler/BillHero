@@ -38,7 +38,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/signin", function(req, res, next) {
+app.get("/api/signin", function (req, res, next) {
   //Input: E-Mail, Passwort
   res.status(201).json({
     Type: true,
@@ -46,7 +46,7 @@ app.get("/api/signin", function(req, res, next) {
   });
 });
 
-app.get("/api/payBill", function(req, res, next) {
+app.get("/api/payBill", function (req, res, next) {
   //Input: UserID, RechnungsID, ZahlungsmethodeID
   res.status(201).json({
     Type: true,
@@ -54,7 +54,7 @@ app.get("/api/payBill", function(req, res, next) {
   });
 });
 
-app.get("/api/newCat", function(req, res, next) {
+app.get("/api/newCat", function (req, res, next) {
   //Input: Category_Name, UserID
   res.status(201).json({
     Type: true,
@@ -89,7 +89,7 @@ app.get("/api/BillDetail", (req, res, next) => {
   });
 });
 
-app.get("/api/dahsboard", function(req, res, next) {
+app.get("/api/dahsboard", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     User: {
@@ -136,7 +136,7 @@ app.get("/api/buildPayBill", (req, res, next) => {
     ]
   });
 });
-app.get("/api/mybills", function(req, res, next) {
+app.get("/api/mybills", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     Anz: "INTEGER",
