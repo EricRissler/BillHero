@@ -5,16 +5,21 @@
     <h2>Du hast {{ billcount }} neue Rechnungen</h2>
   </div>
 
-  <div class="col-xs-5">
+  <div class="col-xs-3">
     <img class="Billy" [src]="Billy" alt="Billy" />
   </div>
 
   <div class="rightcontainer">
-    <ul class="list-group-item" id="list" *ngFor="let bill of bill">
-      <li class="list-group">{{ bill.name }}</li>
-      <li class="list-group">{{ bill.deadline }}</li>
-      <li class="list-group">{{ bill.price }}€</li>
-      <li class="list-group">{{ bill.status }}</li>
-    </ul>
+
+    <div class="billList" *ngFor="let bill of bill">
+      <button class="standardPay">Pay Standard</button>
+      <ul class="list-group-item">
+        <li class="list-group">{{ bill.billnr }}</li>
+        <li class="list-group">{{ bill.name }}</li>
+        <li class="list-group">{{ bill.deadline }}</li>
+        <li class="list-group">{{ bill.price }}€</li>
+      </ul>
+      <button class="alternativePay">Pay alternative</button>
+    </div>
   </div>
 </div>
