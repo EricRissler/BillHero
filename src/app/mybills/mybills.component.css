@@ -6,6 +6,22 @@
 .categoryFolder{
 color: white;
 }
+.billList {
+  display: flex;
+  margin-top: 20px;
+}
+
+#billName{
+  width: 40%;
+}
+
+#billDeadline{
+  width: 20%;
+}
+
+#billPrice{
+  width: 20%;
+}
 
 .category {
   background-color: #05619b;
@@ -27,13 +43,15 @@ color: white;
   border: 1px solid black;
 }
 
-.rightcontainer {
-  width: 78%;
-  float: right;
+.middlecontainer {
   /* border: 1px solid black; */
   border-radius: 8px;
   height: 550px;
   overflow-y: scroll;
+}
+
+.rightcontainer{
+  float: right;
 }
 
 p {
@@ -69,12 +87,16 @@ p {
   width: 75%;
 }
 
+
 ul {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 li {
   display: inline;
-  margin-right: 40px;
+ margin-right: 10px;
+ margin-left: 10px;
 }
