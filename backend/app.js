@@ -1,22 +1,25 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const mysql = require("mysql");
 
 const app = express();
 
-mongoose
-  .connect(
-    "mongodb+srv://admin:EQs3mlnHF1DQQHCR@mean-czp2d.mongodb.net/BillHero?retryWrites=true&w=majority",
-    { useNewUrlParser: true }
-  )
-  .then(() => {
-    console.log("Succesfully connected to Database");
-  })
-  .catch(err => {
-    console.log("Failed to Connect to Database");
-    console.log(err);
-    //die("Bye");
-  });
+const con = mysql.createConnection({
+  host: "db4free.net",
+  user: "bill_hero_admin",
+  password: "billiboi",
+  database: "bill_hero"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+con.query("SELECT * FROM person", function(err, rows, fields) {
+  if (err) throw err;
+  console.log("Result: " + fields);
+});
 
 app.use(bodyParser.json());
 app.use(
@@ -38,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/signin", function (req, res, next) {
+app.get("/", function(req, res, next) {
   //Input: E-Mail, Passwort
   res.status(201).json({
     Type: true,
@@ -46,7 +49,7 @@ app.get("/api/signin", function (req, res, next) {
   });
 });
 
-app.get("/api/payBill", function (req, res, next) {
+app.get("/api/payBill", function(req, res, next) {
   //Input: UserID, RechnungsID, ZahlungsmethodeID
   res.status(201).json({
     Type: true,
@@ -54,7 +57,7 @@ app.get("/api/payBill", function (req, res, next) {
   });
 });
 
-app.get("/api/newCat", function (req, res, next) {
+app.get("/api/newCat", function(req, res, next) {
   //Input: Category_Name, UserID
   res.status(201).json({
     Type: true,
@@ -89,7 +92,7 @@ app.get("/api/BillDetail", (req, res, next) => {
   });
 });
 
-app.get("/api/dahsboard", function (req, res, next) {
+app.get("/api/dahsboard", function(req, res, next) {
   //Input: UserID
   res.status(201).json({
     User: {
@@ -136,7 +139,7 @@ app.get("/api/buildPayBill", (req, res, next) => {
     ]
   });
 });
-app.get("/api/mybills", function (req, res, next) {
+app.get("/api/mybills", function(req, res, next) {
   //Input: UserID
   res.status(201).json({
     Anz: "INTEGER",
