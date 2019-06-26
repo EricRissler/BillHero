@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { logging } from "protractor";
+
 declare var require: any;
 @Component({
   selector: "app-signin",
