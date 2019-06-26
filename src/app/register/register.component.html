@@ -1,3 +1,138 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <div class="img">
+    <img class="billy" [src]="Billy" alt="Billy" />
+  </div>
+
+  <div class="vertical"></div>
+
+  <div class="rightcontainer">
+    <div class="userinput">
+      <ul class="list">
+        <li id="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Land"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Vorname"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nachname"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="E-Mail-Adresse"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Passwort"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Passwort bestätigen"
+            *ngIf="this.step == 1"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nationalität"
+            *ngIf="this.step == 2"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Straße und Hausnummer"
+            *ngIf="this.step == 2"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Adresszusatz"
+            *ngIf="this.step == 2"
+          />
+        </li>
+
+        <li class="codePlace">
+          <input
+            id="postcode"
+            type="text"
+            class="form-control"
+            placeholder="PLZ"
+            *ngIf="this.step == 2"
+          />
+
+          <input
+            id="place"
+            type="text"
+            class="form-control"
+            placeholder="Ort"
+            *ngIf="this.step == 2"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Geburtsdatum"
+            *ngIf="this.step == 2"
+          />
+        </li>
+      </ul>
+    </div>
+
+    <div class="nextbutton">
+      <button class="next" (click)="changestep()" *ngIf="this.step == 1">
+        Weiter
+      </button>
+    </div>
+
+    <div class="nextbutton2">
+      <button
+        class="next"
+        (click)="changestep()"
+        *ngIf="this.step == 2"
+        routerLink="/dashboard"
+      >
+        Weiter
+      </button>
+    </div>
+  </div>
+</div>

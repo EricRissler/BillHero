@@ -3,7 +3,7 @@
     <p>Alle Rechnungen</p>
     <p>Bezahlte Rechnungen</p>
     <p>Unbezahlte Rechnungen</p>
-    Dieter
+
     <hr />
     <input
       type="text"
@@ -11,7 +11,9 @@
       placeholder="neue Kategorie"
       [(ngModel)]="input"
     />
-    <p *ngFor="let category of category"> <a class="categoryFolder" >{{ category.name }}</a> </p>
+    <p *ngFor="let category of category">
+      <a class="categoryFolder">{{ category.name }}</a>
+    </p>
 
     <button class="new" (click)="newCategory()">
       neue Kategorie
@@ -25,7 +27,13 @@
         <li class="list-group">{{ bill.name }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
         <li class="list-group">{{ bill.price }}€</li>
-        <li><Button class="billStatus" disabled=false [ngStyle]="{'background-color': bill.status? 'green' : 'red'}"></Button></li>
+        <li>
+          <Button
+            class="billStatus"
+            disabled="false"
+            [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+          ></Button>
+        </li>
       </ul>
     </div>
   </div>
