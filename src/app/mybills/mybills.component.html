@@ -18,16 +18,17 @@
       neue Kategorie
     </button>
   </div>
-
-  <div class="rightcontainer">
+  <div class="middlecontainer">
     <div class="billList" *ngFor="let bill of bill" draggable="true">
       <ul class="list-group-item" id="list">
-        <li class="list-group">{{ bill.billnr }}</li>
-        <li class="list-group">{{ bill.name }}</li>
-        <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}€</li>
+        <li id="billName" class="list-group">{{ bill.name }}</li>
+        <li id="billDeadline" class="list-group">{{ bill.deadline }}</li>
+        <li id="billPrice" class="list-group">{{ bill.price }}€</li>
         <li><Button class="billStatus" disabled=false [ngStyle]="{'background-color': bill.status? 'green' : 'red'}"></Button></li>
       </ul>
     </div>
+  </div>
+  <div class="rightcontainer">
+    <app-bill-detail></app-bill-detail>
   </div>
 </div>
