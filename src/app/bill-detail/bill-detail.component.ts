@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Item } from '../shared/item.model';
 
 @Component({
   selector: "app-bill-detail",
@@ -6,9 +7,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./bill-detail.component.css"]
 })
 export class BillDetailComponent implements OnInit {
-  public price = "Gesamt";
+  public price = "3242";
 
-  constructor() {}
+  items: Item[] = [
+    new Item("PC",3000),
+    new Item("HDMI Kabel", 240),
+    new Item("Maus", 2)
+  ];
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

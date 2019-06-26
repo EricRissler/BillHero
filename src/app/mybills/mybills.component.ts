@@ -33,6 +33,7 @@ export class MybillsComponent implements OnInit {
 
   newCategory() {
     this.category.push((new Category(this.input)));
+    this.input="";
   }
 
   ngOnInit() {}
