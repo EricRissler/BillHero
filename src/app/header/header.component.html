@@ -13,9 +13,19 @@
           Meine Rechnungen
         </button>
       </li>
-      <li>
+      <li class="liactivity">
         <button class="menu" routerLink="/activity" *ngIf="!this.tausch">
           Aktivitäten
+        </button>
+      </li>
+
+      <li>
+        <button
+          class="buttonSettings"
+          *ngIf="!this.tausch"
+          routerLink="/settings"
+        >
+          <img class="setting" [src]="settings" alt="settings" />
         </button>
       </li>
 
@@ -29,16 +39,6 @@
           Abmelden
         </button>
       </li>
-
-      <!-- <li>
-        <img
-          *ngIf="!this.tausch"
-          routerLink="/settings"
-          class="settings"
-          [src]="settings"
-          alt="settings"
-        />
-      </li> -->
 
       <li *ngIf="this.tausch">
         <button id="buttons" routerLink="/register">
@@ -56,12 +56,14 @@
           Anmelden
         </button>
       </li>
+
+      <li>
+        <button class="menu" routerLink="/business" *ngIf="this.tausch">
+          Für Geschäftskunden
+        </button>
+      </li>
     </ul>
 
-    <!-- <ul class="buttons">
-      
-    </ul> -->
+    <button class="changeheader" (click)="changer()"></button>
   </div>
 </header>
-
-<button (click)="changer()">Change</button>

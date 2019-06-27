@@ -19,6 +19,10 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { BusinessComponent } from "./business/business.component";
+import { RegisterBusinessComponent } from "./register-business/register-business.component";
+import { LoginBusinessComponent } from "./login-business/login-business.component";
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { SettingsComponent } from "./settings/settings.component";
     MybillsComponent,
     ActivityComponent,
     RegisterComponent,
-    SettingsComponent
+    SettingsComponent,
+    BusinessComponent,
+    RegisterBusinessComponent,
+    LoginBusinessComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,10 @@ import { SettingsComponent } from "./settings/settings.component";
       { path: "mybills", component: MybillsComponent },
       { path: "header", component: HeaderComponent },
       { path: "register", component: RegisterComponent },
-      { path: "settings", component: SettingsComponent }
+      { path: "settings", component: SettingsComponent },
+      { path: "business", component: BusinessComponent },
+      { path: "loginBusiness", component: BusinessComponent },
+      { path: "registerBusiness", component: BusinessComponent }
     ])
   ],
   providers: [SigninComponent],
