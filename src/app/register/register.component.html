@@ -14,6 +14,7 @@
             class="form-control"
             placeholder="Land"
             *ngIf="this.step == 1"
+            [(ngModel)]="land"
           />
         </li>
 
@@ -23,6 +24,7 @@
             class="form-control"
             placeholder="Vorname"
             *ngIf="this.step == 1"
+            [(ngModel)]="firstname"
           />
         </li>
 
@@ -32,6 +34,7 @@
             class="form-control"
             placeholder="Nachname"
             *ngIf="this.step == 1"
+            [(ngModel)]="lastname"
           />
         </li>
 
@@ -41,6 +44,7 @@
             class="form-control"
             placeholder="E-Mail-Adresse"
             *ngIf="this.step == 1"
+            [(ngModel)]="mail"
           />
         </li>
 
@@ -50,6 +54,7 @@
             class="form-control"
             placeholder="Passwort"
             *ngIf="this.step == 1"
+            [(ngModel)]="password"
           />
         </li>
 
@@ -59,6 +64,7 @@
             class="form-control"
             placeholder="Passwort bestätigen"
             *ngIf="this.step == 1"
+            [(ngModel)]="passwordagain"
           />
         </li>
 
@@ -68,6 +74,7 @@
             class="form-control"
             placeholder="Nationalität"
             *ngIf="this.step == 2"
+            [(ngModel)]="nationality"
           />
         </li>
 
@@ -77,6 +84,7 @@
             class="form-control"
             placeholder="Straße und Hausnummer"
             *ngIf="this.step == 2"
+            [(ngModel)]="streetandnumber"
           />
         </li>
 
@@ -86,6 +94,7 @@
             class="form-control"
             placeholder="Adresszusatz"
             *ngIf="this.step == 2"
+            [(ngModel)]="adressplus"
           />
         </li>
 
@@ -96,6 +105,7 @@
             class="form-control"
             placeholder="PLZ"
             *ngIf="this.step == 2"
+            [(ngModel)]="postcode"
           />
 
           <input
@@ -104,6 +114,7 @@
             class="form-control"
             placeholder="Ort"
             *ngIf="this.step == 2"
+            [(ngModel)]="place"
           />
         </li>
 
@@ -113,13 +124,19 @@
             class="form-control"
             placeholder="Geburtsdatum"
             *ngIf="this.step == 2"
+            [(ngModel)]="birth"
           />
         </li>
       </ul>
     </div>
 
     <div class="nextbutton">
-      <button class="next" (click)="changestep()" *ngIf="this.step == 1">
+      <button
+        class="next"
+        (click)="changestep()"
+        *ngIf="this.step == 1"
+        [disabled]="!penis"
+      >
         Weiter
       </button>
     </div>
@@ -128,6 +145,7 @@
       <button
         class="next"
         (click)="changestep()"
+        (click)="Values()"
         *ngIf="this.step == 2"
         routerLink="/dashboard"
       >
