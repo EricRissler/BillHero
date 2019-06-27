@@ -3,23 +3,27 @@
   margin-bottom: 5px;
   height: 579px;
 }
-.categoryFolder{
-color: white;
+.categoryFolder {
+  color: white;
+}
+
+#standard {
+  color: white;
 }
 .billList {
   display: flex;
   margin-top: 20px;
 }
 
-#billName{
+#billName {
   width: 40%;
 }
 
-#billDeadline{
+#billDeadline {
   width: 20%;
 }
 
-#billPrice{
+#billPrice {
   width: 20%;
 }
 
@@ -36,7 +40,7 @@ color: white;
   color: white;
 }
 
-.billStatus{
+.billStatus {
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -50,7 +54,7 @@ color: white;
   overflow-y: scroll;
 }
 
-.rightcontainer{
+.rightcontainer {
   float: right;
 }
 
@@ -87,7 +91,6 @@ p {
   width: 75%;
 }
 
-
 ul {
   list-style: none;
   margin-top: 0px;
@@ -97,6 +100,6 @@ ul {
 
 li {
   display: inline;
- margin-right: 10px;
- margin-left: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
