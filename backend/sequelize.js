@@ -1,0 +1,23 @@
+const Sequelize = require("sequelize");
+const adressModel = require("./models/adressModel");
+const categoryModel = require("./models/CategoryModel");
+const privateUserModel = require("./models/privateUserModel");
+
+const conn = new Sequelize("bill_hero", "bill_hero_admin", "billiboi", {
+  host: "db4free.net",
+  dialect: "mysql"
+});
+
+const adress = adressModel(conn, Sequelize);
+const category = categoryModel(conn, Sequelize);
+const privateUser = privateUserModel(conn, Sequelize);
+
+conn.sync().then(() => {
+  console.log("Connected and synced to database");
+})
+
+module.exports = {
+  adress: adress,
+  category: category,
+  privateUser: privateUser
+}

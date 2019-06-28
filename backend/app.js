@@ -6,7 +6,9 @@ const apiroutes = require("./routes/api_routes");
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+/*app.use(bodyParser.urlencoded({
+  extended: false
+}));*/
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -56,8 +58,7 @@ app.get("/api/BillDetail", (req, res, next) => {
     Betrag: "105.90",
     Frist: "2019.06.26",
     FavPayB: "P_xyz",
-    Items: [
-      {
+    Items: [{
         ItemID: "I_123",
         Name: "Wurst",
         Menge: 5.0,
@@ -83,8 +84,7 @@ app.get("/api/dahsboard", function (req, res, next) {
       FavPayU: "P_298376"
     },
     Anz: 2,
-    RechnungsHeader: [
-      {
+    RechnungsHeader: [{
         RechnungsID: "B_abc",
         KreditorenID: "U_456",
         DebitorenID: "U_123",
@@ -108,8 +108,7 @@ app.get("/api/dahsboard", function (req, res, next) {
 app.get("/api/buildPayBill", (req, res, next) => {
   //Input: UserID
   res.status(201).json({
-    PayMethods: [
-      {
+    PayMethods: [{
         Name: "PayPal",
         ID: "P_nmo"
       },
@@ -124,8 +123,7 @@ app.get("/api/mybills", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     Anz: "INTEGER",
-    RechnungsHeader: [
-      {
+    RechnungsHeader: [{
         RechnungsID: "B_abc",
         KreditorenID: "U_456",
         DebitorenID: "U_123",
