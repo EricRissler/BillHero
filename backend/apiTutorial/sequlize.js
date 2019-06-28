@@ -7,7 +7,7 @@ const conn = new Sequelize("bill_hero", "bill_hero_admin", "billiboi", {
 });
 
 const contact = contactModel(conn, Sequelize);
-
+console.log("trying to sync");
 conn.sync().then(() => {
   console.log("Users db and table have been created");
 });

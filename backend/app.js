@@ -1,32 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mysql = require("mysql");
+const mysql2 = require("mysql2");
+const apiroutes = require("./routes/api_routes");
 
 const app = express();
 
-const con = mysql.createConnection({
-  host: "db4free.net",
-  user: "bill_hero_admin",
-  password: "billiboi",
-  database: "bill_hero"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
-con.query("SELECT * FROM person", function(err, rows, fields) {
-  if (err) throw err;
-  console.log("Result: " + fields);
-});
-
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -41,7 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", function(req, res, next) {
+app.use("/api", apiroutes);
+app.get("/", function (req, res, next) {
   //Input: E-Mail, Passwort
   res.status(201).json({
     Type: true,
@@ -49,7 +30,7 @@ app.get("/", function(req, res, next) {
   });
 });
 
-app.get("/api/payBill", function(req, res, next) {
+app.get("/api/payBill", function (req, res, next) {
   //Input: UserID, RechnungsID, ZahlungsmethodeID
   res.status(201).json({
     Type: true,
@@ -57,7 +38,7 @@ app.get("/api/payBill", function(req, res, next) {
   });
 });
 
-app.get("/api/newCat", function(req, res, next) {
+app.get("/api/newCat", function (req, res, next) {
   //Input: Category_Name, UserID
   res.status(201).json({
     Type: true,
@@ -92,7 +73,7 @@ app.get("/api/BillDetail", (req, res, next) => {
   });
 });
 
-app.get("/api/dahsboard", function(req, res, next) {
+app.get("/api/dahsboard", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     User: {
@@ -139,7 +120,7 @@ app.get("/api/buildPayBill", (req, res, next) => {
     ]
   });
 });
-app.get("/api/mybills", function(req, res, next) {
+app.get("/api/mybills", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     Anz: "INTEGER",
