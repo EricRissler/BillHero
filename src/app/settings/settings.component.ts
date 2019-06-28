@@ -8,5 +8,18 @@ import { Component, OnInit } from "@angular/core";
 export class SettingsComponent implements OnInit {
   constructor() {}
 
+  payment1: string = "Methode 1";
+  payment2: string = "Methode 2";
+
+  payment: string[] = ["MasterCard", "Visa", "Sofort"];
+
+  togglePayment1() {
+    this.payment1 = "";
+  }
+
+  togglePayment2() {
+    this.payment2 = "";
+  }
+
   ngOnInit() {}
 }

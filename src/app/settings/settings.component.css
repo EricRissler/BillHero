@@ -1,0 +1,11 @@
+h1 {
+  text-align: center;
+}
+
+.payment1 {
+  float: left;
+}
+
+.payment2 {
+  float: right;
+}
