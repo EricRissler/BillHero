@@ -16,6 +16,7 @@ header {
 
 .nav {
   margin-top: 2.5%;
+  margin-left: 25%;
 }
 
 .logo {
@@ -27,16 +28,9 @@ header {
   position: relative;
 }
 
-.settings {
-  height: 20px;
-  width: 20px;
-  float: right;
-  margin-right: 2%;
-}
-
 .setting {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 }
 
 li {
@@ -47,7 +41,7 @@ li {
   color: white;
   background-color: transparent;
   border: none;
-  margin-right: 7%;
+  margin-right: 10%;
   font-size: 20px;
 }
 
@@ -59,4 +53,16 @@ li {
   margin-right: 1%;
   float: right;
   font-size: 20px;
+}
+
+.buttonSettings {
+  color: white;
+  background-color: transparent;
+  border: none;
+  margin-left: 5%;
+  font-size: 20px;
+}
+
+.changeheader {
+  float: left;
 }

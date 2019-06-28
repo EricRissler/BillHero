@@ -1,3 +1,24 @@
-<p>
-  activity works!
-</p>
+<div class="container">
+    <h2 class="headline">Deine zuletzt bezahlten Rechnungen auf einem Blick:</h2>
+  <div class="leftcontainer">
+    
+    <div class="billList" *ngFor="let bill of bill" draggable="true">
+      <ul class="list-group-item" id="list">
+        <li class="list-group">{{ bill.billnr }}</li>
+        <li class="list-group">{{ bill.name }}</li>
+        <li class="list-group">{{ bill.deadline }}</li>
+        <li class="list-group">{{ bill.price }}€</li>
+        <li>
+          <Button
+            class="billStatus"
+            disabled="false"
+            [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+          ></Button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="rightcontainer">
+    <app-bill-detail></app-bill-detail>
+  </div>
+</div>

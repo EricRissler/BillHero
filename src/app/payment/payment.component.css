@@ -1,0 +1,56 @@
+.container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 579px;
+    display: flex;
+    
+  }
+  .leftcontainter{
+    float: left;
+    margin-left: 100px;
+    
+  }
+  .rightcontainer{
+    float: right;
+    margin-left: 100px; 
+    
+  }
+
+  .radioBtn{
+    margin-left: 10%;
+    width: 20px;
+    height: 20px;
+  }
+
+  .creditcard{
+  margin-top: 30px;
+  }
+
+  .payPalLogo{
+    width: 90px;
+    margin-left: 2%;
+  }
+
+  .instantTransferLogo{
+    width: 90px;
+    margin-left: 2%;
+  }
+
+  .creditcardLogo{
+    width: 100px;
+    margin-left: 2%;
+  }
+  .price{
+    margin-top: 5%;
+    font-size: 20px;
+  }
+  
+  .payBtn{
+    margin-top: 5%;
+    color: white;
+    border: 2px solid white;
+    background-color: #05619b;
+    border-radius: 50px;
+    width: 250px;
+    height: 50px;
+  }
