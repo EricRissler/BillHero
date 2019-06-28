@@ -1,0 +1,28 @@
+.container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 579px;
+    display: flex;
+    
+  }
+
+  .btn{
+    color: white;
+    border: 2px solid white;
+    background-color: #05619b;
+    border-radius: 50px;
+    width: 50%;
+    height: 70px;
+    font-size: 25px;
+  }
+
+  ul{
+    width: 100%;
+    justify-content: center;
+}
+li{
+  margin-top: 5%;
+  text-align: center;
+  list-style: none;
+  justify-self: center;
+}
