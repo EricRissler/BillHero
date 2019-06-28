@@ -1,5 +1,6 @@
 .container {
-  height: px;
+  width: 300px;
+  height: 100%;
 }
 
 ul li{
@@ -13,7 +14,6 @@ list-style: none;
 }
 
 .detail {
-  float: right;
   background-color: #3b3b3b;
   color: white;
   border-color: white;
@@ -21,7 +21,7 @@ list-style: none;
   width: 300px;
   text-align: center;
   border-radius: 15px;
-  height: 500px;
+  height: 550px;
 }
 
 .hr {
@@ -33,6 +33,7 @@ list-style: none;
 }
 
 .price {
+
 align-self: flex-end;
 }
 

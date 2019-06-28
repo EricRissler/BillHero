@@ -19,10 +19,15 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
+<<<<<<< HEAD
 import { BusinessComponent } from "./business/business.component";
 import { RegisterBusinessComponent } from "./register-business/register-business.component";
 import { LoginBusinessComponent } from "./login-business/login-business.component";
 import { DropdownComponent } from './dropdown/dropdown.component';
+=======
+import { HttpClient } from "@angular/common/http";
+import { PaymentComponent } from './payment/payment.component';
+>>>>>>> ae0c6eaebaa446752895dbb6ebadf8894ef0b51f
 
 @NgModule({
   declarations: [
@@ -42,10 +47,14 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     ActivityComponent,
     RegisterComponent,
     SettingsComponent,
+<<<<<<< HEAD
     BusinessComponent,
     RegisterBusinessComponent,
     LoginBusinessComponent,
     DropdownComponent
+=======
+    PaymentComponent
+>>>>>>> ae0c6eaebaa446752895dbb6ebadf8894ef0b51f
   ],
   imports: [
     BrowserModule,
@@ -62,9 +71,13 @@ import { DropdownComponent } from './dropdown/dropdown.component';
       { path: "header", component: HeaderComponent },
       { path: "register", component: RegisterComponent },
       { path: "settings", component: SettingsComponent },
+<<<<<<< HEAD
       { path: "business", component: BusinessComponent },
       { path: "loginBusiness", component: BusinessComponent },
       { path: "registerBusiness", component: BusinessComponent }
+=======
+      { path: "payment", component: PaymentComponent }
+>>>>>>> ae0c6eaebaa446752895dbb6ebadf8894ef0b51f
     ])
   ],
   providers: [SigninComponent],

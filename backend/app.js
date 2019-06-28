@@ -139,7 +139,7 @@ app.get("/api/buildPayBill", (req, res, next) => {
 app.get("/api/mybills", function(req, res, next) {
   //Input: UserID
   res.status(201).json({
-    Anz: "INTEGER",
+    Anz: 4,
     RechnungsHeader: [
       {
         RechnungsID: "B_abc",
