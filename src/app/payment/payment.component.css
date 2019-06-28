@@ -7,12 +7,13 @@
   }
   .leftcontainter{
     float: left;
-    margin-left: 100px;
+    margin-left: 20%;
     
   }
   .rightcontainer{
     float: right;
-    margin-left: 100px; 
+    margin-left: 5%;
+    margin-right: 20%; 
     
   }
 
