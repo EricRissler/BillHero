@@ -19,9 +19,10 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { HttpClient } from "@angular/common/http";
-import { PaymentComponent } from './payment/payment.component';
-import { PaypalComponent } from './paypal/paypal.component';
+import { PaymentComponent } from "./payment/payment.component";
+import { PaypalComponent } from "./paypal/paypal.component";
+import { DropdownDirective } from "./shared/dropdown.directive";
+import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { PaypalComponent } from './paypal/paypal.component';
     RegisterComponent,
     SettingsComponent,
     PaymentComponent,
-    PaypalComponent
+    PaypalComponent,
+    DropdownDirective,
+    NewPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { PaypalComponent } from './paypal/paypal.component';
       { path: "register", component: RegisterComponent },
       { path: "settings", component: SettingsComponent },
       { path: "payment", component: PaymentComponent },
-      { path: "paypal", component: PaypalComponent }
+      { path: "paypal", component: PaypalComponent },
+      { path: "newPayment", component: NewPaymentComponent }
     ])
   ],
   providers: [SigninComponent],

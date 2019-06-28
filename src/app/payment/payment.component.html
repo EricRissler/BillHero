@@ -1,25 +1,39 @@
 <div class="container">
-<div class="leftcontainter">
-  <h1>Bezahlvorgang</h1>
+  <div class="leftcontainter">
+    <h1>Bezahlvorgang</h1>
 
-  <div class="paymantMethods">
-    <div class="payPal">
-      <input type="radio" name="payPal" class="radioBtn" id="payPal">
-      <img class="payPalLogo" [src]="payPal" alt="PayPal"/>
+    <div class="paymantMethods">
+      <div class="payPal">
+        <input type="radio" name="payPal" class="radioBtn" id="payPal" />
+        <img class="payPalLogo" [src]="payPal" alt="PayPal" />
+      </div>
+      <div class="instantTransfer">
+        <input
+          type="radio"
+          name="Sofort Überweisung"
+          class="radioBtn"
+          id="instantTransfer"
+        />
+        <img
+          class="instantTransferLogo"
+          [src]="instantTransfer"
+          alt="Sofort Überweisung"
+        />
+      </div>
+      <div class="creditcard">
+        <input
+          type="radio"
+          name="Kreditkarte"
+          class="radioBtn"
+          id="creditcard"
+        />
+        <img class="creditcardLogo" [src]="creditcard" alt="Kreditkarte" />
+      </div>
     </div>
-    <div class="instantTransfer">
-      <input type="radio" name="Sofort Überweisung" class="radioBtn" id="instantTransfer">
-      <img class="instantTransferLogo" [src]="instantTransfer" alt="Sofort Überweisung"/>
-    </div>
-    <div class="creditcard">
-      <input type="radio" name="Kreditkarte" class="radioBtn" id="creditcard">
-      <img class="creditcardLogo" [src]="creditcard" alt="Kreditkarte"/>
-    </div>
+    <p class="price">Zu bezahlender Betrag: 900 €</p>
+    <button class="payBtn" routerLink="/paypal">Weiter geht's</button>
   </div>
-  <p class="price">Zu bezahlender Betrag: 900 € </p>
-  <button class="payBtn" routerLink="/paypal">Weiter geht's</button>
-</div>
-<div class="rightcontainer">
-  <app-bill-detail></app-bill-detail>
-</div>
+  <div class="rightcontainer">
+    <app-bill-detail></app-bill-detail>
+  </div>
 </div>
