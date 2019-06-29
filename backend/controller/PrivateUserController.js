@@ -3,10 +3,12 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
 const getUser = function (req, res) {
+
   const data = {
     email: req.body.email,
     password: req.body.password
   };
+
   privateUser
     .findOne({
       where: {
@@ -38,6 +40,7 @@ const getUser = function (req, res) {
         }
       );
     });
+
 };
 
 const postUser = function (req, res) {
@@ -121,8 +124,11 @@ const postUser = function (req, res) {
       }
     });
 };
+const getById = function (req, res) {
 
+};
 module.exports = {
   get: getUser,
-  post: postUser
+  post: postUser,
+  getById: getById
 };

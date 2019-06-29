@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 
 const getUser = function (req, res) {
-  //authentification is very simple
   const data = {
     email: req.body.email,
     password: req.body.password
@@ -116,8 +115,10 @@ const postUser = function (req, res) {
       }
     });
 };
+const getByID = function () {};
 
 module.exports = {
   get: getUser,
-  post: postUser
+  post: postUser,
+  getByID: getByID
 };
