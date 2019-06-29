@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql2 = require("mysql2");
-const apiroutes = require("./routes/api_routes");
+const apiroutes = require("./routes/apiRoutes");
 
 const app = express();
 

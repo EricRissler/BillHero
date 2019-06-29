@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const adressModel = require("./models/adressModel");
 const categoryModel = require("./models/CategoryModel");
 const privateUserModel = require("./models/privateUserModel");
+const commercialUserModel = require("./models/commercialUserModel");
 
 const conn = new Sequelize("bill_hero", "bill_hero_admin", "billiboi", {
   host: "db4free.net",
@@ -11,6 +12,7 @@ const conn = new Sequelize("bill_hero", "bill_hero_admin", "billiboi", {
 const adress = adressModel(conn, Sequelize);
 const category = categoryModel(conn, Sequelize);
 const privateUser = privateUserModel(conn, Sequelize);
+const commercialUser = commercialUserModel(conn, Sequelize);
 
 conn.sync().then(() => {
   console.log("Connected and synced to database");
@@ -19,5 +21,6 @@ conn.sync().then(() => {
 module.exports = {
   adress: adress,
   category: category,
-  privateUser: privateUser
+  privateUser: privateUser,
+  commercialUser: commercialUser
 }

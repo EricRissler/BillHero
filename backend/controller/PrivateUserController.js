@@ -2,9 +2,7 @@ const privateUser = require("../sequelize").privateUser;
 const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
-//FIXME:
-const getUser = function(req, res) {
-  //authentification is very simple
+const getUser = function (req, res) {
   const data = {
     email: req.body.email,
     password: req.body.password
@@ -39,16 +37,10 @@ const getUser = function(req, res) {
           });
         }
       );
-      /*if (user.password != null && user.password == data.password) {
-
-      } else {
-
-      }*/
     });
 };
 
-//TODO: Bcrypt hash einfügen
-const postUser = function(req, res) {
+const postUser = function (req, res) {
   const BCYRPT_SALTROUNDS = 12;
   const data = {
     country: req.body.country,
@@ -61,7 +53,6 @@ const postUser = function(req, res) {
     additonal: req.body.additonal,
     zip: req.body.zip,
     city: req.body.city,
-    telNr: req.body.telNr,
     bdate: req.body.bdate
   };
   //Prüfen ob alle Felder gefüllt sein
@@ -97,7 +88,7 @@ const postUser = function(req, res) {
             country: data.country,
             additonal: data.additonal
           })
-          .then(function(result) {
+          .then(function (result) {
             console.log("Created Adress");
             bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
               hash => {
@@ -111,13 +102,15 @@ const postUser = function(req, res) {
                     password: hash,
                     idAdress: result.id
                   })
-                  .then(function(result) {
+                  .then(function (result) {
                     console.log("Created User");
                     res.status(201).json("User created");
                   });
               },
               err => {
-                res.status(500).json({ message });
+                res.status(500).json({
+                  message
+                });
               }
             );
           })

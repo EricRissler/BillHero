@@ -1,24 +1,16 @@
-const privatUserModel = (seqelize, type) => {
-  return seqelize.define("privateUser", {
+const commercialUserModel = (seqelize, type) => {
+  return seqelize.define("commercialUser", {
     id: {
       type: type.INTEGER,
       primaryKey: true,
       unique: true,
       autoIncrement: true
     },
-    firstname: {
+    longname: {
       type: type.STRING,
       allowNull: false
     },
-    lastname: {
-      type: type.STRING,
-      allowNull: false
-    },
-    birthdate: { //TODO:in dm einfügen
-      type: type.STRING,
-      allowNull: false
-    },
-    nationality: { //TODO:in dm einfügen
+    shortname: {
       type: type.STRING,
       allowNull: false
     },
@@ -30,9 +22,12 @@ const privatUserModel = (seqelize, type) => {
       type: type.STRING,
       allowNull: false
     },
+    incomingPaymentToken: {
+      type: type.STRING
+    },
     idAdress: {
       type: type.INTEGER
     }
   });
 };
-module.exports = privatUserModel;
+module.exports = commercialUserModel;
