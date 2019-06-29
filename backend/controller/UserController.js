@@ -22,26 +22,34 @@ const getUser = function(req, res) {
         });
         return;
       }
-      if (user.password != null && user.password == data.password) {
-        res.status(200).json({
-          id: user.id,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          birthdate: user.birthdate,
-          nationality: user.nationality,
-          email: user.email
-        });
+      bcrypt.compare(data.password, user.password).then(
+        result => {
+          res.status(200).json({
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            birthdate: user.birthdate,
+            nationality: user.nationality,
+            email: user.email
+          });
+        },
+        err => {
+          res.status(404).json({
+            message: "Invalid Userdata"
+          });
+        }
+      );
+      /*if (user.password != null && user.password == data.password) {
+
       } else {
-        res.status(404).json({
-          message: "Invalid Userdata"
-        });
-      }
+
+      }*/
     });
 };
 
 //TODO: Bcrypt hash einfügen
 const postUser = function(req, res) {
-  const SALTROUNDS = 12;
+  const BCYRPT_SALTROUNDS = 12;
   const data = {
     country: req.body.country,
     firstname: req.body.firstname,
@@ -91,20 +99,27 @@ const postUser = function(req, res) {
           })
           .then(function(result) {
             console.log("Created Adress");
-            privateUser
-              .create({
-                firstname: data.firstname,
-                lastname: data.lastname,
-                birthdate: data.bdate,
-                nationality: data.nationality,
-                email: data.email,
-                password: data.password,
-                idAdress: result.id
-              })
-              .then(function(result) {
-                console.log("Created User");
-                res.status(201).json("Contact created");
-              });
+            bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
+              hash => {
+                privateUser
+                  .create({
+                    firstname: data.firstname,
+                    lastname: data.lastname,
+                    birthdate: data.bdate,
+                    nationality: data.nationality,
+                    email: data.email,
+                    password: hash,
+                    idAdress: result.id
+                  })
+                  .then(function(result) {
+                    console.log("Created User");
+                    res.status(201).json("User created");
+                  });
+              },
+              err => {
+                res.status(500).json({ message });
+              }
+            );
           })
           .catch(err => {
             res.status(501).json(err);
@@ -117,20 +132,4 @@ const postUser = function(req, res) {
 module.exports = {
   get: getUser,
   post: postUser
-};
-
-exports.module = function(req, res) {
-  contact.get((req, res) => {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    }
-    res.json({
-      status: "success",
-      message: "Contacts recieved",
-      data: contacts
-    });
-  });
 };
