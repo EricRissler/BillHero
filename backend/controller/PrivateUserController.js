@@ -127,11 +127,29 @@ const postUser = function (req, res) {
       }
     });
 };
-const getById = function (req, res) {
-
+const getByID = function (req, res) {
+  const reqID = req.params.uid;
+  privateUser.findOne({
+    where: {
+      id: reqID
+    }
+  }).then(result => {
+    if (result == null) {
+      res.status(400).json({
+        message: "User not found"
+      });
+      return;
+    } else {
+      res.status(200).json({
+        message: "User  found",
+        user: result
+      });
+    }
+  });
 };
+
 module.exports = {
   get: getUser,
   post: postUser,
-  getById: getById
+  getByID: getByID
 };
