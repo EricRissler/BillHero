@@ -98,7 +98,10 @@ const postUser = function (req, res) {
                   })
                   .then(function (result) {
                     console.log("Created User");
-                    res.status(201).json("User created");
+                    res.status(201).json({
+                      message: "User created",
+                      uid: result.id
+                    });
                   });
               },
               err => {
