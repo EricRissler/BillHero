@@ -38,6 +38,10 @@ const billModel = (sequelize, type) => {
     idPayedWith: {
       type: type.STRING,
       allownull: true,
+    },
+    idCategory: {
+      type: type.INTEGER,
+      allownull: true
     }
 
   });

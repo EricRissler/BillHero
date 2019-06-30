@@ -1,8 +1,9 @@
 const bill = require("../sequelize").bill;
 const commercialUser = require("../sequelize").commercialUser;
 const privateUser = require("../sequelize").privateUser;
+const paymentProvider = require("../paymentprovider/paymentprovider");
 
-const postBill = function(req, res) {
+const postBill = function (req, res) {
   const data = {
     debID: req.params.uid,
     creID: req.body.creID,
@@ -61,7 +62,7 @@ const postBill = function(req, res) {
     });
 };
 
-const getBill = function(req, res) {
+const getBill = function (req, res) {
   const data = {
     uid: req.params.uid,
     bid: req.params.bid
@@ -87,8 +88,55 @@ const getBill = function(req, res) {
       }
     });
 };
+//TODO: Testen
+const putBill = function (req, res) {
+  const data = {
+    userID: req.params.uid,
+    billID: req.params.bid,
+    catID: req.body.categoryID,
+    paymentID: req.body.paymentID
+  }
+  if (data.paymentID == undefined && data.catID == undefined) {
+    res.status(406).send();
+  } else {
+    bill.findOne({
+      where: {
+        id: data.billID,
+        idCreditor: data.userID
+      }
+    }).then((result) => {
+      if (result == null) {
+        res.status(404).json({
+          message: "User doesn't has bill with given billID"
+        })
+      } else {
+        if (data.catID != undefined) {
+          result.update({
+            idCategory: data.catID
+          });
+          res.status(200).send();
+        } else if (data.paymentID != undefined) {
+          //TODO: get paymenttopkens from creditor and debitor
+          if (paymentProvider.payBill(result.idCreditor, result.idDebitor, result.amount)) {
+            result.update({
+              idPayedWith: data.paymentID,
+              paymentStatus: true
+            });
+            res.status(200).send();
+          } else {
+            res.status(409).json({
+              message: "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
+            });
+          }
+        }
+      }
+    });
+  }
+}
+
 
 module.exports = {
   postBill: postBill,
-  getBill: getBill
+  getBill: getBill,
+  putBill: putBill
 };

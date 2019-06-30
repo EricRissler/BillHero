@@ -6,12 +6,17 @@ const categoryModel = (seqelize, type) => {
       autoIncrement: true
     },
     idUser: {
-      type: type.STRING,
+      type: type.INTEGER,
       allowNulll: false
     },
     name: {
       type: type.STRING,
       allowNulll: false
+    },
+    isHitorical: {
+      type: type.BOOLEAN,
+      allowNulll: false,
+      defaultValue: false
     }
   })
 }
