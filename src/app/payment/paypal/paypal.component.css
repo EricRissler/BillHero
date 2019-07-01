@@ -30,6 +30,7 @@ li{
 .paypalBtn{
     font-size: 25px;
   background-color: #1e477a;
+  border-color: #1e477a;
   color: white;
   border-radius: 50px;
   width: 30%;

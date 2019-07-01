@@ -4,17 +4,17 @@
 
     <ul class="nav">
       <li>
-        <button class="menu" routerLink="/dashboard" *ngIf="!this.tausch">
+        <button class="menu" routerLink="/dashboard" *ngIf="this.headerChange">
           Übersicht
         </button>
       </li>
       <li>
-        <button class="menu" routerLink="/mybills" *ngIf="!this.tausch">
+        <button class="menu" routerLink="/mybills" *ngIf="this.headerChange">
           Meine Rechnungen
         </button>
       </li>
       <li class="liactivity">
-        <button class="menu" routerLink="/activity" *ngIf="!this.tausch">
+        <button class="menu" routerLink="/activity" *ngIf="this.headerChange">
           Aktivitäten
         </button>
       </li>
@@ -22,7 +22,7 @@
       <li>
         <button
           class="buttonSettings"
-          *ngIf="!this.tausch"
+          *ngIf="this.headerChange"
           routerLink="/settings"
         >
           <img class="setting" [src]="settings" alt="settings" />
@@ -34,13 +34,13 @@
           id="buttons"
           (click)="toggle()"
           routerLink="/logout"
-          *ngIf="!this.tausch"
+          *ngIf="this.headerChange"
         >
           Abmelden
         </button>
       </li>
 
-      <li *ngIf="this.tausch">
+      <li *ngIf="!this.headerChange">
         <button id="buttons" routerLink="/register">
           Registrieren
         </button>
@@ -51,19 +51,19 @@
           id="buttons"
           (click)="toggle()"
           routerLink="/signin"
-          *ngIf="this.tausch"
+          *ngIf="!this.headerChange"
         >
           Anmelden
         </button>
       </li>
 
       <li>
-        <button class="menu" routerLink="/business" *ngIf="this.tausch">
+        <button class="menu" routerLink="/business" *ngIf="!this.headerChange">
           Für Geschäftskunden
         </button>
       </li>
     </ul>
 
-    <button class="changeheader" (click)="changer()"></button>
+    
   </div>
 </header>

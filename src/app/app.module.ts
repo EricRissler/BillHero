@@ -21,7 +21,9 @@ import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { HttpClient } from "@angular/common/http";
 import { PaymentComponent } from './payment/payment.component';
-import { PaypalComponent } from './paypal/paypal.component';
+import { PaypalComponent } from './payment/paypal/paypal.component';
+import { PayedComponent } from './payment/payed/payed.component';
+import { HeaderService } from './header.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { PaypalComponent } from './paypal/paypal.component';
     RegisterComponent,
     SettingsComponent,
     PaymentComponent,
-    PaypalComponent
+    PaypalComponent,
+    PayedComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +63,11 @@ import { PaypalComponent } from './paypal/paypal.component';
       { path: "register", component: RegisterComponent },
       { path: "settings", component: SettingsComponent },
       { path: "payment", component: PaymentComponent },
-      { path: "paypal", component: PaypalComponent }
+      { path: "paypal", component: PaypalComponent },
+      { path: "payed", component: PayedComponent }
     ])
   ],
-  providers: [SigninComponent],
+  providers: [SigninComponent,HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
