@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Item } from '../shared/item.model';
-
+import { HeaderService } from '../header.service';
 @Component({
   selector: "app-bill-detail",
   templateUrl: "./bill-detail.component.html",
@@ -14,7 +14,9 @@ export class BillDetailComponent implements OnInit {
     new Item("HDMI Kabel", 240),
     new Item("Maus", 2)
   ];
-  constructor() { }
+  constructor(private headerService: HeaderService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.headerService.setHeader(true);
+   }
 }
