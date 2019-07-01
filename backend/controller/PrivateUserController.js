@@ -2,8 +2,7 @@ const privateUser = require("../sequelize").privateUser;
 const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
-const getUser = function (req, res) {
-
+const getUser = function(req, res) {
   const data = {
     email: req.body.email,
     password: req.body.password
@@ -40,10 +39,9 @@ const getUser = function (req, res) {
         }
       );
     });
-
 };
 
-const postUser = function (req, res) {
+const postUser = function(req, res) {
   const BCYRPT_SALTROUNDS = 12;
   const data = {
     country: req.body.country,
@@ -91,7 +89,7 @@ const postUser = function (req, res) {
             country: data.country,
             additonal: data.additonal
           })
-          .then(function (result) {
+          .then(function(result) {
             console.log("Created Adress");
             bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
               hash => {
@@ -105,7 +103,7 @@ const postUser = function (req, res) {
                     password: hash,
                     idAdress: result.id
                   })
-                  .then((result) => {
+                  .then(result => {
                     console.log("Created User");
                     res.status(201).json({
                       message: "User created",
@@ -127,25 +125,28 @@ const postUser = function (req, res) {
       }
     });
 };
-const getByID = function (req, res) {
+//TODO: get commercial and private user
+const getByID = function(req, res) {
   const reqID = req.params.uid;
-  privateUser.findOne({
-    where: {
-      id: reqID
-    }
-  }).then(result => {
-    if (result == null) {
-      res.status(400).json({
-        message: "User not found"
-      });
-      return;
-    } else {
-      res.status(200).json({
-        message: "User  found",
-        user: result
-      });
-    }
-  });
+  privateUser
+    .findOne({
+      where: {
+        id: reqID
+      }
+    })
+    .then(result => {
+      if (result == null) {
+        res.status(400).json({
+          message: "User not found"
+        });
+        return;
+      } else {
+        res.status(200).json({
+          message: "User  found",
+          user: result
+        });
+      }
+    });
 };
 
 module.exports = {
