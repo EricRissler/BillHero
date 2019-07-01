@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { HeaderService } from '../header.service';
 declare var require: any;
 @Component({
   selector: "app-register",
@@ -25,7 +24,7 @@ export class RegisterComponent implements OnInit {
   birth: string = "";
 
   step: number = 1;
-  constructor(private headerService: HeaderService) {}
+  constructor() {}
 
   Values() {
     console.log("Land: " + this.land);
@@ -55,7 +54,5 @@ export class RegisterComponent implements OnInit {
     return this.penis;
   }
 
-  ngOnInit() {
-   this.headerService.setHeader(false);   
-  }
+  ngOnInit() {}
 }

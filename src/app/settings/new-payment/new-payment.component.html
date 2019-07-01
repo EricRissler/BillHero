@@ -1,0 +1,91 @@
+<div class="container">
+  <h1>Neue Zahlmethode hinzufügen</h1>
+  <hr />
+
+  <div class="bankAccount">
+    <button id="buttonNew" type="button" (click)="newBankPayment()">
+      Bankverbindung hinzufügen
+      <span class="caret"></span>
+    </button>
+
+    <ul id="list" *ngIf="newBank">
+      <li>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name der Zahlmethode"
+        />
+      </li>
+
+      <li>
+        <input
+          id="BIC"
+          type="text"
+          class="form-control"
+          placeholder="BIC (Swift-Code)"
+        />
+      </li>
+
+      <li>
+        <input type="text" class="form-control" placeholder="IBAN" />
+      </li>
+
+      <li>
+        <input
+          id="BIC"
+          type="text"
+          class="form-control"
+          placeholder="Kontoinhaber"
+        />
+      </li>
+
+      <li>
+        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <hr />
+  </div>
+
+  <!-- Neue Kreditkarte hinzufügen -->
+
+  <div class="Kreditcard">
+    <button id="buttonNew" type="button" (click)="newKreditcard()">
+      Kreditkarte hinzufügen
+      <span class="caret"></span>
+    </button>
+
+    <ul id="list" *ngIf="newCard">
+      <li>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name der Zahlmethode"
+        />
+      </li>
+
+      <li>
+        <input
+          id="BIC"
+          type="text"
+          class="form-control"
+          placeholder="Karteninhaber"
+        />
+      </li>
+
+      <li>
+        <input type="text" class="form-control" placeholder="Kartennummer" />
+      </li>
+
+      <li>
+        <input id="date" type="date" class="form-control" />
+      </li>
+
+      <li>
+        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
+      </li>
+    </ul>
+  </div>
+</div>
