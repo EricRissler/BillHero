@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: "app-settings",
@@ -6,7 +7,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./settings.component.css"]
 })
 export class SettingsComponent implements OnInit {
-  constructor() {}
+  constructor(private headerService: HeaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.headerService.setHeader(true);
+  }
 }

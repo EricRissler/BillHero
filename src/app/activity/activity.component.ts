@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bill } from '../shared/bill.model';
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: 'app-activity',
@@ -8,9 +9,10 @@ import { Bill } from '../shared/bill.model';
 })
 export class ActivityComponent implements OnInit {
   bill: Bill[] ;
-  constructor() { }
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setHeader(true);
     this.bill= [
       new Bill("Media Markt", "05.08.2019", 900, true),
       new Bill("Schreiner", "14.06.2019", 750, true),

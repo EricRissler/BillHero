@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from 'src/app/header.service';
 
 @Component({
   selector: 'app-payed',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setHeader(true);
   }
 
 }

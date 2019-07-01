@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeaderService } from '../header.service';
 declare var require: any;
 @Component({
   selector: 'app-payment',
@@ -17,9 +18,10 @@ export class PaymentComponent implements OnInit {
   checkedValue:String;
   
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setHeader(true);
   }
 
 btnClick(){
