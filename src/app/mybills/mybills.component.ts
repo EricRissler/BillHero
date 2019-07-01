@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
 import { HttpClient } from '@angular/common/http';
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: "app-mybills",
@@ -13,7 +14,7 @@ export class MybillsComponent implements OnInit {
     new Category("Arzt"),
     new Category("Auto")
   ]    
-
+  constructor(private headerService: HeaderService) { }
   public input: string = "";
 
    bill: Bill[] ;
@@ -41,7 +42,7 @@ export class MybillsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.headerService.setHeader(true);
     this.bill= [
         new Bill("Media Markt", "05.08.2019", 900, false),
         new Bill("Schreiner", "14.06.2019", 750, false),
