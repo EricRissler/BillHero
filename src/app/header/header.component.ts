@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from '../header.service';
+import { interval } from 'rxjs';
 
 declare var require: any;
 
@@ -9,17 +11,18 @@ declare var require: any;
 })
 export class HeaderComponent implements OnInit {
   // public changer: string = "show";
-  public tausch: boolean = true;
+  public headerChange: boolean = true;
 
   private logo = require("../../assets/img/Logo3.png");
   private settings = require("../../assets/img/settings.png");
-  receiveChange($event) {
-    this.tausch = $event;
-  }
+  
 
-  changer() {
-    this.tausch = !this.tausch;
-  }
+  constructor(private headerService: HeaderService){ }
 
-  ngOnInit() {}
+  ngOnInit() {
+    interval(50).subscribe(count=> {
+      this.headerChange=this.headerService.getHeader();
+    })
+    
+  }
 }

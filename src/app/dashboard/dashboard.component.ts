@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
+import { HeaderService } from '../header.service';
 declare var require: any;
 @Component({
   selector: "app-dashboard",
@@ -26,7 +27,9 @@ export class DashboardComponent implements OnInit {
 
   user: string = "Thomas";
 
-  constructor() {}
+  constructor(private headerService: HeaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.headerService.setHeader(true);
+  }
 }

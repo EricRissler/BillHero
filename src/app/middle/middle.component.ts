@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from '../header.service';
 //declare var require: any;
 @Component({
   selector: "app-middle",
@@ -12,7 +13,9 @@ export class MiddleComponent implements OnInit {
     return "src('../../assets/Bilder/Logo.png')";
   }
 
-  constructor() {}
+  constructor(private headerService: HeaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.headerService.setHeader(false);
+  }
 }

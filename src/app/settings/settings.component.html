@@ -1,43 +1,58 @@
 <div class="container">
   <h1>Einstellungen</h1>
 
-  <div class="payment1">
+  <div>
     <h2 id="choose">Bezahlmethode 1</h2>
-
-    <div class="btn-group" appDropdown>
-      <button type="button" class="btn btn-primary dropdown-toggle">
-        {{ payment1 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment1()"> {{ payment }}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="payment2">
-    <h2 id="select">Bezahlmethode 2</h2>
-
-    <div class="btn-group" appDropdown>
-      <button type="button" class="btn btn-primary dropdown-toggle">
-        {{ payment2 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment2()"> {{ payment }}</a>
-        </li>
-      </ul>
-    </div>
+    <input type="text" class="form-control" />
   </div>
 
   <div>
-    <button routerLink="/newPayment">
-      Neue Zahlungsmethode hinzufügen
+    <h2 id="select">Bezahlmethode 2</h2>
+    <input type="text" class="form-control" />
+  </div>
+
+  <div class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      data-toggle="dropdown"
+    >
+      Dropdown Example <span class="caret"></span>
     </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
+
+  <!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div> -->
+
+  <div class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="about-us"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      About Us
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="about-us">
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
   </div>
 </div>
