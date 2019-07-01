@@ -3,11 +3,12 @@
   <hr />
 
   <div class="bankAccount">
-    <button type="button">
+    <button id="buttonNew" type="button" (click)="newBankPayment()">
       Bankverbindung hinzufügen
+      <span class="caret"></span>
     </button>
 
-    <ul id="penis">
+    <ul id="list" *ngIf="newBank">
       <li>
         <input
           type="text"
@@ -34,24 +35,29 @@
           id="BIC"
           type="text"
           class="form-control"
-          placeholder="Kontoinhaber (Nicht Name der Bank)"
+          placeholder="Kontoinhaber"
         />
       </li>
 
       <li>
-        <button type="submit">Bankverbindung hinzufügen</button>
+        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
       </li>
     </ul>
+  </div>
 
+  <div>
     <hr />
   </div>
 
+  <!-- Neue Kreditkarte hinzufügen -->
+
   <div class="Kreditcard">
-    <button type="button">
-      Bankverbindung hinzufügen
+    <button id="buttonNew" type="button" (click)="newKreditcard()">
+      Kreditkarte hinzufügen
+      <span class="caret"></span>
     </button>
 
-    <ul id="penis">
+    <ul id="list" *ngIf="newCard">
       <li>
         <input
           type="text"
@@ -65,28 +71,21 @@
           id="BIC"
           type="text"
           class="form-control"
-          placeholder="BIC (Swift-Code)"
+          placeholder="Karteninhaber"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="IBAN" />
+        <input type="text" class="form-control" placeholder="Kartennummer" />
       </li>
 
       <li>
-        <input
-          id="BIC"
-          type="text"
-          class="form-control"
-          placeholder="Kontoinhaber (Nicht Name der Bank)"
-        />
+        <input id="date" type="date" class="form-control" />
       </li>
 
       <li>
-        <button type="submit">Bankverbindung hinzufügen</button>
+        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
       </li>
     </ul>
-
-    <hr />
   </div>
 </div>
