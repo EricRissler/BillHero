@@ -19,10 +19,11 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { PaymentComponent } from "./payment/payment.component";
-import { PaypalComponent } from "./paypal/paypal.component";
-import { DropdownDirective } from "./shared/dropdown.directive";
-import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
+import { HttpClient } from "@angular/common/http";
+import { PaymentComponent } from './payment/payment.component';
+import { PaypalComponent } from './payment/paypal/paypal.component';
+import { PayedComponent } from './payment/payed/payed.component';
+import { HeaderService } from './header.service';
 
 @NgModule({
   declarations: [
@@ -44,8 +45,7 @@ import { NewPaymentComponent } from "./settings/new-payment/new-payment.componen
     SettingsComponent,
     PaymentComponent,
     PaypalComponent,
-    DropdownDirective,
-    NewPaymentComponent
+    PayedComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +64,10 @@ import { NewPaymentComponent } from "./settings/new-payment/new-payment.componen
       { path: "settings", component: SettingsComponent },
       { path: "payment", component: PaymentComponent },
       { path: "paypal", component: PaypalComponent },
-      { path: "newPayment", component: NewPaymentComponent }
+      { path: "payed", component: PayedComponent }
     ])
   ],
-  providers: [SigninComponent],
+  providers: [SigninComponent,HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
