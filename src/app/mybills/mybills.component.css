@@ -2,7 +2,42 @@
   margin-top: 5px;
   margin-bottom: 5px;
   height: 579px;
+  
 }
+
+.categoryFolder {
+  color: white;
+}
+
+#standard {
+  color: white;
+}
+.billList {
+  display: flex;
+  margin-top: 20px;
+}
+
+#billName {
+  width: 40%;
+  float: left;
+}
+
+#billDeadline {
+  width: 20%;
+}
+
+#billPrice {
+  width: 20%;
+}
+
+
+.billStatus {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 1px solid black;
+}
+
 .category {
   background-color: #05619b;
   float: left;
@@ -15,13 +50,20 @@
   margin-top: 15px;
   color: white;
 }
-.rightcontainer {
-  width: 78%;
-  float: right;
+
+.middlecontainer {
   /* border: 1px solid black; */
+  float: left;
+  height: 100%;
+  width: 53%;
   border-radius: 8px;
   height: 550px;
   overflow-y: scroll;
+}
+
+.rightcontainer {
+  float: left;
+  width: 25%;
 }
 
 p {
@@ -53,16 +95,18 @@ p {
   border: 1px solid black;
   border-radius: 10px;
   height: 45px;
-  text-align: center;
   width: 75%;
 }
 
 ul {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 li {
   display: inline;
-  margin-right: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
 }

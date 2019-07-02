@@ -1,9 +1,19 @@
 .container {
-  height: px;
+  width: 300px;
+  height: 100%;
+}
+
+ul li{
+display: inline;
+list-style: none;
+}
+
+.list{
+  height: 50%;
+  overflow-y: scroll;
 }
 
 .detail {
-  float: right;
   background-color: #3b3b3b;
   color: white;
   border-color: white;
@@ -11,14 +21,27 @@
   width: 300px;
   text-align: center;
   border-radius: 15px;
-  height: 500px;
+  height: 550px;
 }
 
 .hr {
   width: 150px;
 }
 
+.item{
+  float: left;
+}
+
 .price {
-  text-align: left;
-  margin-left: 10px;
+
+align-self: flex-end;
+}
+
+.payBtn{
+  width: 60%;
+  background: transparent;
+  height: auto;
+  border: 2px solid white;
+  border-radius: 10px;
+ 
 }

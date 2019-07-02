@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Einstellungen</h1>
+
+  <div class="payment1">
+    <h2 id="choose">Bezahlmethode 1</h2>
+
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        {{ payment1 }}
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu">
+        <li *ngFor="let payment of payment">
+          <a (click)="togglePayment1()"> {{ payment }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="payment2">
+    <h2 id="select">Bezahlmethode 2</h2>
+
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        {{ payment2 }}
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu">
+        <li *ngFor="let payment of payment">
+          <a (click)="togglePayment2()"> {{ payment }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <button routerLink="/newPayment">
+      Neue Zahlungsmethode hinzufügen
+    </button>
+  </div>
+</div>

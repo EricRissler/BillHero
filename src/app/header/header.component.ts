@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { SigninComponent } from "../signin/signin.component";
+import { HeaderService } from '../header.service';
+import { interval } from 'rxjs';
+
+declare var require: any;
 
 @Component({
   selector: "app-header",
@@ -7,14 +10,19 @@ import { SigninComponent } from "../signin/signin.component";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  // public changer: string = "show";
+  public headerChange: boolean = true;
 
-  public penis: string = "comp1";
-  public tausch: boolean = true;
+  private logo = require("../../assets/img/Logo3.png");
+  private settings = require("../../assets/img/settings.png");
+  
 
-  receiveChange($event) {
-    this.tausch = $event;
+  constructor(private headerService: HeaderService){ }
+
+  ngOnInit() {
+    interval(50).subscribe(count=> {
+      this.headerChange=this.headerService.getHeader();
+    })
+    
   }
-
-  ngOnInit() {}
 }

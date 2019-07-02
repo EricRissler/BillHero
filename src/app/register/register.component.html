@@ -1,0 +1,187 @@
+<div class="container">
+  <div class="img">
+    <img class="billy" [src]="Billy" alt="Billy" />
+  </div>
+
+  <div class="vertical"></div>
+
+  <div class="rightcontainer">
+    <div class="userinput">
+      <ul class="list">
+        <li id="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Land"
+            *ngIf="this.step == 1"
+            [(ngModel)]="land"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Vorname"
+            *ngIf="this.step == 1"
+            [(ngModel)]="firstname"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nachname"
+            *ngIf="this.step == 1"
+            [(ngModel)]="lastname"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="E-Mail-Adresse"
+            *ngIf="this.step == 1"
+            [(ngModel)]="mail"
+          />
+        </li>
+
+        <li>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Passwort"
+            *ngIf="this.step == 1"
+            [(ngModel)]="password"
+          />
+        </li>
+
+        <li>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Passwort bestätigen"
+            *ngIf="this.step == 1"
+            [(ngModel)]="passwordagain"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nationalität"
+            *ngIf="this.step == 2"
+            [(ngModel)]="nationality"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Straße und Hausnummer"
+            *ngIf="this.step == 2"
+            [(ngModel)]="streetandnumber"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Adresszusatz"
+            *ngIf="this.step == 2"
+            [(ngModel)]="adressplus"
+          />
+        </li>
+
+        <li class="codePlace">
+          <input
+            id="postcode"
+            type="text"
+            class="form-control"
+            placeholder="PLZ"
+            *ngIf="this.step == 2"
+            [(ngModel)]="postcode"
+          />
+
+          <input
+            id="place"
+            type="text"
+            class="form-control"
+            placeholder="Ort"
+            *ngIf="this.step == 2"
+            [(ngModel)]="place"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Geburtsdatum"
+            *ngIf="this.step == 2"
+            [(ngModel)]="birth"
+          />
+        </li>
+
+        <li *ngIf="this.step == 3" class="heading">
+          <h2>
+            Du hast die Registrierung erfolgreich abgeschlossen!
+          </h2>
+          <h1>Willkommen bei BillHero!</h1>
+        </li>
+      </ul>
+    </div>
+
+    <div class="nextbutton">
+      <button
+        class="next"
+        (click)="changestep()"
+        *ngIf="this.step == 1"
+        [disabled]="
+          this.land == '' ||
+          this.firstname == '' ||
+          this.lastname == '' ||
+          this.mail == '' ||
+          this.password == '' ||
+          this.passwordagain == ''
+        "
+      >
+        Weiter
+      </button>
+    </div>
+
+    <div class="nextbutton2">
+      <button
+        class="next"
+        (click)="changestep()"
+        (click)="Values()"
+        *ngIf="this.step == 2"
+        [disabled]="
+          this.nationality == '' ||
+          this.streetandnumber == '' ||
+          this.postcode == '' ||
+          this.place == '' ||
+          this.birth == ''
+        "
+      >
+        Weiter
+      </button>
+    </div>
+
+    <div class="nextbutton3">
+      <button
+        class="next"
+        (click)="changestep()"
+        *ngIf="this.step == 3"
+        routerLink="/dashboard"
+      >
+        Auf zum Dashboard!
+      </button>
+    </div>
+  </div>
+</div>

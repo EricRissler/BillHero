@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { logging } from "protractor";
+import { HeaderService } from '../header.service';
 declare var require: any;
 @Component({
   selector: "app-signin",
@@ -9,15 +8,18 @@ declare var require: any;
 })
 export class SigninComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
-  // public login: boolean = true;
 
-  public change: boolean = false;
+  mail: string;
+  constructor(private headerService: HeaderService){ }
+  // public change: boolean = false;
 
-  @Output() changeEvent = new EventEmitter<boolean>();
+  // @Output() changeEvent = new EventEmitter<boolean>();
 
-  sendChange() {
-    this.changeEvent.emit(this.change);
+  // sendChange() {
+  //   this.changeEvent.emit(this.change);
+  // }
+
+  ngOnInit() {
+    this.headerService.setHeader(false);
   }
-
-  ngOnInit() {}
 }

@@ -17,6 +17,14 @@ import { LogoutComponent } from "./logout/logout.component";
 import { MybillsComponent } from "./mybills/mybills.component";
 import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
+import { RegisterComponent } from "./register/register.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { HttpClient } from "@angular/common/http";
+import { PaymentComponent } from "./payment/payment.component";
+import { PaypalComponent } from "./payment/paypal/paypal.component";
+import { PayedComponent } from "./payment/payed/payed.component";
+import { HeaderService } from "./header.service";
+import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +41,13 @@ import { RouterModule } from "@angular/router";
     HomeComponent,
     LogoutComponent,
     MybillsComponent,
-    ActivityComponent
+    ActivityComponent,
+    RegisterComponent,
+    SettingsComponent,
+    PaymentComponent,
+    PaypalComponent,
+    PayedComponent,
+    NewPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -46,10 +60,17 @@ import { RouterModule } from "@angular/router";
       { path: "headerlogin", component: HeaderLoginComponent },
       { path: "logout", component: LogoutComponent },
       { path: "activity", component: ActivityComponent },
-      { path: "mybills", component: MybillsComponent }
+      { path: "mybills", component: MybillsComponent },
+      { path: "header", component: HeaderComponent },
+      { path: "register", component: RegisterComponent },
+      { path: "settings", component: SettingsComponent },
+      { path: "payment", component: PaymentComponent },
+      { path: "paypal", component: PaypalComponent },
+      { path: "payed", component: PayedComponent },
+      { path: "newPayment", component: NewPaymentComponent }
     ])
   ],
-  providers: [SigninComponent],
+  providers: [SigninComponent, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

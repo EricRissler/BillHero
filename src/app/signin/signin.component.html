@@ -9,22 +9,32 @@
         <ul>
           <li>
             <h1 class="register">
-              Neu bei BillHero? <a href="#">Registrieren</a>
+              Neu bei BillHero? <a routerLink="/register">Registrieren</a>
             </h1>
           </li>
 
           <li>
-            <input type="text" class="form-control" placeholder="E-Mail" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="E-Mail"
+              [(ngModel)]="mail"
+            />
           </li>
           <li>
-            <input type="text" class="form-control" placeholder="Passwort" />
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Passwort"
+              [(ngModel)]="passwort"
+            />
           </li>
           <li>
             <h1 class="psw"><a href="#">Passwort vergessen?</a></h1>
           </li>
         </ul>
 
-        <button class="login" (click)="sendChange()" routerLink="/dashboard">
+        <button class="login" (click)="mailTest()" routerLink="/dashboard">
           Einloggen
         </button>
       </div>
