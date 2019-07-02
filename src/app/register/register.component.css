@@ -1,6 +1,7 @@
 .container {
   max-width: 1170px;
   height: 565px;
+  background-color: #f5f6fd;
 }
 
 .img {

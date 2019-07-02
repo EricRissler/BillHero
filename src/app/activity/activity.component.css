@@ -1,90 +1,87 @@
 .container {
-    margin-top: 5px;
-    margin-bottom: 5%;
-    height: 550px;
-  }
+  margin-top: 5px;
+  margin-bottom: 5%;
+  height: 550px;
+  background-color: #f5f6fd;
+}
 
-.headline{
-    margin-right: 30%;
-}  
-  .categoryFolder {
-    color: white;
-  }
-  
-  #standard {
-    color: white;
-  }
-  .billList {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  #billName {
-    width: 40%;
-    float: left;
-  }
-  
-  #billDeadline {
-    width: 20%;
-  }
-  
-  #billPrice {
-    width: 20%;
-  }
-  
-  
-  .billStatus {
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
-    border: 1px solid black;
-  }
-  
-  
-  .leftcontainer {
-    /* border: 1px solid black; */
-    float: left;
-    height: 100%;
-    width: 70%;
-    border-radius: 8px;
-    height: 550px;
-    
-    overflow-y: scroll;
-  }
-  
-  .rightcontainer {
-    float: right;
-    margin-right:10%;
-    width: 17%;
-     
-  }
-  
-  p {
-    margin-top: 5px;
-  }
-  
-  .bill {
-    width: 75%;
-  }
-  
-  #list {
-    left: 0%;
-    border: 1px solid black;
-    border-radius: 10px;
-    height: 45px;
-    width: 90%;
-  }
-  
-  ul {
-    list-style: none;
-    margin-top: 0px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  li {
-    display: inline;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-  
+.headline {
+  margin-right: 30%;
+}
+.categoryFolder {
+  color: white;
+}
+
+#standard {
+  color: white;
+}
+.billList {
+  display: flex;
+  margin-top: 20px;
+}
+
+#billName {
+  width: 40%;
+  float: left;
+}
+
+#billDeadline {
+  width: 20%;
+}
+
+#billPrice {
+  width: 20%;
+}
+
+.billStatus {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 1px solid black;
+}
+
+.leftcontainer {
+  /* border: 1px solid black; */
+  float: left;
+  height: 100%;
+  width: 70%;
+  border-radius: 8px;
+  height: 550px;
+
+  overflow-y: scroll;
+}
+
+.rightcontainer {
+  float: right;
+  margin-right: 10%;
+  width: 17%;
+}
+
+p {
+  margin-top: 5px;
+}
+
+.bill {
+  width: 75%;
+}
+
+#list {
+  left: 0%;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 45px;
+  width: 90%;
+}
+
+ul {
+  list-style: none;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  display: inline;
+  margin-right: 10px;
+  margin-left: 10px;
+}

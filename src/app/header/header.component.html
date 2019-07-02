@@ -58,12 +58,15 @@
       </li>
 
       <li>
-        <button class="menu" routerLink="/business" *ngIf="!this.headerChange">
+        <button
+          id="business"
+          class="menu"
+          routerLink="/business"
+          *ngIf="!this.headerChange"
+        >
           Für Geschäftskunden
         </button>
       </li>
     </ul>
-
-    
   </div>
 </header>

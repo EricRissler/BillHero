@@ -5,7 +5,11 @@
     <h2 id="choose">Bezahlmethode 1</h2>
 
     <div class="btn-group" appDropdown>
-      <button type="button" class="btn btn-primary dropdown-toggle">
+      <button
+        id="dropdownleft"
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+      >
         {{ payment1 }}
         <span class="caret"></span>
       </button>
@@ -22,7 +26,11 @@
     <h2 id="select">Bezahlmethode 2</h2>
 
     <div class="btn-group" appDropdown>
-      <button type="button" class="btn btn-primary dropdown-toggle">
+      <button
+        id="dropdownright"
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+      >
         {{ payment2 }}
         <span class="caret"></span>
       </button>
@@ -35,8 +43,8 @@
     </div>
   </div>
 
-  <div>
-    <button routerLink="/newPayment">
+  <div class="newPayment">
+    <button class="newPaymentBtn" routerLink="/newPayment">
       Neue Zahlungsmethode hinzufügen
     </button>
   </div>
