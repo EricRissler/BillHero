@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from "src/app/header.service";
 
 @Component({
   selector: "app-new-payment",
@@ -17,7 +18,9 @@ export class NewPaymentComponent implements OnInit {
     this.newCard = !this.newCard;
   }
 
-  constructor() {}
+  constructor(private headerService: HeaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.headerService.setHeader(true);
+  }
 }

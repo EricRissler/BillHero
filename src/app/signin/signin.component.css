@@ -1,6 +1,7 @@
 .container {
   min-height: 590px;
   font-style: helvetica, arial;
+  background-color: #f5f6fd;
 }
 
 .col-xs-12 {

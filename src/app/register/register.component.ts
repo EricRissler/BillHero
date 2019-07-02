@@ -8,8 +8,6 @@ declare var require: any;
 export class RegisterComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-  penis: boolean = false;
-
   land: string = "";
   firstname: string = "";
   lastname: string = "";
@@ -44,14 +42,6 @@ export class RegisterComponent implements OnInit {
   changestep() {
     this.step = this.step + 1;
     console.log(this.step);
-  }
-
-  disablebutton(penis) {
-    if (this.land == "") {
-    } else {
-      this.penis = true;
-    }
-    return this.penis;
   }
 
   ngOnInit() {}

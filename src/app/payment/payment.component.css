@@ -1,57 +1,55 @@
 .container {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 579px;
-    display: flex;
-    
-  }
-  .leftcontainter{
-    float: left;
-    margin-left: 20%;
-    
-  }
-  .rightcontainer{
-    float: right;
-    margin-left: 5%;
-    margin-right: 20%; 
-    
-  }
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 579px;
+  display: flex;
+  background-color: #f5f6fd;
+}
+.leftcontainter {
+  float: left;
+  margin-left: 20%;
+}
+.rightcontainer {
+  float: right;
+  margin-left: 5%;
+  margin-right: 20%;
+}
 
-  .radioBtn{
-    margin-left: 10%;
-    width: 20px;
-    height: 20px;
-  }
+.radioBtn {
+  margin-left: 10%;
+  width: 20px;
+  height: 20px;
+}
 
-  .creditcard{
+.creditcard {
   margin-top: 30px;
-  }
+}
 
-  .payPalLogo{
-    width: 90px;
-    margin-left: 2%;
-  }
+.payPalLogo {
+  width: 90px;
+  margin-left: 2%;
+}
 
-  .instantTransferLogo{
-    width: 90px;
-    margin-left: 2%;
-  }
+.instantTransferLogo {
+  width: 90px;
+  margin-left: 2%;
+}
 
-  .creditcardLogo{
-    width: 100px;
-    margin-left: 2%;
-  }
-  .price{
-    margin-top: 5%;
-    font-size: 20px;
-  }
-  
-  .payBtn{
-    margin-top: 5%;
-    color: white;
-    border: 2px solid white;
-    background-color: #05619b;
-    border-radius: 50px;
-    width: 250px;
-    height: 50px;
-  }
+.creditcardLogo {
+  width: 100px;
+  margin-left: 2%;
+}
+.price {
+  margin-top: 5%;
+  font-size: 20px;
+}
+
+.payBtn {
+  margin-top: 5%;
+  color: white;
+  border: 2px solid white;
+  background-color: #05619b;
+  border-radius: 50px;
+  width: 250px;
+  height: 50px;
+}

@@ -25,6 +25,10 @@ import { PaypalComponent } from "./payment/paypal/paypal.component";
 import { PayedComponent } from "./payment/payed/payed.component";
 import { HeaderService } from "./header.service";
 import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
+import { BusinessComponent } from "./business/business.component";
+import { BusinessRegisterComponent } from "./business/business-register/business-register.component";
+import { BusinessLoginComponent } from "./business/business-login/business-login.component";
+import { DropdownDirective } from "./shared/dropdown.directive";
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { NewPaymentComponent } from "./settings/new-payment/new-payment.componen
     PaymentComponent,
     PaypalComponent,
     PayedComponent,
-    NewPaymentComponent
+    NewPaymentComponent,
+    BusinessComponent,
+    BusinessRegisterComponent,
+    BusinessLoginComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
