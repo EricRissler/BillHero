@@ -1,10 +1,10 @@
 .container {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
   border: 2px solid #05619b;
   border-radius: 10px;
   height: 579px;
-  background-color: #f5f6fd;
+  background-color: white;
 }
 
 .billList {

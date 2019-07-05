@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class HeaderService {
-
   changeHeader = false;
 
-
   private _changeHeader: BehaviorSubject<boolean>;
+  subscribe: any;
 
-constructor() {
+  constructor() {
     this._changeHeader = new BehaviorSubject<boolean>(false);
-}
+  }
 
-//--------------------------------------------------------------------
+  //--------------------------------------------------------------------
   setHeader(headerChange: boolean) {
     this.changeHeader = headerChange;
   }
