@@ -20,12 +20,12 @@
 .ul {
   display: block;
   float: right;
-
+  list-style: none;
   /* max-width: 50px; */
 }
 
 li {
-  list-style: none;
+  /* list-style: none; */
 }
 
 .register {
