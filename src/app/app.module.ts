@@ -75,7 +75,10 @@ import { DropdownDirective } from "./shared/dropdown.directive";
       { path: "payment", component: PaymentComponent },
       { path: "paypal", component: PaypalComponent },
       { path: "payed", component: PayedComponent },
-      { path: "newPayment", component: NewPaymentComponent }
+      { path: "newPayment", component: NewPaymentComponent },
+      { path: "business", component: BusinessComponent },
+      { path: "businessLogin", component: BusinessLoginComponent },
+      { path: "businessRegister", component: BusinessRegisterComponent }
     ])
   ],
   providers: [SigninComponent, HeaderService],
