@@ -26,9 +26,10 @@ import { PayedComponent } from "./payment/payed/payed.component";
 import { HeaderService } from "./header.service";
 import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
 import { BusinessComponent } from "./business/business.component";
-import { BusinessRegisterComponent } from "./business/business-register/business-register.component";
-import { BusinessLoginComponent } from "./business/business-login/business-login.component";
+import { BusinessRegisterComponent } from "./business-register/business-register.component";
+import { BusinessLoginComponent } from "./business-login/business-login.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
+import { BusinessDashboardComponent } from "./business-dashboard/business-dashboard.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { DropdownDirective } from "./shared/dropdown.directive";
     BusinessComponent,
     BusinessRegisterComponent,
     BusinessLoginComponent,
-    DropdownDirective
+    DropdownDirective,
+    BusinessDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import { DropdownDirective } from "./shared/dropdown.directive";
       { path: "newPayment", component: NewPaymentComponent },
       { path: "business", component: BusinessComponent },
       { path: "businessLogin", component: BusinessLoginComponent },
-      { path: "businessRegister", component: BusinessRegisterComponent }
+      { path: "businessRegister", component: BusinessRegisterComponent },
+      { path: "businessDashboard", component: BusinessDashboardComponent }
     ])
   ],
   providers: [SigninComponent, HeaderService],

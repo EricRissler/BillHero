@@ -20,14 +20,14 @@
 .ul {
   display: block;
   float: right;
-  list-style: none;
+  /* list-style: none; */
   /* max-width: 50px; */
 }
 
 li {
-  /* list-style: none; */
+  list-style: none;
 }
-
+/* test */
 .register {
   font-size: 15px;
   margin-left: 75px;

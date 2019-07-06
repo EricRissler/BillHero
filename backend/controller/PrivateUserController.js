@@ -56,7 +56,7 @@ const postUser = function(req, res) {
     city: req.body.city,
     bdate: req.body.bdate
   };
-  //Prüfen ob alle Felder gefüllt sein
+  //Prüfen ob alle Felder gefüllt sind
   for (var key in data) {
     if (data[key] == null || data[key] == "") {
       if (key == "additonal") {

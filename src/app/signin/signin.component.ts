@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { HeaderService } from '../header.service';
+import { HeaderService } from "../header.service";
 declare var require: any;
 @Component({
   selector: "app-signin",
@@ -10,7 +10,7 @@ export class SigninComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
   mail: string;
-  constructor(private headerService: HeaderService){ }
+  constructor(private headerService: HeaderService) {}
   // public change: boolean = false;
 
   // @Output() changeEvent = new EventEmitter<boolean>();

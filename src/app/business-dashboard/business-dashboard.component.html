@@ -1,0 +1,94 @@
+<div class="container">
+  <ul>
+    <li><h1>Rechnung erstellen</h1></li>
+
+    <li><h2>Geben Sie bitte die Daten des Empfängers ein</h2></li>
+
+    <li><input type="text" class="form-control" placeholder="User-ID" /></li>
+
+    <li>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechnungsnummer (optional)"
+      />
+    </li>
+
+    <li>
+      <input
+        id="product"
+        type="text"
+        class="form-control"
+        placeholder="Produkt 1"
+      />
+      <input
+        id="price"
+        itemid="pricenumber"
+        type="text"
+        class="form-control"
+        placeholder="Preis"
+        [(ngModel)]="price1"
+      />
+      <input
+        id="number"
+        type="number"
+        class="form-control"
+        [(ngModel)]="quantity1"
+      />
+    </li>
+
+    <li>
+      <input
+        id="product"
+        type="text"
+        class="form-control"
+        placeholder="Produkt 2"
+      />
+      <input
+        id="price"
+        itemid="pricenumber"
+        type="text"
+        class="form-control"
+        placeholder="Preis"
+        [(ngModel)]="price2"
+      />
+      <input
+        id="number"
+        type="number"
+        class="form-control"
+        [(ngModel)]="quantity2"
+      />
+    </li>
+
+    <li>
+      <input
+        id="product"
+        type="text"
+        class="form-control"
+        placeholder="Produkt 3"
+      />
+      <input
+        id="price"
+        itemid="pricenumber"
+        type="text"
+        class="form-control"
+        placeholder="Preis"
+        [(ngModel)]="price3"
+      />
+      <input
+        id="number"
+        type="number"
+        class="form-control"
+        [(ngModel)]="quantity3"
+      />
+    </li>
+
+    <li><input type="text" class="form-control" placeholder="Frist" /></li>
+
+    <li>
+      <p class="endprice">Gesamt: {{ this.Endprice }} €</p>
+    </li>
+
+    <li><button class="commit" (click)="calculatePrice()">Absenden</button></li>
+  </ul>
+</div>
