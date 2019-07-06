@@ -3,6 +3,7 @@
 #WeilSebiLaptopKackeIst
 nodePathCommand.txt
 
+
 # compiled output
 /dist
 /tmp
@@ -12,6 +13,7 @@ nodePathCommand.txt
 
 # dependencies
 /node_modules
+
 
 # profiling files
 chrome-profiler-events.json
