@@ -29,7 +29,7 @@ import { BusinessComponent } from "./business/business.component";
 import { BusinessRegisterComponent } from "./business-register/business-register.component";
 import { BusinessLoginComponent } from "./business-login/business-login.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
-import { BusinessDashboardComponent } from './business-dashboard/business-dashboard.component';
+import { BusinessDashboardComponent } from "./business-dashboard/business-dashboard.component";
 
 @NgModule({
   declarations: [
@@ -80,7 +80,8 @@ import { BusinessDashboardComponent } from './business-dashboard/business-dashbo
       { path: "newPayment", component: NewPaymentComponent },
       { path: "business", component: BusinessComponent },
       { path: "businessLogin", component: BusinessLoginComponent },
-      { path: "businessRegister", component: BusinessRegisterComponent }
+      { path: "businessRegister", component: BusinessRegisterComponent },
+      { path: "businessDashboard", component: BusinessDashboardComponent }
     ])
   ],
   providers: [SigninComponent, HeaderService],
