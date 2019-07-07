@@ -9,7 +9,7 @@ const itemModel = sequelize.item;
 const prvUser = sequelize.privateUser;
 const userPayment = sequelize.userPaymentMethod;
 
-var user1id;
+var prvuser1id;
 var prvuser2id;
 
 module.exports = function (req, res) {
@@ -17,11 +17,22 @@ module.exports = function (req, res) {
     console.log("Dropped");
     conn.sync().then(() => {
       console.log("synced");
-      const result = createUser1();
+      createGeneralPayment1();
+      createUser1();
+      res.status(200).json({
+        uid: prvuser2id
+      })
     });
   });
 };
 /*Insert General Payments */
+
+const createGeneralPayment1 = () => {
+  generalPayment.create({
+    name: "PayPal",
+    data: "paypal.com",
+  })
+}
 
 const createUser1 = () => {
   adress.create({
@@ -66,7 +77,7 @@ const createUser2 = () => {
       /*Insert Payments */
     }).then((result) => {
       prvuser2id = result.id;
-      createComUser1();
+      //createComUser1();
     });
   })
 }
