@@ -1,10 +1,10 @@
 const billModel = (sequelize, type) => {
   return sequelize.define("bill", {
     id: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       primaryKey: true,
       unique: true,
-      autoIncrement: true
+      defaultValue: type.UUIDV1
     },
     idDebitor: {
       type: type.INTEGER,

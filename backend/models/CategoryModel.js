@@ -1,9 +1,10 @@
 const categoryModel = (seqelize, type) => {
   return seqelize.define("category", {
     id: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       primaryKey: true,
-      autoIncrement: true
+      unique: true,
+      defaultValue: type.UUIDV1
     },
     idUser: {
       type: type.INTEGER,

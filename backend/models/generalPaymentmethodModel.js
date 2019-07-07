@@ -1,10 +1,10 @@
 const generalPaymentMethodModel = (sequelize, type) => {
   return sequelize.define("generalPaymentMethod", {
     id: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       primaryKey: true,
       unique: true,
-      autoIncrement: true
+      defaultValue: type.UUIDV1
     },
     name: {
       type: type.STRING,
