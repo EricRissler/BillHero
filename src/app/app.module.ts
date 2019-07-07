@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { MiddleComponent } from "./middle/middle.component";
-import { BottomComponent } from "./bottom/bottom.component";
+import { BottomComponent } from "./middle/bottom/bottom.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SigninComponent } from "./signin/signin.component";
 import { BillDetailComponent } from "./bill-detail/bill-detail.component";
@@ -26,10 +26,10 @@ import { PayedComponent } from "./payment/payed/payed.component";
 import { HeaderService } from "./header.service";
 import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
 import { BusinessComponent } from "./business/business.component";
-import { BusinessRegisterComponent } from "./business-register/business-register.component";
-import { BusinessLoginComponent } from "./business-login/business-login.component";
+import { BusinessRegisterComponent } from "./business/business-register/business-register.component";
+import { BusinessLoginComponent } from "./business/business-login/business-login.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
-import { BusinessDashboardComponent } from "./business-dashboard/business-dashboard.component";
+import { BusinessDashboardComponent } from "./business/business-dashboard/business-dashboard.component";
 
 @NgModule({
   declarations: [
