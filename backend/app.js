@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mysql2 = require("mysql2");
+const init = require("./controller/initdb");
 const apiroutes = require("./routes/apiRoutes");
 
 const app = express();
@@ -22,6 +22,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use("/api/init", init);
 
 app.use("/api", apiroutes);
 app.get("/", function (req, res, next) {
@@ -124,8 +125,7 @@ app.get("/api/mybills", function (req, res, next) {
   res.status(201).json({
 
     Anz: 4,
-    RechnungsHeader: [
-      {
+    RechnungsHeader: [{
 
         RechnungsID: "B_abc",
         KreditorenID: "U_456",

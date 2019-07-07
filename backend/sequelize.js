@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const adressModel = require("./models/adressModel");
-const categoryModel = require("./models/CategoryModel");
+const categoryModel = require("./models/categoryModel");
 const privateUserModel = require("./models/privateUserModel");
 const commercialUserModel = require("./models/commercialUserModel");
 const billModel = require("./models/billModel");
@@ -27,6 +27,7 @@ conn.sync().then(() => {
 });
 
 module.exports = {
+  conn: conn,
   adress: adress,
   category: category,
   privateUser: privateUser,
