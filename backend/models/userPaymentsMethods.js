@@ -1,3 +1,5 @@
+
+const paymentrregister = require("../paymentprovider/paymentprovider");
 const userPaymentMethodModel = (sequelize, type) => {
   return sequelize.define("userPaymentMethod", {
     id: {
@@ -10,13 +12,19 @@ const userPaymentMethodModel = (sequelize, type) => {
       type: type.INTEGER,
       allownull: false
     },
+    idPaymentMethod: {
+      type: type.CHAR(18),
+      allownull: false
+    },
     name: {
       type: type.STRING,
       allownull: false
     },
+    //TODO: Testen, wenn nicht funktional. erstellen des Tokens in aufrufender Methode
     token: {
       type: type.STRING,
-      allownull: false
+      allownull: false,
+      defaultValue: paymentrregister.registerPaymentmethod
     },
     isHistorical: {
       type: type.BOOLEAN,
