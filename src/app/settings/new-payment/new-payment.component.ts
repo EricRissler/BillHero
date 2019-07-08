@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from "src/app/header.service";
+import { PaymentBank, PaymentCreditcard } from "src/app/shared/Payment.model";
 
 @Component({
   selector: "app-new-payment",
@@ -8,7 +10,12 @@ import { Component, OnInit } from "@angular/core";
 export class NewPaymentComponent implements OnInit {
   newBank: boolean = false;
 
+  paymentbank: PaymentBank[];
+
   newCard: boolean = false;
+
+  paymentCreditcard: PaymentCreditcard[];
+
   newBankPayment() {
     this.newBank = !this.newBank;
   }
@@ -17,7 +24,13 @@ export class NewPaymentComponent implements OnInit {
     this.newCard = !this.newCard;
   }
 
-  constructor() {}
+  constructor(private headerService: HeaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.headerService.setHeader(true);
+  }
+
+  submitBank() {}
+
+  submitCreditcard() {}
 }

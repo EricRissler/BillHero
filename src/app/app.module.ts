@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { MiddleComponent } from "./middle/middle.component";
-import { BottomComponent } from "./bottom/bottom.component";
+import { BottomComponent } from "./middle/bottom/bottom.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SigninComponent } from "./signin/signin.component";
 import { BillDetailComponent } from "./bill-detail/bill-detail.component";
@@ -19,13 +19,18 @@ import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { HttpClientModule } from "@angular/common/http";
-import { PaymentComponent } from './payment/payment.component';
-import { PaypalComponent } from './payment/paypal/paypal.component';
-import { PayedComponent } from './payment/payed/payed.component';
-import { HeaderService } from './header.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NewPaymentComponent } from './settings/new-payment/new-payment.component';
+import { PaymentComponent } from "./payment/payment.component";
+import { PaypalComponent } from "./payment/paypal/paypal.component";
+import { PayedComponent } from "./payment/payed/payed.component";
+import { HeaderService } from "./header.service";
+import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
+import { BusinessComponent } from "./business/business.component";
+import { BusinessRegisterComponent } from "./business/business-register/business-register.component";
+import { BusinessLoginComponent } from "./business/business-login/business-login.component";
+import { DropdownDirective } from "./shared/dropdown.directive";
+import { BusinessDashboardComponent } from "./business/business-dashboard/business-dashboard.component";
 
 @NgModule({
   declarations: [
@@ -48,8 +53,12 @@ import { NewPaymentComponent } from './settings/new-payment/new-payment.componen
     PaymentComponent,
     PaypalComponent,
     PayedComponent,
-    NewPaymentComponent
-   
+    NewPaymentComponent,
+    BusinessComponent,
+    BusinessRegisterComponent,
+    BusinessLoginComponent,
+    DropdownDirective,
+    BusinessDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +81,11 @@ import { NewPaymentComponent } from './settings/new-payment/new-payment.componen
       { path: "payment", component: PaymentComponent },
       { path: "paypal", component: PaypalComponent },
       { path: "payed", component: PayedComponent },
-      { path: "newPayment", component: NewPaymentComponent }
+      { path: "newPayment", component: NewPaymentComponent },
+      { path: "business", component: BusinessComponent },
+      { path: "businessLogin", component: BusinessLoginComponent },
+      { path: "businessRegister", component: BusinessRegisterComponent },
+      { path: "businessDashboard", component: BusinessDashboardComponent }
     ])
   ],
   providers: [SigninComponent, HeaderService],

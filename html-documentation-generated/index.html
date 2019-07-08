@@ -1,0 +1,1771 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Bill Hero</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Bill Hero</h1>
+    <div class="app-desc">Bill Hero</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="sebastian@sileachim.de">sebastian@sileachim.de</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/BillHero/BillHeroREST/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Commercial">Commercial</a></h4>
+  <ul>
+  <li><a href="#addComUser"><code><span class="http-method">post</span> /api/comusers</code></a></li>
+  <li><a href="#addComUserBill"><code><span class="http-method">post</span> /api/comusers/{uid}/bills</code></a></li>
+  <li><a href="#delComUser"><code><span class="http-method">delete</span> /api/comusers/{uid}</code></a></li>
+  <li><a href="#getComUser"><code><span class="http-method">get</span> /api/comusers</code></a></li>
+  <li><a href="#getComUserBill"><code><span class="http-method">get</span> /api/comusers/{uid}/bills/{bid}</code></a></li>
+  <li><a href="#getComUserBills"><code><span class="http-method">get</span> /api/comusers/{uid}/bills</code></a></li>
+  <li><a href="#getComUserPerId"><code><span class="http-method">get</span> /api/comusers/{uid}</code></a></li>
+  <li><a href="#putComUserPerId"><code><span class="http-method">put</span> /api/comusers/{uid}</code></a></li>
+  </ul>
+  <h4><a href="#Private">Private</a></h4>
+  <ul>
+  <li><a href="#addPrivUser"><code><span class="http-method">post</span> /api/prvusers</code></a></li>
+  <li><a href="#addPrivUserCat"><code><span class="http-method">post</span> /api/prvusers/{uid}/categories</code></a></li>
+  <li><a href="#addPrivUserPayment"><code><span class="http-method">post</span> /api/prvusers/{uid}/payments</code></a></li>
+  <li><a href="#delPrivUser"><code><span class="http-method">delete</span> /api/prvusers/{uid}</code></a></li>
+  <li><a href="#delPrivUserCat"><code><span class="http-method">delete</span> /api/prvusers/{uid}/categories/{catid}</code></a></li>
+  <li><a href="#delPrivUserPay"><code><span class="http-method">delete</span> /api/prvusers/{uid}/payments/{payid}</code></a></li>
+  <li><a href="#getPrivUser"><code><span class="http-method">get</span> /api/prvusers</code></a></li>
+  <li><a href="#getPrivUserAllCat"><code><span class="http-method">get</span> /api/prvusers/{uid}/categories</code></a></li>
+  <li><a href="#getPrivUserAllPayment"><code><span class="http-method">get</span> /api/prvusers/{uid}/payments</code></a></li>
+  <li><a href="#getPrivUserBill"><code><span class="http-method">get</span> /api/prvusers/{uid}/bills/{bid}</code></a></li>
+  <li><a href="#getPrivUserBills"><code><span class="http-method">get</span> /api/prvusers/{uid}/bills</code></a></li>
+  <li><a href="#getPrivUserPerId"><code><span class="http-method">get</span> /api/prvusers/{uid}</code></a></li>
+  <li><a href="#putPrivUserCat"><code><span class="http-method">put</span> /api/prvusers/{uid}/categories/{catid}</code></a></li>
+  <li><a href="#putPrivUserPerId"><code><span class="http-method">put</span> /api/prvusers/{uid}</code></a></li>
+  <li><a href="#putPrvUserBill"><code><span class="http-method">put</span> /api/prvusers/{uid}/bills/{bid}</code></a></li>
+  </ul>
+
+  <h1><a name="Commercial">Commercial</a></h1>
+  <div class="method"><a name="addComUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/comusers</code></pre></div>
+    <div class="method-summary">adds a new commercial user (<span class="nickname">addComUser</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">comuser <a href="#comuser">comuser</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user to add </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#comuser">comuser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "longname" : "longname",
+  "password" : "password",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "shortname" : "shortname",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    item created
+        <a href="#comuser">comuser</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="addComUserBill"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/comusers/{uid}/bills</code></pre></div>
+    <div class="method-summary">adds a bill to a commercial user (<span class="nickname">addComUserBill</span>)</div>
+    <div class="method-notes">The billID in the request-body is ignored and should be null.
+The debitorID must be filled with the ID of the commercial user.
+For the payStatus please ask Sebastian.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">comuserbill <a href="#billDetailCom">billDetailCom</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user to add </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#billDetailCom">billDetailCom</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    item created
+        <a href="#billDetailCom">billDetailCom</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delComUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/comusers/{uid}</code></pre></div>
+    <div class="method-summary">deletes a commercial user (<span class="nickname">delComUser</span>)</div>
+    <div class="method-notes">the user is not really deleted. It keeps in the system as long as a bill references this user.
+It is just ignored in the get
+Obviously the delete will be refused if there are open bills</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    user deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">402</h4>
+    payment required - there is at least one open bill
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    uid invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getComUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/comusers</code></pre></div>
+    <div class="method-summary">checks the existance of the commercial user and password (<span class="nickname">getComUser</span>)</div>
+    <div class="method-notes">Is used to authorise the commercial user</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">name_of_userid <a href="#userid">userid</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; email and password as identification </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#comuser">comuser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "longname" : "longname",
+  "password" : "password",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "shortname" : "shortname",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#comuser">comuser</a>
+    <h4 class="field-label">404</h4>
+    Invalid Userdata
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getComUserBill"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/comusers/{uid}/bills/{bid}</code></pre></div>
+    <div class="method-summary">returns the given bill of the commercial user (<span class="nickname">getComUserBill</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">bid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal bill-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#billDetailCom">billDetailCom</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#billDetailCom">billDetailCom</a>
+    <h4 class="field-label">204</h4>
+    bill not found
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getComUserBills"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/comusers/{uid}/bills</code></pre></div>
+    <div class="method-summary">returns all bills of the given commercial user (<span class="nickname">getComUserBills</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#billDetailCom">billDetailCom</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID"
+}, {
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">204</h4>
+    User found but no bills
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getComUserPerId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/comusers/{uid}</code></pre></div>
+    <div class="method-summary">returns details to the given user (<span class="nickname">getComUserPerId</span>)</div>
+    <div class="method-notes">dont' know why this could be useful. The details are given during the logon.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#comuser">comuser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "longname" : "longname",
+  "password" : "password",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "shortname" : "shortname",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#comuser">comuser</a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putComUserPerId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/comusers/{uid}</code></pre></div>
+    <div class="method-summary">changes details to the given user (<span class="nickname">putComUserPerId</span>)</div>
+    <div class="method-notes">changing some parameters of the commercial user
+The userID in the requestbody must null or the same as in the URL.
+All other fields should have the wanted value.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">privuser <a href="#comuser">comuser</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user to add </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#comuser">comuser</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "longname" : "longname",
+  "password" : "password",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "shortname" : "shortname",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#comuser">comuser</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Private">Private</a></h1>
+  <div class="method"><a name="addPrivUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/prvusers</code></pre></div>
+    <div class="method-summary">adds a new private user (<span class="nickname">addPrivUser</span>)</div>
+    <div class="method-notes">adds a new private user, identified by it's email-adress.
+If the email-adress is already given, the request is denied.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">privuser <a href="#privuser">privuser</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user to add </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#privUserDetail">privUserDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "favoritePamentID1" : "favoritePamentID1",
+  "firstname" : "firstname",
+  "bdate" : "bdate",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "favoritePamentID2" : "favoritePamentID2",
+  "userID" : "userID",
+  "lastname" : "lastname",
+  "password" : "password",
+  "nationality" : "nationality",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    returns the item created
+        <a href="#privUserDetail">privUserDetail</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="addPrivUserCat"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/prvusers/{uid}/categories</code></pre></div>
+    <div class="method-summary">adds a category to a private user (<span class="nickname">addPrivUserCat</span>)</div>
+    <div class="method-notes">the categoryID in the request-body is ignored and should be null.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">category <a href="#catDetail">catDetail</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#catDetail">catDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "categoryName" : "categoryName",
+  "categoryID" : "categoryID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    category created
+        <a href="#catDetail">catDetail</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="addPrivUserPayment"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/prvusers/{uid}/payments</code></pre></div>
+    <div class="method-summary">adds a payment to a private user (<span class="nickname">addPrivUserPayment</span>)</div>
+    <div class="method-notes">the paymentID in the request-body is ignored and should be null.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">üayment <a href="#paymentDetail">paymentDetail</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#paymentDetail">paymentDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : "data",
+  "paymentID" : "paymentID",
+  "type" : "type"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    payment created
+        <a href="#paymentDetail">paymentDetail</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delPrivUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/prvusers/{uid}</code></pre></div>
+    <div class="method-summary">deletes a private user (<span class="nickname">delPrivUser</span>)</div>
+    <div class="method-notes">the user is not really deleted. It keeps in the system as long as a bill references this user.
+It is just ignored in the get
+Obviously the delete will be refused if there are open bills</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    user deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">402</h4>
+    payment required - there is at least one open bill
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    uid invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delPrivUserCat"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/prvusers/{uid}/categories/{catid}</code></pre></div>
+    <div class="method-summary">deletes a category (<span class="nickname">delPrivUserCat</span>)</div>
+    <div class="method-notes">the category is not really deleted. It keeps in the system as long as a bill references this category.
+It is just ignored in the get.
+May be not yet implemented.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">catid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal cat-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    category deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    uid or catid are invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delPrivUserPay"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/prvusers/{uid}/payments/{payid}</code></pre></div>
+    <div class="method-summary">deletes a payment (<span class="nickname">delPrivUserPay</span>)</div>
+    <div class="method-notes">the payment is not really deleted. It keeps in the system as long as a bill references this payment.
+It is just ignored in the get</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">payid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal payment-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    payment deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    uid or payid are invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers</code></pre></div>
+    <div class="method-summary">logs the given user on (<span class="nickname">getPrivUser</span>)</div>
+    <div class="method-notes">The given data is checked, if the email and password are bothe valid.
+The user-details are returned</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">name_of_userid <a href="#userid">userid</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; email and password as identification </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#privUserDetail">privUserDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "favoritePamentID1" : "favoritePamentID1",
+  "firstname" : "firstname",
+  "bdate" : "bdate",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "favoritePamentID2" : "favoritePamentID2",
+  "userID" : "userID",
+  "lastname" : "lastname",
+  "password" : "password",
+  "nationality" : "nationality",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    returns the requested private user
+        <a href="#privUserDetail">privUserDetail</a>
+    <h4 class="field-label">404</h4>
+    Invalid Userdata
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUserAllCat"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers/{uid}/categories</code></pre></div>
+    <div class="method-summary">lists all categories of the given private user (<span class="nickname">getPrivUserAllCat</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#catDetail">catDetail</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "categoryName" : "categoryName",
+  "categoryID" : "categoryID"
+}, {
+  "categoryName" : "categoryName",
+  "categoryID" : "categoryID"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    the list of all categories
+        
+    <h4 class="field-label">204</h4>
+    no category found
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUserAllPayment"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers/{uid}/payments</code></pre></div>
+    <div class="method-summary">lists all payments of the given private user (<span class="nickname">getPrivUserAllPayment</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#paymentDetail">paymentDetail</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "data" : "data",
+  "paymentID" : "paymentID",
+  "type" : "type"
+}, {
+  "data" : "data",
+  "paymentID" : "paymentID",
+  "type" : "type"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUserBill"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers/{uid}/bills/{bid}</code></pre></div>
+    <div class="method-summary">returns the details of the given bill-id bills corresponding with the given private user (<span class="nickname">getPrivUserBill</span>)</div>
+    <div class="method-notes">since all details are given already during the list-call above, what is this good for?</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">bid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal bill-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#billDetailPriv">billDetailPriv</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "paymentId" : "paymentId",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID",
+  "categoryID" : "categoryID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#billDetailPriv">billDetailPriv</a>
+    <h4 class="field-label">204</h4>
+    bill not found
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUserBills"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers/{uid}/bills</code></pre></div>
+    <div class="method-summary">returns all bills correspondinmg with the given private user (<span class="nickname">getPrivUserBills</span>)</div>
+    <div class="method-notes">All bills associated with the private user are returned.
+The number of bills returned should be limited</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#billDetailPriv">billDetailPriv</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "paymentId" : "paymentId",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID",
+  "categoryID" : "categoryID"
+}, {
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "paymentId" : "paymentId",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID",
+  "categoryID" : "categoryID"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">204</h4>
+    User found but no bills
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPrivUserPerId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prvusers/{uid}</code></pre></div>
+    <div class="method-summary">returns details to the given user (<span class="nickname">getPrivUserPerId</span>)</div>
+    <div class="method-notes">Just for completeness</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#privUserDetail">privUserDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "favoritePamentID1" : "favoritePamentID1",
+  "firstname" : "firstname",
+  "bdate" : "bdate",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "favoritePamentID2" : "favoritePamentID2",
+  "userID" : "userID",
+  "lastname" : "lastname",
+  "password" : "password",
+  "nationality" : "nationality",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    returns the requested private user
+        <a href="#privUserDetail">privUserDetail</a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putPrivUserCat"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/prvusers/{uid}/categories/{catid}</code></pre></div>
+    <div class="method-summary">changes the name of a category (<span class="nickname">putPrivUserCat</span>)</div>
+    <div class="method-notes">changes just the name. The ID is unchanged.
+The categoryID in the requestbody must null or the same as in the URL.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">catid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal cat-id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">category <a href="#catDetail">catDetail</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#catDetail">catDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "categoryName" : "categoryName",
+  "categoryID" : "categoryID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    category created
+        <a href="#catDetail">catDetail</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing item already exists
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putPrivUserPerId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/prvusers/{uid}</code></pre></div>
+    <div class="method-summary">changes details to the given user (<span class="nickname">putPrivUserPerId</span>)</div>
+    <div class="method-notes">changing some parameters of the private user
+The userID in the requestbody must null or the same as in the URL.
+All other fields should have the wanted value.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">privuser <a href="#privUserDetail">privUserDetail</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user to add </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#privUserDetail">privUserDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "additonal" : "additonal",
+  "zip" : "zip",
+  "country" : "country",
+  "favoritePamentID1" : "favoritePamentID1",
+  "firstname" : "firstname",
+  "bdate" : "bdate",
+  "strHouseNr" : "strHouseNr",
+  "city" : "city",
+  "favoritePamentID2" : "favoritePamentID2",
+  "userID" : "userID",
+  "lastname" : "lastname",
+  "password" : "password",
+  "nationality" : "nationality",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#privUserDetail">privUserDetail</a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putPrvUserBill"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/prvusers/{uid}/bills/{bid}</code></pre></div>
+    <div class="method-summary">modifies a bill (<span class="nickname">putPrvUserBill</span>)</div>
+    <div class="method-notes"><p>private user modifies a bill. That can be</p>
+<ul>
+<li>add/change a category</li>
+<li>add a payment method (no change) so authorising the payment</li>
+</ul>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal user-id </div><div class="param">bid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; internal bill-id </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">billchanges <a href="#billChange">billChange</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#billDetailPriv">billDetailPriv</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "debitorID" : "debitorID",
+  "amount" : "amount",
+  "paymentId" : "paymentId",
+  "billID" : "billID",
+  "deadline" : "deadline",
+  "payStatus" : "payStatus",
+  "billNr" : "billNr",
+  "creditorID" : "creditorID",
+  "categoryID" : "categoryID"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    operation was successful
+        <a href="#billDetailPriv">billDetailPriv</a>
+    <h4 class="field-label">404</h4>
+    Bill not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#billChange"><code>billChange</code> - </a></li>
+    <li><a href="#billDetailCom"><code>billDetailCom</code> - </a></li>
+    <li><a href="#billDetailPriv"><code>billDetailPriv</code> - </a></li>
+    <li><a href="#catDetail"><code>catDetail</code> - </a></li>
+    <li><a href="#comuser"><code>comuser</code> - </a></li>
+    <li><a href="#paymentDetail"><code>paymentDetail</code> - </a></li>
+    <li><a href="#privUserDetail"><code>privUserDetail</code> - </a></li>
+    <li><a href="#privuser"><code>privuser</code> - </a></li>
+    <li><a href="#userid"><code>userid</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="billChange"><code>billChange</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>can hold the cat-ID to change the category or
+the paymentID to authorise the payment</div>
+    <div class="field-items">
+      <div class="param">categoryID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">paymentID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="billDetailCom"><code>billDetailCom</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">billID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">billNr </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">creditorID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">debitorID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">payStatus (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">amount </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deadline (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="billDetailPriv"><code>billDetailPriv</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">billID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">billNr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">creditorID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">debitorID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">payStatus (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deadline (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">categoryID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">paymentId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="catDetail"><code>catDetail</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">categoryID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">categoryName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="comuser"><code>comuser</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">country </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">longname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">shortname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">strHouseNr </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">additonal </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="paymentDetail"><code>paymentDetail</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">paymentID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Has to be defined for different payment types </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="privUserDetail"><code>privUserDetail</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">userID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">firstname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nationality (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">strHouseNr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">additonal (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bdate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">favoritePamentID1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">favoritePamentID2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="privuser"><code>privuser</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">country </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">firstname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nationality </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">strHouseNr </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">additonal </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bdate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="userid"><code>userid</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

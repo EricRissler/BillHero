@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HeaderService } from "../header.service";
 
 @Component({
   selector: "app-settings",
@@ -6,8 +7,6 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./settings.component.css"]
 })
 export class SettingsComponent implements OnInit {
-  constructor() {}
-
   payment1: string = "Methode 1";
   payment2: string = "Methode 2";
 
@@ -21,5 +20,9 @@ export class SettingsComponent implements OnInit {
     this.payment2 = "";
   }
 
-  ngOnInit() {}
+  constructor(private headerService: HeaderService) {}
+
+  ngOnInit() {
+    this.headerService.setHeader(true);
+  }
 }
