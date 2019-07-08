@@ -25,6 +25,7 @@ import { PayedComponent } from './payment/payed/payed.component';
 import { HeaderService } from './header.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NewPaymentComponent } from './settings/new-payment/new-payment.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     SettingsComponent,
     PaymentComponent,
     PaypalComponent,
-    PayedComponent
+    PayedComponent,
+    NewPaymentComponent
    
   ],
   imports: [
@@ -69,10 +71,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       { path: "settings", component: SettingsComponent },
       { path: "payment", component: PaymentComponent },
       { path: "paypal", component: PaypalComponent },
-      { path: "payed", component: PayedComponent }
+      { path: "payed", component: PayedComponent },
+      { path: "newPayment", component: NewPaymentComponent }
     ])
   ],
-  providers: [SigninComponent,HeaderService],
+  providers: [SigninComponent, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
