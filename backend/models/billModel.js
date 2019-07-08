@@ -7,11 +7,11 @@ const billModel = (sequelize, type) => {
       defaultValue: type.UUIDV1
     },
     idDebitor: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allownull: false
     },
     idCreditor: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allownull: false
     },
     amount: {
@@ -36,11 +36,11 @@ const billModel = (sequelize, type) => {
       defaultValue: "unpayed"
     },
     idPayedWith: {
-      type: type.STRING,
+      type: type.CHAR(18),
       allownull: true,
     },
     idCategory: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allownull: true
     }
 

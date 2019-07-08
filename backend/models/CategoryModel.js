@@ -7,7 +7,7 @@ const categoryModel = (seqelize, type) => {
       defaultValue: type.UUIDV1
     },
     idUser: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allowNulll: false
     },
     name: {
