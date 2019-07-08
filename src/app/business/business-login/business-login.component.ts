@@ -8,7 +8,7 @@ declare var require: any;
   styleUrls: ["./business-login.component.css"]
 })
 export class BusinessLoginComponent implements OnInit {
-  private Billy = require("../../assets/img/Billy.png");
+  private Billy = require("../../../assets/img/Billy.png");
 
   constructor() {}
 

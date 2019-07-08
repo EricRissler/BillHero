@@ -10,12 +10,12 @@ export class BusinessDashboardComponent implements OnInit {
   product1: string;
   product2: string;
   product3: string;
-  quantity1: number;
-  quantity2: number;
-  quantity3: number;
-  price1: number;
-  price2: number;
-  price3: number;
+  quantity1: number=0;
+  quantity2: number=0;
+  quantity3: number=0;
+  price1: number=0;
+  price2: number=0;
+  price3: number=0;
   deadline: string;
   Endprice: number = 0;
 
