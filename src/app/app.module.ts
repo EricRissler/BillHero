@@ -19,7 +19,6 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { HttpClient } from "@angular/common/http";
 import { PaymentComponent } from "./payment/payment.component";
 import { PaypalComponent } from "./payment/paypal/paypal.component";
 import { PayedComponent } from "./payment/payed/payed.component";
@@ -30,6 +29,7 @@ import { BusinessRegisterComponent } from "./business/business-register/business
 import { BusinessLoginComponent } from "./business/business-login/business-login.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { BusinessDashboardComponent } from "./business/business-dashboard/business-dashboard.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -61,6 +61,7 @@ import { BusinessDashboardComponent } from "./business/business-dashboard/busine
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: MiddleComponent },

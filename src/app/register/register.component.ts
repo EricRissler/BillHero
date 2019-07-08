@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 declare var require: any;
 @Component({
   selector: "app-register",
@@ -8,7 +9,7 @@ declare var require: any;
 export class RegisterComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-  land: string = "";
+  country: string = "";
   firstname: string = "";
   lastname: string = "";
   mail: string = "";
@@ -16,27 +17,28 @@ export class RegisterComponent implements OnInit {
   passwordagain: string = "";
   nationality: string = "";
   streetandnumber: string = "";
-  adressplus: string = "";
+  additional: string = "";
   postcode: string = "";
   place: string = "";
   birth: string = "";
 
   step: number = 1;
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  Values() {
-    console.log("Land: " + this.land);
-    console.log("firstname: " + this.firstname);
-    console.log("lastname: " + this.lastname);
-    console.log("mail: " + this.mail);
-    console.log("password: " + this.password);
-    console.log("passwordagain: " + this.passwordagain);
-    console.log("nationality: " + this.nationality);
-    console.log("streetandnumber: " + this.streetandnumber);
-    console.log("adressplus:" + this.adressplus);
-    console.log("postcode: " + this.postcode);
-    console.log("Place: " + this.place);
-    console.log("Birth:" + this.birth);
+  postUser() {
+    this.http.post("http://localhost:3000/api/prvusers", {
+      country: this.country,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      email: this.mail,
+      password: this.password,
+      nationality: this.nationality,
+      strHouseNr: this.streetandnumber,
+      additional: this.additional,
+      zip: this.postcode,
+      city: this.place,
+      bdate: this.birth
+    });
   }
 
   changestep() {

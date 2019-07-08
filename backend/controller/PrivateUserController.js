@@ -56,6 +56,8 @@ const postUser = function(req, res) {
     city: req.body.city,
     bdate: req.body.bdate
   };
+  console.log(data);
+  /*
   //Prüfen ob alle Felder gefüllt sind
   for (var key in data) {
     if (data[key] == null || data[key] == "") {
@@ -123,7 +125,7 @@ const postUser = function(req, res) {
             console.log(err);
           });
       }
-    });
+    });*/
 };
 //TODO: get commercial and private user
 const getByID = function(req, res) {

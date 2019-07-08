@@ -14,7 +14,7 @@
             class="form-control"
             placeholder="Land"
             *ngIf="this.step == 1"
-            [(ngModel)]="land"
+            [(ngModel)]="country"
           />
         </li>
 
@@ -94,7 +94,7 @@
             class="form-control"
             placeholder="Adresszusatz"
             *ngIf="this.step == 2"
-            [(ngModel)]="adressplus"
+            [(ngModel)]="additional"
           />
         </li>
 
@@ -143,7 +143,7 @@
         (click)="changestep()"
         *ngIf="this.step == 1"
         [disabled]="
-          this.land == '' ||
+          this.country == '' ||
           this.firstname == '' ||
           this.lastname == '' ||
           this.mail == '' ||
@@ -159,7 +159,7 @@
       <button
         class="next"
         (click)="changestep()"
-        (click)="Values()"
+        (click)="postUser()"
         *ngIf="this.step == 2"
         [disabled]="
           this.nationality == '' ||
