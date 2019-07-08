@@ -26,19 +26,24 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   postUser() {
-    this.http.post("http://localhost:3000/api/prvusers", {
-      country: this.country,
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.mail,
-      password: this.password,
-      nationality: this.nationality,
-      strHouseNr: this.streetandnumber,
-      additional: this.additional,
-      zip: this.postcode,
-      city: this.place,
-      bdate: this.birth
-    });
+    console.log("YAAAY");
+    this.http
+      .post<{ message: String }>("http://localhost:3000/api/prvusers", {
+        country: this.country,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        email: this.mail,
+        password: this.password,
+        nationality: this.nationality,
+        strHouseNr: this.streetandnumber,
+        additional: this.additional,
+        zip: this.postcode,
+        city: this.place,
+        bdate: this.birth
+      })
+      .subscribe(resonseData => {
+        console.log(resonseData.message);
+      });
   }
 
   changestep() {
