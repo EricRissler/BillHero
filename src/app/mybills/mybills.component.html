@@ -28,10 +28,16 @@
   <div class="middlecontainer">
     <div class="billList" *ngFor="let bill of bill" draggable="true">
       <ul class="list-group-item" id="list">
-        <li class="list-group">{{ bill.billnr }}</li>
+          <!-- <button type="button" id="categoryDropDown" class="btn btn-primary dropdown-toggle">
+              {{ billCategory }}
+              <span class="caret"></span>
+            </button> -->
+            <select name="" class="categoryDropDown" id="">{{ billCategory }}
+              <option *ngFor="let category of category" [value]="category.name"> {{category.name}} </option>
+            </select>
         <li class="list-group">{{ bill.name }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}€</li>
+        <li class="list-group">{{ bill.price }}</li>
         <li>
           <Button
             class="billStatus"

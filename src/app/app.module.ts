@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { MiddleComponent } from "./middle/middle.component";
@@ -19,11 +18,13 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { HttpClient } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { PaymentComponent } from './payment/payment.component';
 import { PaypalComponent } from './payment/paypal/paypal.component';
 import { PayedComponent } from './payment/payed/payed.component';
 import { HeaderService } from './header.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -46,10 +47,14 @@ import { HeaderService } from './header.service';
     PaymentComponent,
     PaypalComponent,
     PayedComponent
+   
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: "", component: MiddleComponent },
       { path: "signin", component: SigninComponent },
