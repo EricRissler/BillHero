@@ -122,8 +122,8 @@ app.get("/api/buildPayBill", (req, res, next) => {
 app.get("/api/mybills", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
+    
 
-    Anz: 4,
     RechnungsHeader: [
       {
 
@@ -133,34 +133,29 @@ app.get("/api/mybills", function (req, res, next) {
         Status: "UNPAYED",
         Betrag: "105.90",
         Frist: "2019.06.26",
-        FavPayB: "P_xyz"
+        Status: "true",
       },
       {
-        RechnungsID: "B_def",
-        KreditorenID: "U_789",
-        DebitorenID: "U_123",
-        Status: "UNPAYED",
-        Betrag: "1308.04",
-        Frist: "2019.07.13",
-        FavPayB: "P_nmo"
+        
+          Name: "B_abc",
+          Betrag: "105.90",
+          Frist: "2019.06.26",
+          Status: "true",
+        
       },
       {
-        RechnungsID: "B_jkl",
-        KreditorenID: "U_789",
-        DebitorenID: "U_123",
-        Status: "PAYED",
-        Betrag: "1308.04",
-        Frist: "2019.07.13",
-        FavPayB: "P_nmo"
+        
+          Name: "B_abc",
+          Betrag: "105.90",
+          Frist: "2019.06.26",
+          Status: "false",
+      
       },
       {
-        RechnungsID: "B_963",
-        KreditorenID: "U__789",
-        DebitorenID: "U_123",
-        Status: "PAYED",
-        Betrag: "13.04",
-        Frist: "2019.07.23",
-        FavPayB: "P_nmo"
+        Name: "B_abc",
+        Betrag: "105.90",
+        Frist: "2019.06.26",
+        Status: "false",
       }
     ]
   });

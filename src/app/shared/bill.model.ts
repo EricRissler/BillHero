@@ -1,8 +1,13 @@
 export class Bill {
-  constructor(
-    public name: string,
-    public deadline: string,
-    public price: number,
-    public status: boolean
-  ) {}
+  
+    // public name: string;
+    // public deadline: string;
+    // public price: string;
+    // public status: boolean;
+    constructor(
+        public name: string,
+       public deadline: string,
+       public price: string,
+       public status: boolean
+     ){}
 }

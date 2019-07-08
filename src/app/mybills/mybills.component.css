@@ -4,7 +4,12 @@
   height: 579px;
   background-color: white;
 }
-
+.categoryDropDown{
+  width: 20%;
+  border-radius: 40px;
+  background-color: #05619b;
+  color: white;
+}
 .categoryFolder {
   color: white;
 }
