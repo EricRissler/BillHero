@@ -5,7 +5,7 @@ const bill = sequelize.bill;
 const category = sequelize.category;
 const comUser = sequelize.commercialUser;
 const generalPayment = sequelize.generalPaymentMethod;
-const itemModel = sequelize.item;
+const item = sequelize.item;
 const prvUser = sequelize.privateUser;
 const userPayment = sequelize.userPaymentMethod;
 const paymentRegister = require("../paymentprovider/paymentprovider")
@@ -135,7 +135,7 @@ const createUser2 = res => {
             userPayment
               .create({
                 idUser: prvuserID2,
-                idPaymentMethod: generalPaymentID2PayPal,
+                idPaymentMethod: generalPaymentID1PayPal,
                 name: "Peter PayPalKonto"
               })
               .then(result => {
@@ -207,7 +207,7 @@ const createComUser2 = res => {
             idAdress: result.id
           })
           .then(result => {
-            comuserID1 = result.id;
+            comuserID2 = result.id;
             createBill1(res);
           });
       });
@@ -296,7 +296,7 @@ const createBill3 = res => {
     .then(result => {
       bill
         .create({
-          idDebitor: comuserID2,
+          idDebitor: comuserID1,
           idCreditor: prvuserID2,
           amount: 98.99,
           billNr: "2368265386",
@@ -356,8 +356,12 @@ const createBill4 = res => {
               itemAmount: 1
             })
             .then(() => {
-              res.status(201).send("Database initialized");
+              finish(res);
             });
         });
     });
+};
+const finish = res => {
+  console.log("Database initialized");
+  res.status(201).send("Database initialized");
 };
