@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use("/api/init", init);
 
 app.use("/api", apiroutes);
-app.get("/", function(req, res, next) {
+app.get("/", function (req, res, next) {
   //Input: E-Mail, Passwort
   res.status(201).json({
     Type: true,
@@ -33,7 +33,7 @@ app.get("/", function(req, res, next) {
   });
 });
 
-app.get("/api/payBill", function(req, res, next) {
+app.get("/api/payBill", function (req, res, next) {
   //Input: UserID, RechnungsID, ZahlungsmethodeID
   res.status(201).json({
     Type: true,
@@ -41,7 +41,7 @@ app.get("/api/payBill", function(req, res, next) {
   });
 });
 
-app.get("/api/newCat", function(req, res, next) {
+app.get("/api/newCat", function (req, res, next) {
   //Input: Category_Name, UserID
   res.status(201).json({
     Type: true,
@@ -76,7 +76,7 @@ app.get("/api/BillDetail", (req, res, next) => {
   });
 });
 
-app.get("/api/dahsboard", function(req, res, next) {
+app.get("/api/dahsboard", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     User: {
@@ -123,7 +123,7 @@ app.get("/api/buildPayBill", (req, res, next) => {
     ]
   });
 });
-app.get("/api/mybills", function(req, res, next) {
+app.get("/api/mybills", function (req, res, next) {
   //Input: UserID
   res.status(201).json({
     RechnungsHeader: [
@@ -137,22 +137,31 @@ app.get("/api/mybills", function(req, res, next) {
         Status: "true"
       },
       {
-        Name: "B_abc",
+        RechnungsID: "B_abc",
+        KreditorenID: "U_456",
+        DebitorenID: "U_123",
+        Status: "UNPAYED",
         Betrag: "105.90",
         Frist: "2019.06.26",
         Status: "true"
       },
       {
-        Name: "B_abc",
+        RechnungsID: "B_abc",
+        KreditorenID: "U_456",
+        DebitorenID: "U_123",
+        Status: "UNPAYED",
         Betrag: "105.90",
         Frist: "2019.06.26",
-        Status: "false"
+        Status: "true"
       },
       {
-        Name: "B_abc",
+        RechnungsID: "B_abc",
+        KreditorenID: "U_456",
+        DebitorenID: "U_123",
+        Status: "UNPAYED",
         Betrag: "105.90",
         Frist: "2019.06.26",
-        Status: "false"
+        Status: "true"
       }
     ]
   });

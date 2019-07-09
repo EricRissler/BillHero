@@ -42,7 +42,6 @@ const createGeneralPayment1 = () => {
     data: "paypal.com",
   }).then((result) => {
     generalPaymentID1PayPal = result.id;
-  }).then(() => {
     createGeneralPayment2();
   })
 }
@@ -53,13 +52,13 @@ const createGeneralPayment2 = () => {
     data: "genericpaymentprovider.com"
   }).then((result2) => {
     generalPaymentID2Debit = result2.id;
-  }).then(() => {
     createUser1();
   });
 }
 
 const createUser1 = () => {
-  const pwhash = bcrypt.hash("thomashuan123", BCRYPT_SALTROUNDS).then(() => {
+  const pwprvUser1 = "thomashuan123";
+  const pwhash = bcrypt.hash(pwprvUser1, BCRYPT_SALTROUNDS).then(() => {
     adress.create({
       strHouseNr: "Musterstraße 1",
       zipCode: "12345",
@@ -78,13 +77,13 @@ const createUser1 = () => {
       }).then((result) => {
         prvuserID1 = result.id;
         userPayment.create({
-          idUser: result.id,
+          idUser: prvuserID1,
           idPaymentMethod: generalPaymentID1PayPal,
           name: "Thomas PayPalKonto"
         }).then((result) => {
           userPaymentID1ThomasPayPal = result.id;
           userPayment.create({
-            idUser: result.id,
+            idUser: prvuserID1,
             idPaymentMethod: generalPaymentID2Debit,
             name: "Thomas DebitCardKonto"
           }).then((result) => {
@@ -98,7 +97,8 @@ const createUser1 = () => {
 }
 
 const createUser2 = () => {
-  const pwhash = bcrypt.hash("mueller123", BCRYPT_SALTROUNDS).then(() => {
+  const pwprvUser2 = "mueller123";
+  const pwhash = bcrypt.hash(pwprvUser2, BCRYPT_SALTROUNDS).then(() => {
     adress.create({
       strHouseNr: "Waldweg 12",
       zipCode: "63576",
@@ -116,15 +116,15 @@ const createUser2 = () => {
       }).then((result) => {
         prvuserID2 = result.id;
         userPayment.create({
-          idUser: result.id,
+          idUser: prvuserID2,
           idPaymentMethod: generalPaymentID2PayPal,
           name: "Peter PayPalKonto"
         }).then((result) => {
-          userPaymentID3PeterPayPal = Result.id;
+          userPaymentID3PeterPayPal = result.id;
           userPayment.create({
-            idUser: result.id,
+            idUser: prvuserID2,
             idPaymentMethod: generalPaymentID2Debit,
-            name: "Thomas DebitCardKonto"
+            name: "Peter DebitCardKonto"
           }).then((result) => {
             userPaymentID4PeterDebit = result.id;
             createComUser1();
@@ -136,8 +136,9 @@ const createUser2 = () => {
 }
 
 const createComUser1 = () => {
-  const pwhash = bcrypt.hash("habeVerspätung", BCRYPT_SALTROUNDS).then(() => {
-    const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const pwcomUser3 = "habeVerspätung";
+  const pwhash = bcrypt.hash(pwcomUser3, BCRYPT_SALTROUNDS).then(() => {
     adress.create({
       strHouseNr: "Europaplatz 1",
       zipCode: "10557",
@@ -160,8 +161,9 @@ const createComUser1 = () => {
 }
 
 const createComUser2 = () => {
-  const pwhash = bcrypt.hash("bieteKleidung", BCRYPT_SALTROUNDS).then(() => {
-    const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const pwcomUser4 = "bieteKleidung";
+  const pwhash = bcrypt.hash(pwcomUser4, BCRYPT_SALTROUNDS).then(() => {
     adress.create({
       strHouseNr: "John-F.-Kennedy-Straße 4",
       zipCode: "65189",
@@ -193,19 +195,91 @@ const createBill1 = () => {
       idCreditor: prvuserID1,
       amount: 98.99,
       billNr: "2368265386",
-      date: Date.now(),
-      deadline: Date.now,
-      idCategory: result.id
+      date: "18.07.2019",
+      deadline: "21.08.2019",
+      idCategory: result.id,
+      paymentStatus: true,
+      idPayedWith: userPaymentID1ThomasPayPal
     }).then((result) => {
-
+      item.create({
+        billID: result.id,
+        itemName: "ICE 201, Frankfurt -> Berlin, 12.08.2019",
+        itemPrice: 95.99,
+        itemAmount: 1
+      });
+      item.create({
+        billID: result.id,
+        itemName: "Reservierung für ICE 201, Frankfurt -> Berlin, 12.08.2019",
+        itemPrice: 4.00,
+        itemAmount: 1
+      });
+      createBill2();
     })
   })
 }
 const createBill2 = () => {
 
+  category.create({
+    idUser: prvuserID1,
+    name: "Kleidung"
+  }).then((result) => {
+    bill.create({
+      idDebitor: comuserID2,
+      idCreditor: prvuserID1,
+      amount: 500,
+      billNr: "98445nf098347509",
+      date: "11.06.2019",
+      deadline: "21.08.2019",
+      idCategory: result.id
+    }).then((result) => {
+      item.create({
+        billID: result.id,
+        itemName: "GuciGuciHemd",
+        itemPrice: 350,
+        itemAmount: 1
+      });
+      item.create({
+        billID: result.id,
+        itemName: "Hugo Boss Unterhose",
+        itemPrice: 50,
+        itemAmount: 3
+      });
+      createBill3();
+    })
+  })
 }
 const createBill3 = () => {
 
+  category.create({
+    idUser: prvuserID2,
+    name: "Mobilität"
+  }).then((result) => {
+    bill.create({
+      idDebitor: comuserID2,
+      idCreditor: prvuserID2,
+      amount: 98.99,
+      billNr: "2368265386",
+      date: "18.07.2019",
+      deadline: "21.08.2019",
+      idCategory: result.id,
+      paymentStatus: true,
+      idPayedWith: userPaymentID1ThomasPayPal
+    }).then((result) => {
+      item.create({
+        billID: result.id,
+        itemName: "ICE 201, Frankfurt -> Berlin, 12.08.2019",
+        itemPrice: 95.99,
+        itemAmount: 1
+      });
+      item.create({
+        billID: result.id,
+        itemName: "Reservierung für ICE 201, Frankfurt -> Berlin, 12.08.2019",
+        itemPrice: 4.00,
+        itemAmount: 1
+      });
+      createBill4();
+    })
+  })
 }
 const createBill4 = () => {
 
