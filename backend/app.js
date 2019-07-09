@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, authData"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use("/api/init", init);
 
 app.use("/api", apiroutes);
-app.get("/", function (req, res, next) {
+app.get("/", function(req, res, next) {
   //Input: E-Mail, Passwort
   res.status(201).json({
     Type: true,
@@ -33,7 +33,7 @@ app.get("/", function (req, res, next) {
   });
 });
 
-app.get("/api/payBill", function (req, res, next) {
+app.get("/api/payBill", function(req, res, next) {
   //Input: UserID, RechnungsID, ZahlungsmethodeID
   res.status(201).json({
     Type: true,
@@ -41,7 +41,7 @@ app.get("/api/payBill", function (req, res, next) {
   });
 });
 
-app.get("/api/newCat", function (req, res, next) {
+app.get("/api/newCat", function(req, res, next) {
   //Input: Category_Name, UserID
   res.status(201).json({
     Type: true,
@@ -59,7 +59,8 @@ app.get("/api/BillDetail", (req, res, next) => {
     Betrag: "105.90",
     Frist: "2019.06.26",
     FavPayB: "P_xyz",
-    Items: [{
+    Items: [
+      {
         ItemID: "I_123",
         Name: "Wurst",
         Menge: 5.0,
@@ -75,7 +76,7 @@ app.get("/api/BillDetail", (req, res, next) => {
   });
 });
 
-app.get("/api/dahsboard", function (req, res, next) {
+app.get("/api/dahsboard", function(req, res, next) {
   //Input: UserID
   res.status(201).json({
     User: {
@@ -85,7 +86,8 @@ app.get("/api/dahsboard", function (req, res, next) {
       FavPayU: "P_298376"
     },
     Anz: 2,
-    RechnungsHeader: [{
+    RechnungsHeader: [
+      {
         RechnungsID: "B_abc",
         KreditorenID: "U_456",
         DebitorenID: "U_123",
@@ -109,7 +111,8 @@ app.get("/api/dahsboard", function (req, res, next) {
 app.get("/api/buildPayBill", (req, res, next) => {
   //Input: UserID
   res.status(201).json({
-    PayMethods: [{
+    PayMethods: [
+      {
         Name: "PayPal",
         ID: "P_nmo"
       },
@@ -120,47 +123,36 @@ app.get("/api/buildPayBill", (req, res, next) => {
     ]
   });
 });
-app.get("/api/mybills", function (req, res, next) {
+app.get("/api/mybills", function(req, res, next) {
   //Input: UserID
   res.status(201).json({
-
-    Anz: 4,
-    RechnungsHeader: [{
-
-        RechnungsID: "B_abc",
+    RechnungsHeader: [
+      {
+        RechnungsID: "B_abc",,
         KreditorenID: "U_456",
         DebitorenID: "U_123",
         Status: "UNPAYED",
         Betrag: "105.90",
         Frist: "2019.06.26",
-        FavPayB: "P_xyz"
+        Status: "true"
       },
       {
-        RechnungsID: "B_def",
-        KreditorenID: "U_789",
-        DebitorenID: "U_123",
-        Status: "UNPAYED",
-        Betrag: "1308.04",
-        Frist: "2019.07.13",
-        FavPayB: "P_nmo"
+        Name: "B_abc",
+        Betrag: "105.90",
+        Frist: "2019.06.26",
+        Status: "true"
       },
       {
-        RechnungsID: "B_jkl",
-        KreditorenID: "U_789",
-        DebitorenID: "U_123",
-        Status: "PAYED",
-        Betrag: "1308.04",
-        Frist: "2019.07.13",
-        FavPayB: "P_nmo"
+        Name: "B_abc",
+        Betrag: "105.90",
+        Frist: "2019.06.26",
+        Status: "false"
       },
       {
-        RechnungsID: "B_963",
-        KreditorenID: "U__789",
-        DebitorenID: "U_123",
-        Status: "PAYED",
-        Betrag: "13.04",
-        Frist: "2019.07.23",
-        FavPayB: "P_nmo"
+        Name: "B_abc",
+        Betrag: "105.90",
+        Frist: "2019.06.26",
+        Status: "false"
       }
     ]
   });

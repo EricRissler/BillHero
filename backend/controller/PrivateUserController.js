@@ -3,10 +3,13 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
 const getUser = function(req, res) {
+  console.log(req.headers);
+  const authdata = req.header("authData").split(":");
   const data = {
-    email: req.body.email,
-    password: req.body.password
+    email: authdata[0],
+    password: authdata[1]
   };
+  console.log(data);
 
   privateUser
     .findOne({
@@ -51,11 +54,14 @@ const postUser = function(req, res) {
     password: req.body.password,
     nationality: req.body.nationality,
     strHouseNr: req.body.strHouseNr,
-    additonal: req.body.additonal,
+    additional: req.body.additional,
     zip: req.body.zip,
     city: req.body.city,
     bdate: req.body.bdate
   };
+  console.log("Yay im Server");
+  console.log(data);
+
   //Prüfen ob alle Felder gefüllt sind
   for (var key in data) {
     if (data[key] == null || data[key] == "") {
@@ -87,7 +93,7 @@ const postUser = function(req, res) {
             zipCode: data.zip,
             city: data.city,
             country: data.country,
-            additonal: data.additonal
+            additonal: data.additional
           })
           .then(function(result) {
             console.log("Created Adress");

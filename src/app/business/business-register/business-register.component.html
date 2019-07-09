@@ -14,7 +14,7 @@
             class="form-control"
             placeholder="Land"
             *ngIf="this.step == 1"
-            [(ngModel)]="country"
+            [(ngModel)]="land"
           />
         </li>
 
@@ -40,7 +40,7 @@
 
         <li>
           <input
-            type="text"
+            type="email"
             class="form-control"
             placeholder="E-Mail-Adresse"
             *ngIf="this.step == 1"
@@ -72,9 +72,9 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Nationalität"
+            placeholder="Firmenname"
             *ngIf="this.step == 2"
-            [(ngModel)]="nationality"
+            [(ngModel)]="company"
           />
         </li>
 
@@ -94,7 +94,7 @@
             class="form-control"
             placeholder="Adresszusatz"
             *ngIf="this.step == 2"
-            [(ngModel)]="additional"
+            [(ngModel)]="adressplus"
           />
         </li>
 
@@ -143,7 +143,7 @@
         (click)="changestep()"
         *ngIf="this.step == 1"
         [disabled]="
-          this.country == '' ||
+          this.land == '' ||
           this.firstname == '' ||
           this.lastname == '' ||
           this.mail == '' ||
@@ -159,10 +159,9 @@
       <button
         class="next"
         (click)="changestep()"
-        (click)="postUser()"
         *ngIf="this.step == 2"
         [disabled]="
-          this.nationality == '' ||
+          this.company == '' ||
           this.streetandnumber == '' ||
           this.postcode == '' ||
           this.place == '' ||
@@ -178,7 +177,7 @@
         class="next"
         (click)="changestep()"
         *ngIf="this.step == 3"
-        routerLink="/dashboard"
+        routerLink="/Businessdashboard"
       >
         Auf zum Dashboard!
       </button>

@@ -4,13 +4,15 @@
   </div>
   <div class="centerTitle">
     <div class="title">
-      <h1>Hallo {{ user }}!</h1>
+      <h1>Hallo {{ firstname }}!</h1>
 
       <h2>Du hast {{ billcount }} neue Rechnungen</h2>
     </div>
     <div class="rightcontainer">
       <div class="billList" *ngFor="let bill of bill">
-        <button class="standardPay">Pay Standard</button>
+        <button class="standardPay" (click)="onPayStandard()">
+          Pay Standard
+        </button>
         <ul class="list-group-item">
           <li id="billName" class="list-group">{{ bill.name }}</li>
           <li id="billDeadline" class="list-group">{{ bill.deadline }}</li>
