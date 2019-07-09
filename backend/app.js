@@ -128,7 +128,7 @@ app.get("/api/mybills", function(req, res, next) {
   res.status(201).json({
     RechnungsHeader: [
       {
-        RechnungsID: "B_abc",,
+        RechnungsID: "B_abc",
         KreditorenID: "U_456",
         DebitorenID: "U_123",
         Status: "UNPAYED",
