@@ -1,10 +1,10 @@
 const commercialUserModel = (seqelize, type) => {
   return seqelize.define("commercialUser", {
     id: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       primaryKey: true,
       unique: true,
-      autoIncrement: true
+      defaultValue: type.UUIDV1
     },
     longname: {
       type: type.STRING,

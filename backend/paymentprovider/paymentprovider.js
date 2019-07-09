@@ -6,11 +6,11 @@ const payBill = function (CreditorToken, DebitorToken, amount) {
 
 const registerPaymentmethod = function (owner, data) {
   //expects legal data from accoun owner (eg. full name, adress) and data for paymentmethod (eg. IBAN, Creditcard info etc)
-  //return randomized String as identifieng token for paymentmethod in paymentprovider-System
-  return makeid(20);
+  //return randomized String as identifier token for paymentmethod in paymentprovider-system
+  return makeToken(20);
 }
 
-function makeid(length) {
+function makeToken(length) {
   var result = '';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;

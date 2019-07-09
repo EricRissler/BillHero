@@ -1,9 +1,10 @@
 const adressModel = (seqelize, type) => {
   return seqelize.define("adress", {
     id: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       primaryKey: true,
-      autoIncrement: true
+      unique: true,
+      defaultValue: type.UUIDV1
     },
     strHouseNr: {
       type: type.STRING,
