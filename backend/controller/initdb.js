@@ -27,7 +27,7 @@ var prvuserID2;
 var comuserID1;
 var comuserID2;
 
-module.exports = function(req, res) {
+module.exports = function (req, res) {
   conn.drop().then(() => {
     console.log("Dropped");
     conn.sync().then(() => {
@@ -62,24 +62,24 @@ const createGeneralPayment2 = res => {
 };
 
 const createUser1 = res => {
-  const pwprvUser1 = "thomashuan123";
+  const pwprvUser1 = "test";
   bcrypt.hash(pwprvUser1, BCRYPT_SALTROUNDS).then(pwhash => {
     adress
       .create({
-        strHouseNr: "Musterstraße 1",
-        zipCode: "12345",
-        city: "Berlin",
-        country: "Germany",
-        additonal: "Wohnung 0-30"
+        strHouseNr: "test",
+        zipCode: "test",
+        city: "test",
+        country: "test",
+        additonal: "test"
       })
       .then(result => {
         prvUser
           .create({
-            firstname: "Thomas",
-            lastname: "Huan",
-            birthdate: "12.03.1985",
-            nationality: "german",
-            email: "thomas.huan@gmail.com",
+            firstname: "test",
+            lastname: "User",
+            birthdate: "test",
+            nationality: "test",
+            email: "testUser",
             password: pwhash,
             idAdress: result.id
           })
