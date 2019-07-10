@@ -5,10 +5,11 @@ const bill = sequelize.bill;
 const category = sequelize.category;
 const comUser = sequelize.commercialUser;
 const generalPayment = sequelize.generalPaymentMethod;
-const itemModel = sequelize.item;
+const item = sequelize.item;
 const prvUser = sequelize.privateUser;
 const userPayment = sequelize.userPaymentMethod;
-const paymentRegister = require("../paymentprovider/paymentprovider").registerPaymentmethod;
+const paymentRegister = require("../paymentprovider/paymentprovider")
+  .registerPaymentmethod;
 const bcrypt = require("bcrypt");
 const BCRYPT_SALTROUNDS = 12;
 
@@ -31,182 +32,336 @@ module.exports = function (req, res) {
     console.log("Dropped");
     conn.sync().then(() => {
       console.log("synced");
-      createGeneralPayment1();
+      createGeneralPayment1(res);
     });
   });
 };
 
-const createGeneralPayment1 = () => {
-  generalPayment.create({
-    name: "PayPal",
-    data: "paypal.com",
-  }).then((result) => {
-    generalPaymentID1PayPal = result.id;
-  }).then(() => {
-    createGeneralPayment2();
-  })
-}
+const createGeneralPayment1 = res => {
+  generalPayment
+    .create({
+      name: "PayPal",
+      data: "paypal.com"
+    })
+    .then(result => {
+      generalPaymentID1PayPal = result.id;
+      createGeneralPayment2(res);
+    });
+};
 
-const createGeneralPayment2 = () => {
-  generalPayment.create({
-    name: "debit Card",
-    data: "genericpaymentprovider.com"
-  }).then((result2) => {
-    generalPaymentID2Debit = result2.id;
-  }).then(() => {
-    createUser1();
+const createGeneralPayment2 = res => {
+  generalPayment
+    .create({
+      name: "debit Card",
+      data: "genericpaymentprovider.com"
+    })
+    .then(result2 => {
+      generalPaymentID2Debit = result2.id;
+      createUser1(res);
+    });
+};
+
+const createUser1 = res => {
+  const pwprvUser1 = "test";
+  bcrypt.hash(pwprvUser1, BCRYPT_SALTROUNDS).then(pwhash => {
+    adress
+      .create({
+        strHouseNr: "test",
+        zipCode: "test",
+        city: "test",
+        country: "test",
+        additonal: "test"
+      })
+      .then(result => {
+        prvUser
+          .create({
+            firstname: "test",
+            lastname: "User",
+            birthdate: "test",
+            nationality: "test",
+            email: "testUser",
+            password: pwhash,
+            idAdress: result.id
+          })
+          .then(result => {
+            prvuserID1 = result.id;
+            userPayment
+              .create({
+                idUser: prvuserID1,
+                idPaymentMethod: generalPaymentID1PayPal,
+                name: "Thomas PayPalKonto"
+              })
+              .then(result => {
+                userPaymentID1ThomasPayPal = result.id;
+                userPayment
+                  .create({
+                    idUser: prvuserID1,
+                    idPaymentMethod: generalPaymentID2Debit,
+                    name: "Thomas DebitCardKonto"
+                  })
+                  .then(result => {
+                    userPaymentID2ThomasDebit = result.id;
+                    createUser2(res);
+                  });
+              });
+          });
+      });
   });
-}
+};
 
-const createUser1 = () => {
-  const pwhash = bcrypt.hash("thomashuan123", BCRYPT_SALTROUNDS).then(() => {
-    adress.create({
-      strHouseNr: "Musterstraße 1",
-      zipCode: "12345",
-      city: "Berlin",
-      country: "Germany",
-      additonal: "Wohnung 0-30"
-    }).then(result => {
-      prvUser.create({
-        firstname: "Thomas",
-        lastname: "Huan",
-        birthdate: "12.03.1985",
-        nationality: "german",
-        email: "thomas.huan@gmail.com",
-        password: pwhash,
-        idAdress: result.id
-      }).then((result) => {
-        prvuserID1 = result.id;
-        userPayment.create({
-          idUser: result.id,
-          idPaymentMethod: generalPaymentID1PayPal,
-          name: "Thomas PayPalKonto"
-        }).then((result) => {
-          userPaymentID1ThomasPayPal = result.id;
-          userPayment.create({
-            idUser: result.id,
-            idPaymentMethod: generalPaymentID2Debit,
-            name: "Thomas DebitCardKonto"
-          }).then((result) => {
-            userPaymentID2ThomasDebit = result.id;
-            createUser2();
+const createUser2 = res => {
+  const pwprvUser2 = "mueller123";
+  bcrypt.hash(pwprvUser2, BCRYPT_SALTROUNDS).then(pwhash => {
+    adress
+      .create({
+        strHouseNr: "Waldweg 12",
+        zipCode: "63576",
+        city: "Freigericht",
+        country: "Germany"
+      })
+      .then(result => {
+        prvUser
+          .create({
+            firstname: "Peter",
+            lastname: "Müller",
+            birthdate: "15.09.1967",
+            nationality: "german",
+            email: "pmueller67@yahoo.com",
+            password: pwhash,
+            idAdress: result.id
+          })
+          .then(result => {
+            prvuserID2 = result.id;
+            userPayment
+              .create({
+                idUser: prvuserID2,
+                idPaymentMethod: generalPaymentID1PayPal,
+                name: "Peter PayPalKonto"
+              })
+              .then(result => {
+                userPaymentID3PeterPayPal = result.id;
+                userPayment
+                  .create({
+                    idUser: prvuserID2,
+                    idPaymentMethod: generalPaymentID2Debit,
+                    name: "Peter DebitCardKonto"
+                  })
+                  .then(result => {
+                    userPaymentID4PeterDebit = result.id;
+                    createComUser1(res);
+                  });
+              });
           });
-        });
-      })
-    })
-  })
-}
+      });
+  });
+};
 
-const createUser2 = () => {
-  const pwhash = bcrypt.hash("mueller123", BCRYPT_SALTROUNDS).then(() => {
-    adress.create({
-      strHouseNr: "Waldweg 12",
-      zipCode: "63576",
-      city: "Freigericht",
-      country: "Germany"
-    }).then(result => {
-      prvUser.create({
-        firstname: "Peter",
-        lastname: "Müller",
-        birthdate: "15.09.1967",
-        nationality: "german",
-        email: "pmueller67@yahoo.com",
-        password: pwhash,
-        idAdress: result.id
-      }).then((result) => {
-        prvuserID2 = result.id;
-        userPayment.create({
-          idUser: result.id,
-          idPaymentMethod: generalPaymentID2PayPal,
-          name: "Peter PayPalKonto"
-        }).then((result) => {
-          userPaymentID3PeterPayPal = Result.id;
-          userPayment.create({
-            idUser: result.id,
-            idPaymentMethod: generalPaymentID2Debit,
-            name: "Thomas DebitCardKonto"
-          }).then((result) => {
-            userPaymentID4PeterDebit = result.id;
-            createComUser1();
+const createComUser1 = res => {
+  const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const pwcomUser3 = "habeVerspätung";
+  bcrypt.hash(pwcomUser3, BCRYPT_SALTROUNDS).then(pwhash => {
+    adress
+      .create({
+        strHouseNr: "Europaplatz 1",
+        zipCode: "10557",
+        city: "Berlin",
+        country: "Germany"
+      })
+      .then(result => {
+        comUser
+          .create({
+            longname: "Deutsche Bahn AG",
+            shortname: "DB AG",
+            email: "info@deutschebahn.com",
+            password: pwhash,
+            incomingPaymentToken: paymentToken,
+            idAdress: result.id
+          })
+          .then(result => {
+            comuserID1 = result.id;
+            createComUser2(res);
           });
+      });
+  });
+};
+
+const createComUser2 = res => {
+  const paymentToken = paymentRegister("DB AG", "KontoNr 123");
+  const pwcomUser4 = "bieteKleidung";
+  bcrypt.hash(pwcomUser4, BCRYPT_SALTROUNDS).then(pwhash => {
+    adress
+      .create({
+        strHouseNr: "John-F.-Kennedy-Straße 4",
+        zipCode: "65189",
+        city: "Wiesbaden",
+        country: "Germany"
+      })
+      .then(result => {
+        comUser
+          .create({
+            longname: "MEWA Textil OHG",
+            shortname: "MEWA",
+            email: "info@mewa.com",
+            password: pwhash,
+            incomingPaymentToken: paymentToken,
+            idAdress: result.id
+          })
+          .then(result => {
+            comuserID2 = result.id;
+            createBill1(res);
+          });
+      });
+  });
+};
+
+const createBill1 = res => {
+  category
+    .create({
+      idUser: prvuserID1,
+      name: "Mobilität"
+    })
+    .then(result => {
+      bill
+        .create({
+          idDebitor: comuserID1,
+          idCreditor: prvuserID1,
+          amount: 98.99,
+          billNr: "2368265386",
+          date: "18.07.2019",
+          deadline: "21.08.2019",
+          idCategory: result.id,
+          paymentStatus: true,
+          idPayedWith: userPaymentID1ThomasPayPal
+        })
+        .then(result => {
+          item.create({
+            billID: result.id,
+            itemName: "ICE 201, Frankfurt -> Berlin, 12.08.2019",
+            itemPrice: 95.99,
+            itemAmount: 1
+          });
+          item.create({
+            billID: result.id,
+            itemName:
+              "Reservierung für ICE 201, Frankfurt -> Berlin, 12.08.2019",
+            itemPrice: 4.0,
+            itemAmount: 1
+          });
+          createBill2(res);
         });
-      })
+    });
+};
+
+const createBill2 = res => {
+  category
+    .create({
+      idUser: prvuserID1,
+      name: "Kleidung"
     })
-  })
-}
+    .then(result => {
+      bill
+        .create({
+          idDebitor: comuserID2,
+          idCreditor: prvuserID1,
+          amount: 500,
+          billNr: "98445nf098347509",
+          date: "11.06.2019",
+          deadline: "21.08.2019",
+          idCategory: result.id
+        })
+        .then(result => {
+          item.create({
+            billID: result.id,
+            itemName: "GuciGuciHemd",
+            itemPrice: 350,
+            itemAmount: 1
+          });
+          item.create({
+            billID: result.id,
+            itemName: "Hugo Boss Unterhose",
+            itemPrice: 50,
+            itemAmount: 3
+          });
+          createBill3(res);
+        });
+    });
+};
 
-const createComUser1 = () => {
-  const pwhash = bcrypt.hash("habeVerspätung", BCRYPT_SALTROUNDS).then(() => {
-    const paymentToken = paymentRegister("DB AG", "KontoNr 123");
-    adress.create({
-      strHouseNr: "Europaplatz 1",
-      zipCode: "10557",
-      city: "Berlin",
-      country: "Germany"
-    }).then((result) => {
-      comUser.create({
-        longname: "Deutsche Bahn AG",
-        shortname: "DB AG",
-        email: "info@deutschebahn.com",
-        password: pwhash,
-        incomingPaymentToken: paymentToken,
-        idAdress: result.id
-      }).then((result) => {
-        comuserID1 = result.id;
-        createComUser2();
-      })
+const createBill3 = res => {
+  category
+    .create({
+      idUser: prvuserID2,
+      name: "Mobilität"
     })
-  })
-}
+    .then(result => {
+      bill
+        .create({
+          idDebitor: comuserID1,
+          idCreditor: prvuserID2,
+          amount: 98.99,
+          billNr: "2368265386",
+          date: "18.07.2019",
+          deadline: "21.08.2019",
+          idCategory: result.id,
+          paymentStatus: true,
+          idPayedWith: userPaymentID1ThomasPayPal
+        })
+        .then(result => {
+          item.create({
+            billID: result.id,
+            itemName: "ICE 201, hanover -> hanau, 12.08.2019",
+            itemPrice: 95.99,
+            itemAmount: 1
+          });
+          item.create({
+            billID: result.id,
+            itemName: "Reservierung für ICE 201, hanover -> hanau, 12.08.2019",
+            itemPrice: 4.0,
+            itemAmount: 1
+          });
+          createBill4(res);
+        });
+    });
+};
 
-const createComUser2 = () => {
-  const pwhash = bcrypt.hash("bieteKleidung", BCRYPT_SALTROUNDS).then(() => {
-    const paymentToken = paymentRegister("DB AG", "KontoNr 123");
-    adress.create({
-      strHouseNr: "John-F.-Kennedy-Straße 4",
-      zipCode: "65189",
-      city: "Wiesbaden",
-      country: "Germany"
-    }).then((result) => {
-      comUser.create({
-        longname: "MEWA Textil OHG",
-        shortname: "MEWA",
-        email: "info@mewa.com",
-        password: pwhash,
-        incomingPaymentToken: paymentToken,
-        idAdress: result.id
-      }).then((result) => {
-        comuserID1 = result.id;
-        createBill1();
-      })
+const createBill4 = res => {
+  category
+    .create({
+      idUser: prvuserID2,
+      name: "Schuhe"
     })
-  })
-}
-
-const createBill1 = () => {
-  category.create({
-    idUser: prvuserID1,
-    name: "Mobilität"
-  }).then((result) => {
-    bill.create({
-      idDebitor: comuserID1,
-      idCreditor: prvuserID1,
-      amount: 98.99,
-      billNr: "2368265386",
-      date: Date.now(),
-      deadline: Date.now,
-      idCategory: result.id
-    }).then((result) => {
-
-    })
-  })
-}
-const createBill2 = () => {
-
-}
-const createBill3 = () => {
-
-}
-const createBill4 = () => {
-
-}
+    .then(result => {
+      bill
+        .create({
+          idDebitor: comuserID2,
+          idCreditor: prvuserID2,
+          amount: 150,
+          billNr: "2368265386",
+          date: "18.07.2019",
+          deadline: "21.08.2019",
+          idCategory: result.id
+        })
+        .then(result => {
+          item.create({
+            billID: result.id,
+            itemName: "Geile Schue größe 46",
+            itemPrice: 95.99,
+            itemAmount: 1
+          });
+          item
+            .create({
+              billID: result.id,
+              itemName: "rote Strümpfe größe 46",
+              itemPrice: 54.01,
+              itemAmount: 1
+            })
+            .then(() => {
+              finish(res);
+            });
+        });
+    });
+};
+const finish = res => {
+  console.log("Database initialized");
+  res.status(201).send("Database initialized");
+};

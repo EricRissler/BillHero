@@ -14,11 +14,11 @@ const privatUserModel = (seqelize, type) => {
       type: type.STRING,
       allowNull: false
     },
-    birthdate: { //TODO:in dm einfügen
+    birthdate: {
       type: type.STRING,
       allowNull: false
     },
-    nationality: { //TODO:in dm einfügen
+    nationality: {
       type: type.STRING,
       allowNull: false
     },
@@ -31,7 +31,7 @@ const privatUserModel = (seqelize, type) => {
       allowNull: false
     },
     idAdress: {
-      type: type.INTEGER
+      type: type.CHAR(18)
     }
   });
 };
