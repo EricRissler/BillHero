@@ -9,7 +9,6 @@ const getUser = function(req, res) {
     email: authdata[0],
     password: authdata[1]
   };
-  console.log(data);
 
   privateUser
     .findOne({
