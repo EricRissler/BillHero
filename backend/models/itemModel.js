@@ -7,7 +7,7 @@ const commercialUserModel = (seqelize, type) => {
       defaultValue: type.UUIDV1
     },
     billID: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allownull: false
     },
     itemName: {

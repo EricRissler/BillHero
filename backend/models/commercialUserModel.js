@@ -26,7 +26,7 @@ const commercialUserModel = (seqelize, type) => {
       type: type.STRING
     },
     idAdress: {
-      type: type.INTEGER
+      type: type.CHAR(18)
     }
   });
 };
