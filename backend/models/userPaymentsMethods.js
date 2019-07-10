@@ -1,4 +1,3 @@
-
 const paymentrregister = require("../paymentprovider/paymentprovider");
 const userPaymentMethodModel = (sequelize, type) => {
   return sequelize.define("userPaymentMethod", {
@@ -9,7 +8,7 @@ const userPaymentMethodModel = (sequelize, type) => {
       defaultValue: type.UUIDV1
     },
     idUser: {
-      type: type.INTEGER,
+      type: type.CHAR(18),
       allownull: false
     },
     idPaymentMethod: {
