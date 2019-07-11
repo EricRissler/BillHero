@@ -3,10 +3,13 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
 const getUser = function(req, res) {
+  console.log(req.headers);
+  const authdata = req.header("authData").split(":");
   const data = {
-    email: req.body.email,
-    password: req.body.password
+    email: authdata[0],
+    password: authdata[1]
   };
+
   commercialUser
     .findOne({
       where: {

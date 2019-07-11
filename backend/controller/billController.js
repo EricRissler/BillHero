@@ -3,6 +3,7 @@ const commercialUser = require("../sequelize").commercialUser;
 const privateUser = require("../sequelize").privateUser;
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
+//TODO: ITEMS
 const postBill = function(req, res) {
   const data = {
     debID: req.params.uid,
@@ -61,8 +62,8 @@ const postBill = function(req, res) {
       }
     });
 };
-//TODO: getBillS
 
+//TODO: ITEMS
 const getBill = function(req, res) {
   const data = {
     uid: req.params.uid,
@@ -89,7 +90,7 @@ const getBill = function(req, res) {
       }
     });
 };
-
+//TODO: getBillS
 const getBills = function(req, res) {
   const uid = req.params.uid;
   const status = req.query.status;
@@ -141,7 +142,21 @@ const getBills = function(req, res) {
               }
             });
         } else if (credName != null) {
-          //TODO:
+          commercialUser
+            .findAll({
+              attributes: ["id"],
+              where: {
+                name: {
+                  $like: "%" + request.body.query + "%"
+                }
+              }
+            })
+            .then(results => {
+              bills = {};
+              for each (var userID in results) {
+                //FIXME:
+              }
+            });
         } else if (prodName != null) {
           //TODO:
         } else {
