@@ -15,6 +15,7 @@
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [(ngModel)]="name1"
         />
       </li>
 
@@ -24,11 +25,17 @@
           type="text"
           class="form-control"
           placeholder="BIC (Swift-Code)"
+          [(ngModel)]="bic"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="IBAN" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="IBAN"
+          [(ngModel)]="iban"
+        />
       </li>
 
       <li>
@@ -37,11 +44,14 @@
           type="text"
           class="form-control"
           placeholder="Kontoinhaber"
+          [(ngModel)]="owner1"
         />
       </li>
 
       <li>
-        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
+        <button id="confirm" type="submit" (click)="submitBank()">
+          Bankverbindung hinzufügen
+        </button>
       </li>
     </ul>
   </div>
@@ -64,6 +74,7 @@
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [(ngModel)]="name2"
         />
       </li>
 
@@ -73,19 +84,27 @@
           type="text"
           class="form-control"
           placeholder="Karteninhaber"
+          [(ngModel)]="owner2"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="Kartennummer" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Kartennummer"
+          [(ngModel)]="cardnr"
+        />
       </li>
 
       <li>
-        <input id="date" type="text" class="form-control" />
+        <input id="date" type="text" class="form-control" [(ngModel)]="date" />
       </li>
 
       <li>
-        <button id="confirm" type="submit">Kreditkarte hinzufügen</button>
+        <button id="confirm" type="submit" (click)="submitCreditcard()">
+          Kreditkarte hinzufügen
+        </button>
       </li>
     </ul>
   </div>

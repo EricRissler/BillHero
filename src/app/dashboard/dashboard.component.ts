@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from "../prv-user-service.service";
-import { Router } from '@angular/router';
+import { PrvUserServiceService } from "../prv-user.service";
+import { Router } from "@angular/router";
 
 declare var require: any;
 @Component({
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   billcount = this.bill.length;
   firstname: string;
-  showMessage: boolean=false;
+  showMessage: boolean = false;
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(!this.prvUserService.getUser()){
+    if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit {
     console.log("Ich bin de User:" + this.firstname);
   }
   onPayStandard() {
-    this.showMessage=true;
+    this.showMessage = true;
     setTimeout(() => {
-     this.showMessage=false;
-  }, 2000);
+      this.showMessage = false;
+    }, 2000);
   }
 }

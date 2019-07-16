@@ -4,7 +4,7 @@
   min-height: 579px;
   border: 2px solid #05619b;
   border-radius: 10px;
-  background-color: #f5f6fd;
+  background-color: white;
 }
 h1 {
   text-align: center;
@@ -12,23 +12,31 @@ h1 {
 }
 
 #dropdownleft {
-  margin-left: 50%;
+  float: left;
 }
 
 #dropdownright {
-  margin-left: 50%;
+  float: right;
 }
 
 .payment1 {
   float: left;
   margin-top: 5%;
-  margin-left: 5%;
+  margin-left: 6%;
+}
+
+#delete1 {
+  float: right;
 }
 
 .payment2 {
   float: right;
   margin-top: 5%;
-  margin-right: 5%;
+  margin-right: 8%;
+}
+
+#delete2 {
+  float: right;
 }
 
 .newPayment {
