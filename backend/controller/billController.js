@@ -2,16 +2,18 @@ const bill = require("../sequelize").bill;
 const commercialUser = require("../sequelize").commercialUser;
 const privateUser = require("../sequelize").privateUser;
 const paymentProvider = require("../paymentprovider/paymentprovider");
+const item = require("../sequelize").item;
+const op = require("../sequelize").op;
 
 //TODO: ITEMS
-const postBill = function(req, res) {
+const postBill = function (req, res) {
   const data = {
     debID: req.params.uid,
     creID: req.body.creID,
     amount: req.body.amount,
     billNr: req.body.billNr,
-    date: req.body.date,
-    deadline: req.body.deadline
+    deadline: req.body.deadline,
+    items: req.body.items
   };
   privateUser
     .findOne({
@@ -64,34 +66,93 @@ const postBill = function(req, res) {
 };
 
 //TODO: ITEMS
-const getBill = function(req, res) {
+const getBill = function (req, res) {
   const data = {
-    uid: req.params.uid,
-    bid: req.params.bid
+    userId: req.params.uid,
+    billId: req.params.bid
   };
-  bill
-    .findOne({
-      where: {
-        id: data.bid,
-        idDebitor: data.uid
-      }
-    })
-    .then(result => {
-      if (result == null) {
-        res.status(404).json({
-          message: "bill not found",
-          bills: null
-        });
-      } else {
+  bill.findOne({
+    where: {
+      id: data.billId,
+      idDebitor: data.userId
+    },
+    raw: true
+  }).then(foundBill => {
+    if (foundBill == null) {
+      res.status(404).json({
+        bill: null
+      });
+    } else {
+      commercialUser.findOne({
+        where: { id: foundBill.idCreditor },
+        attributes: ["shortname"],
+        raw: true
+      }).then(debitor => {
         res.status(200).json({
-          message: "bill found",
-          bill: result
-        });
-      }
-    });
-};
+          bill: foundBill,
+          shortname: debitor.shortname
+        })
+      });
+    }
+  })
+}
+
 //TODO: getBillS
-const getBills = function(req, res) {
+const searchBill = function (req, res) {
+  const uid = req.params.uid;
+  const status = req.query.status;
+  const catId = req.query.catid;
+  const credName = req.query.cred;
+  const prodName = req.query.prod;
+  privateUser.findOne({
+    where: { id: uid }
+  }).then(prvUser => {
+    if (prvUser == null) {
+      res.status(404).send();
+    } else {
+      if (status != null) {
+        bill.findALL({
+          where: {
+            idDebitor: uid,
+            paymentStatus: status
+          },
+          raw: true
+        }).then(bills => {
+          //TODO: get shortnames for each Bill
+        })
+      } else if (catId != null) {
+        bill.findALL({
+          where: {
+            idDebitor: uid,
+            idCategory: catId
+          },
+          raw: true
+        }).then(bills => {
+          //TODO: get shortnames for each Bill
+        })
+      } else if (credName != null) {
+        commercialUser.findALL({
+          where: {
+            [op.or]: [{ shortname: credName }, {
+              longname: credName
+            }]
+          },
+          raw: true
+        }).then(comUsers => {
+          console.log(comUsers);
+        })
+      } else if (prodName != null) {
+
+      } else {
+
+      }
+    }
+
+  })
+
+}
+/*
+const getBills = function (req, res) {
   const uid = req.params.uid;
   const status = req.query.status;
   const catID = req.query.catid;
@@ -106,6 +167,7 @@ const getBills = function(req, res) {
         res.status(404).send();
       } else {
         if (status != null) {
+          //Getting Bills by paymentstatus
           bill
             .findAll({
               raw: true,
@@ -124,6 +186,7 @@ const getBills = function(req, res) {
               }
             });
         } else if (catID != null) {
+          //Getting Bills by category
           bill
             .findAll({
               raw: true,
@@ -142,6 +205,7 @@ const getBills = function(req, res) {
               }
             });
         } else if (credName != null) {
+          //Getting Bills by userID and CommercialUsername
           commercialUser
             .findAll({
               attributes: ["id"],
@@ -152,13 +216,27 @@ const getBills = function(req, res) {
               }
             })
             .then(results => {
-              bills = {};
-              for each (var userID in results) {
-                //FIXME:
+              if (results == null) {
+                res.status(404).send();
               }
+              creditors = results.array;
+              bills = [];
+              results.array.forEach(element => {
+                bill.findAll({
+                  where: {
+                    idDebitor: uid,
+                    idCreditor: comUser.id
+                  }
+                }).then(resultbills => {
+                  if (resultbills == null) {
+                    res.status(404).send();
+                  }
+                })
+              });
             });
         } else if (prodName != null) {
-          //TODO:
+          //Getting Bills by  ItemName
+
         } else {
           bill.findAll({
             raw: true,
@@ -178,8 +256,9 @@ const getBills = function(req, res) {
       }
     });
 };
+*/
 //TODO: Testen
-const putBill = function(req, res) {
+const putBill = function (req, res) {
   const data = {
     userID: req.params.uid,
     billID: req.params.bid,
@@ -233,9 +312,10 @@ const putBill = function(req, res) {
   }
 };
 
+
 module.exports = {
   postBill: postBill,
   getBill: getBill,
   putBill: putBill,
-  getBills: getBills
+  getBills: searchBill
 };
