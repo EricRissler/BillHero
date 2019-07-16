@@ -10,8 +10,8 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
-export class PrvUserServiceService {
-  logged: boolean = false;
+export class ComUserService {
+  logged: boolean;
   id: string;
   firstname: string;
   lastname: string;
@@ -23,36 +23,32 @@ export class PrvUserServiceService {
   constructor(private http: HttpClient, private router: Router) {}
 
   Signin(mail, password) {
+    console.log(mail);
     const headers = new HttpHeaders().set("authData", mail + ":" + password);
     //TODO: Prüfen dass pw und user kein ':' enthält
     console.log(mail + password);
     this.http
       .get<{
         id: string;
-        firstname: string;
-        lastname: string;
-        birthdate: string;
-        nationality: string;
+        // firstname: string;
+        // lastname: string;
+        // birthdate: string;
+        // nationality: string;
         email: string;
-      }>("http://localhost:3000/api/prvusers", { headers })
+      }>("http://localhost:3000/api/comusers", { headers })
       .subscribe(responseData => {
         console.log("YAY");
         console.log(responseData);
-
+        console.log(responseData.email);
         this.id = responseData.id;
-        this.firstname = responseData.firstname;
-        this.lastname = responseData.lastname;
-        this.birthdate = responseData.birthdate;
-        this.nationality = responseData.nationality;
+        // this.firstname = responseData.firstname;
+        // this.lastname = responseData.lastname;
+        // this.birthdate = responseData.birthdate;
+        // this.nationality = responseData.nationality;
         this.mail = responseData.email;
-        console.log("ausm Service:" + this.firstname);
-        this.logged=true;
-        this.router.navigate(["/dashboard"]);
+        console.log("ausm Service:" + this.mail);
+        this.router.navigate(["/businessDashboard"]);
       });
-  }
-
-  getUID(){
-    return this.id;
   }
 
   getUser() {
@@ -60,8 +56,7 @@ export class PrvUserServiceService {
     return this.firstname;
   }
 
-  getLogged(){
-    return this.logged;
+  getComID() {
+    return this.id;
   }
-
 }

@@ -40,8 +40,8 @@ export class BusinessRegisterComponent implements OnInit {
         zip: this.postcode,
         city: this.place
       })
-      .subscribe(resonseData => {
-        console.log(resonseData.message);
+      .subscribe(responseData => {
+        console.log(responseData.message);
       });
   }
 

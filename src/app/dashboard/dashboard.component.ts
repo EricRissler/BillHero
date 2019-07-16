@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
+import { Router } from '@angular/router';
 
 declare var require: any;
 @Component({
@@ -27,20 +28,25 @@ export class DashboardComponent implements OnInit {
 
   billcount = this.bill.length;
   firstname: string;
+  showMessage: boolean=false;
   constructor(
     private headerService: HeaderService,
-    private prvUserService: PrvUserServiceService
+    private prvUserService: PrvUserServiceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    if(!this.prvUserService.getUser()){
+      this.router.navigate(["/signin"]);
+    }
     this.headerService.setHeader(true);
     this.firstname = this.prvUserService.getUser();
     console.log("Ich bin de User:" + this.firstname);
   }
   onPayStandard() {
-    // this.snack.open("Deine Rechnung wurde bezahlt","OK", {
-    //   duration:1000,
-    //   horizontalPosition:"end",
-    // });
+    this.showMessage=true;
+    setTimeout(() => {
+     this.showMessage=false;
+  }, 2000);
   }
 }

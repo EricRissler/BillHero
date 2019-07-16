@@ -8,34 +8,34 @@ const op = require("../sequelize").op;
 //TODO: ITEMS
 const postBill = function(req, res) {
   const data = {
-    debID: req.params.uid,
-    creID: req.body.creID,
+    creID: req.params.uid,
+    debID: req.body.debID,
     amount: req.body.amount,
     billNr: req.body.billNr,
-    deadline: req.body.deadline,
-    items: req.body.items
+    date: req.body.date,
+    deadline: req.body.deadline
   };
-  privateUser
+  console.log(data);
+  commercialUser
     .findOne({
       where: {
         id: data.creID
       }
     })
-    .then(prvuser => {
-      if (prvuser == null) {
+    .then(comUser => {
+      if (comUser == null) {
         res.status(404).json({
           message: "Creditor not found"
         });
-        return;
       } else {
-        commercialUser
+        privateUser
           .findOne({
             where: {
               id: data.debID
             }
           })
-          .then(comuser => {
-            if (comuser == null) {
+          .then(prvUser => {
+            if (prvUser == null) {
               res.status(404).json({
                 message: "Debitor not found"
               });
@@ -108,11 +108,13 @@ const searchBill = function(req, res) {
   const catId = req.query.catid;
   const credName = req.query.cred;
   const prodName = req.query.prod;
-  privateUser
+
+ privateUser
     .findOne({
       where: { id: uid }
     })
     .then(prvUser => {
+      console.log(prvUser);
       if (prvUser == null) {
         res.status(404).send();
       } else {
@@ -130,7 +132,7 @@ const searchBill = function(req, res) {
             });
         } else if (catId != null) {
           bill
-            .findALL({
+            .findAll({
               where: {
                 idDebitor: uid,
                 idCategory: catId
@@ -164,7 +166,9 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
+
               console.log(foundBills);
+
               foundBills.forEach(bill => {
                 bill.shortname = "Generic companyname";
               });
@@ -342,5 +346,5 @@ module.exports = {
   postBill: postBill,
   getBill: getBill,
   putBill: putBill,
-  getBills: searchBill
+  searchBill: searchBill
 };
