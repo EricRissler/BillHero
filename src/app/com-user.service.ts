@@ -23,6 +23,7 @@ export class ComUserService {
   constructor(private http: HttpClient, private router: Router) {}
 
   Signin(mail, password) {
+    console.log(mail);
     const headers = new HttpHeaders().set("authData", mail + ":" + password);
     //TODO: Prüfen dass pw und user kein ':' enthält
     console.log(mail + password);
@@ -38,7 +39,7 @@ export class ComUserService {
       .subscribe(responseData => {
         console.log("YAY");
         console.log(responseData);
-
+        console.log(responseData.email);
         this.id = responseData.id;
         // this.firstname = responseData.firstname;
         // this.lastname = responseData.lastname;
@@ -53,5 +54,9 @@ export class ComUserService {
   getUser() {
     console.log("Ausm getUser:" + this.firstname);
     return this.firstname;
+  }
+
+  getComID() {
+    return this.id;
   }
 }

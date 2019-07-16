@@ -15,6 +15,7 @@
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [(ngModel)]="name"
         />
       </li>
 
@@ -24,11 +25,17 @@
           type="text"
           class="form-control"
           placeholder="BIC (Swift-Code)"
+          [(ngModel)]="bic"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="IBAN" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="IBAN"
+          [(ngModel)]="iban"
+        />
       </li>
 
       <li>
@@ -37,6 +44,7 @@
           type="text"
           class="form-control"
           placeholder="Kontoinhaber"
+          [(ngModel)]="owner"
         />
       </li>
 
@@ -64,6 +72,7 @@
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [ngModel]="name"
         />
       </li>
 
@@ -73,15 +82,21 @@
           type="text"
           class="form-control"
           placeholder="Karteninhaber"
+          [(ngModel)]="owner"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="Kartennummer" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Kartennummer"
+          [(ngModel)]="cardnr"
+        />
       </li>
 
       <li>
-        <input id="date" type="text" class="form-control" />
+        <input id="date" type="text" class="form-control" [(ngModel)]="date" />
       </li>
 
       <li>

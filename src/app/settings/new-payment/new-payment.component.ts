@@ -10,6 +10,13 @@ import { PaymentBank, PaymentCreditcard } from "src/app/shared/Payment.model";
 export class NewPaymentComponent implements OnInit {
   newBank: boolean = false;
 
+  name: string;
+  bic: string;
+  iban: string;
+  cardnr: string;
+  date: string;
+  owner: string;
+
   paymentbank: PaymentBank[];
 
   newCard: boolean = false;

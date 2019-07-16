@@ -41,8 +41,8 @@ export class RegisterComponent implements OnInit {
         city: this.place,
         bdate: this.birth
       })
-      .subscribe(resonseData => {
-        console.log(resonseData.message);
+      .subscribe(responseData => {
+        console.log(responseData.message);
       });
   }
 
