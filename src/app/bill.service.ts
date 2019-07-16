@@ -44,7 +44,7 @@ export class BillService {
      // console.log(responseData.bill[1]);
       });
        this.bills.forEach(element => {
-         alert(element.name);
+         alert(element.name); //j
        //this.bill.push(new Bill("Media", "05.08.2019", 900, false));
        });
       return this.bills;
