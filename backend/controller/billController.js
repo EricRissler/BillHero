@@ -101,7 +101,7 @@ const getBill = function(req, res) {
     });
 };
 
-//TODO: getBillS
+//TODO: searchBillS
 const searchBill = function(req, res) {
   const uid = req.params.uid;
   const status = req.query.status;
@@ -166,6 +166,9 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
+
+              console.log(foundBills);
+
               foundBills.forEach(bill => {
                 bill.shortname = "Generic companyname";
               });
