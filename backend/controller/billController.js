@@ -167,6 +167,7 @@ const searchBill = function(req, res) {
               foundBills.array.forEach(bill => {
                 bill.shortname = "Generic companyname";
               });
+
               res.status(200).json({
                 bills: foundBills
               });
