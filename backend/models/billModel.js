@@ -32,7 +32,7 @@ const billModel = (sequelize, type) => {
       allownull: false
     },
     paymentStatus: {
-      type: type.Boolean,
+      type: type.BOOLEAN,
       defaultValue: false
     },
     idPayedWith: {
