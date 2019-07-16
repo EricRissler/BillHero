@@ -14,7 +14,7 @@
             class="form-control"
             placeholder="Land"
             *ngIf="this.step == 1"
-            [(ngModel)]="country"
+            [(ngModel)]="land"
           />
         </li>
 
@@ -22,9 +22,9 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Firmenname"
+            placeholder="Vorname"
             *ngIf="this.step == 1"
-            [(ngModel)]="companylong"
+            [(ngModel)]="firstname"
           />
         </li>
 
@@ -32,9 +32,9 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Firmenname abgekürzt"
+            placeholder="Nachname"
             *ngIf="this.step == 1"
-            [(ngModel)]="companyshort"
+            [(ngModel)]="lastname"
           />
         </li>
 
@@ -72,6 +72,16 @@
           <input
             type="text"
             class="form-control"
+            placeholder="Firmenname"
+            *ngIf="this.step == 2"
+            [(ngModel)]="company"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
             placeholder="Straße und Hausnummer"
             *ngIf="this.step == 2"
             [(ngModel)]="streetandnumber"
@@ -84,7 +94,7 @@
             class="form-control"
             placeholder="Adresszusatz"
             *ngIf="this.step == 2"
-            [(ngModel)]="additional"
+            [(ngModel)]="adressplus"
           />
         </li>
 
@@ -105,6 +115,16 @@
             placeholder="Ort"
             *ngIf="this.step == 2"
             [(ngModel)]="place"
+          />
+        </li>
+
+        <li>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Geburtsdatum"
+            *ngIf="this.step == 2"
+            [(ngModel)]="birth"
           />
         </li>
 
@@ -139,7 +159,6 @@
       <button
         class="next"
         (click)="changestep()"
-        (click)="postComUser()"
         *ngIf="this.step == 2"
         [disabled]="
           this.company == '' ||
@@ -158,7 +177,7 @@
         class="next"
         (click)="changestep()"
         *ngIf="this.step == 3"
-        routerLink="/businessDashboard"
+        routerLink="/Businessdashboard"
       >
         Auf zum Dashboard!
       </button>

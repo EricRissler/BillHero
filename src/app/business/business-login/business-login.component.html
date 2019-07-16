@@ -27,12 +27,12 @@
               type="password"
               class="form-control"
               placeholder="Passwort"
-              [(ngModel)]="password"
+              [(ngModel)]="passwort"
             />
           </li>
         </ul>
 
-        <button class="login" (click)="commitUserData()">
+        <button class="login" routerLink="/businessDashboard">
           Einloggen
         </button>
       </div>

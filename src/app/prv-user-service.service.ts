@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class PrvUserServiceService {
-  logged: boolean;
+  logged: boolean = false;
   id: string;
   firstname: string;
   lastname: string;
@@ -46,12 +46,22 @@ export class PrvUserServiceService {
         this.nationality = responseData.nationality;
         this.mail = responseData.email;
         console.log("ausm Service:" + this.firstname);
+        this.logged=true;
         this.router.navigate(["/dashboard"]);
       });
+  }
+
+  getUID(){
+    return this.id;
   }
 
   getUser() {
     console.log("Ausm getUser:" + this.firstname);
     return this.firstname;
   }
+
+  getLogged(){
+    return this.logged;
+  }
+
 }

@@ -9,6 +9,6 @@ router.get("/:uid", UserController.getByID);
 router.post("/:uid/categories", CategoryController.post);
 router.get("/:uid/categories", CategoryController.get);
 router.put("/:uid/bills/:bid", BillController.putBill);
-router.get("/:uid/bills", BillController.getBills);
+router.get("/:uid/bills", BillController.searchBill);
 
 module.exports = router;

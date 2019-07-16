@@ -3,6 +3,9 @@ import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
 import { HttpClient } from '@angular/common/http';
 import { HeaderService } from '../header.service';
+import { PrvUserServiceService } from '../prv-user-service.service';
+import { Router } from '@angular/router';
+import { BillService } from '../bill.service';
 
 @Component({
   selector: "app-mybills",
@@ -15,7 +18,9 @@ export class MybillsComponent implements OnInit {
     new Category("Auto")
   ]    
   billCategory: string = "";
-  constructor(private headerService: HeaderService,private http:HttpClient) { }
+  constructor(private headerService: HeaderService,private http:HttpClient,
+    private prvUserService: PrvUserServiceService,private billService: BillService,
+    private router: Router) { }
   public input: string = "";
 
    bill: Bill[] ;
@@ -43,7 +48,14 @@ export class MybillsComponent implements OnInit {
 
 
   ngOnInit() {
+
+    if(!this.prvUserService.getUser()){
+      this.router.navigate(["/signin"]);
+    }
+
     this.headerService.setHeader(true);
+
+    this.billService.getAllBills();
 
     //  this.http.get<{bill:Bill[]}>('http://localhost:3000/api/mybills')
     //  .subscribe((billData) => {

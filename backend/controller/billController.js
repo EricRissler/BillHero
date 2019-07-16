@@ -108,11 +108,13 @@ const searchBill = function(req, res) {
   const catId = req.query.catid;
   const credName = req.query.cred;
   const prodName = req.query.prod;
-  privateUser
+
+ privateUser
     .findOne({
       where: { id: uid }
     })
     .then(prvUser => {
+      console.log(prvUser);
       if (prvUser == null) {
         res.status(404).send();
       } else {
@@ -130,7 +132,7 @@ const searchBill = function(req, res) {
             });
         } else if (catId != null) {
           bill
-            .findALL({
+            .findAll({
               where: {
                 idDebitor: uid,
                 idCategory: catId
@@ -159,12 +161,12 @@ const searchBill = function(req, res) {
         } else if (prodName != null) {
         } else {
           bill
-            .findALL({
+            .findAll({
               where: { idDebitor: uid },
               raw: true
             })
             .then(foundBills => {
-              foundBills.array.forEach(bill => {
+              foundBills.forEach(bill => {
                 bill.shortname = "Generic companyname";
               });
 
@@ -341,5 +343,5 @@ module.exports = {
   postBill: postBill,
   getBill: getBill,
   putBill: putBill,
-  getBills: searchBill
+  searchBill: searchBill
 };
