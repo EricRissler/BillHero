@@ -6,7 +6,7 @@ const item = require("../sequelize").item;
 const op = require("../sequelize").op;
 
 //TODO: ITEMS
-const postBill = function (req, res) {
+const postBill = function(req, res) {
   const data = {
     debID: req.params.uid,
     creID: req.body.creID,
@@ -66,91 +66,115 @@ const postBill = function (req, res) {
 };
 
 //TODO: ITEMS
-const getBill = function (req, res) {
+const getBill = function(req, res) {
   const data = {
     userId: req.params.uid,
     billId: req.params.bid
   };
-  bill.findOne({
-    where: {
-      id: data.billId,
-      idDebitor: data.userId
-    },
-    raw: true
-  }).then(foundBill => {
-    if (foundBill == null) {
-      res.status(404).json({
-        bill: null
-      });
-    } else {
-      commercialUser.findOne({
-        where: { id: foundBill.idCreditor },
-        attributes: ["shortname"],
-        raw: true
-      }).then(debitor => {
-        res.status(200).json({
-          bill: foundBill,
-          shortname: debitor.shortname
-        })
-      });
-    }
-  })
-}
+  bill
+    .findOne({
+      where: {
+        id: data.billId,
+        idDebitor: data.userId
+      },
+      raw: true
+    })
+    .then(foundBill => {
+      if (foundBill == null) {
+        res.status(404).json({
+          bill: null
+        });
+      } else {
+        commercialUser
+          .findOne({
+            where: { id: foundBill.idCreditor },
+            attributes: ["shortname"],
+            raw: true
+          })
+          .then(debitor => {
+            res.status(200).json({
+              bill: foundBill,
+              shortname: debitor.shortname
+            });
+          });
+      }
+    });
+};
 
 //TODO: getBillS
-const searchBill = function (req, res) {
+const searchBill = function(req, res) {
   const uid = req.params.uid;
   const status = req.query.status;
   const catId = req.query.catid;
   const credName = req.query.cred;
   const prodName = req.query.prod;
-  privateUser.findOne({
-    where: { id: uid }
-  }).then(prvUser => {
-    if (prvUser == null) {
-      res.status(404).send();
-    } else {
-      if (status != null) {
-        bill.findALL({
-          where: {
-            idDebitor: uid,
-            paymentStatus: status
-          },
-          raw: true
-        }).then(bills => {
-          //TODO: get shortnames for each Bill
-        })
-      } else if (catId != null) {
-        bill.findALL({
-          where: {
-            idDebitor: uid,
-            idCategory: catId
-          },
-          raw: true
-        }).then(bills => {
-          //TODO: get shortnames for each Bill
-        })
-      } else if (credName != null) {
-        commercialUser.findALL({
-          where: {
-            [op.or]: [{ shortname: credName }, {
-              longname: credName
-            }]
-          },
-          raw: true
-        }).then(comUsers => {
-          console.log(comUsers);
-        })
-      } else if (prodName != null) {
-
+  privateUser
+    .findOne({
+      where: { id: uid }
+    })
+    .then(prvUser => {
+      if (prvUser == null) {
+        res.status(404).send();
       } else {
-
+        if (status != null) {
+          bill
+            .findALL({
+              where: {
+                idDebitor: uid,
+                paymentStatus: status
+              },
+              raw: true
+            })
+            .then(bills => {
+              //TODO: get shortnames for each Bill
+            });
+        } else if (catId != null) {
+          bill
+            .findALL({
+              where: {
+                idDebitor: uid,
+                idCategory: catId
+              },
+              raw: true
+            })
+            .then(bills => {
+              //TODO: get shortnames for each Bill
+            });
+        } else if (credName != null) {
+          commercialUser
+            .findALL({
+              where: {
+                [op.or]: [
+                  { shortname: credName },
+                  {
+                    longname: credName
+                  }
+                ]
+              },
+              raw: true
+            })
+            .then(comUsers => {
+              console.log(comUsers);
+            });
+        } else if (prodName != null) {
+        } else {
+          bill
+            .findALL({
+              where: { idDebitor: uid },
+              raw: true
+            })
+            .then(foundBills => {
+              foundBills.array.forEach(bill => {
+                bill.shortname = "Generic companyname";
+              });
+              res.status(200).json({
+                bills: foundBills
+              });
+            });
+        }
       }
-    }
-
-  })
-
-}
+    });
+};
 /*
 const getBills = function (req, res) {
   const uid = req.params.uid;
@@ -258,7 +282,7 @@ const getBills = function (req, res) {
 };
 */
 //TODO: Testen
-const putBill = function (req, res) {
+const putBill = function(req, res) {
   const data = {
     userID: req.params.uid,
     billID: req.params.bid,
@@ -311,7 +335,6 @@ const putBill = function (req, res) {
       });
   }
 };
-
 
 module.exports = {
   postBill: postBill,
