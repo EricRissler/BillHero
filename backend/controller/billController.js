@@ -109,7 +109,7 @@ const searchBill = function(req, res) {
   const credName = req.query.cred;
   const prodName = req.query.prod;
 
- privateUser
+  privateUser
     .findOne({
       where: { id: uid }
     })
@@ -166,7 +166,6 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
-
               console.log(foundBills);
 
               foundBills.forEach(bill => {
@@ -181,112 +180,7 @@ const searchBill = function(req, res) {
       }
     });
 };
-/*
-const getBills = function (req, res) {
-  const uid = req.params.uid;
-  const status = req.query.status;
-  const catID = req.query.catid;
-  const credName = req.query.cred;
-  const prodName = req.query.prod;
-  privateUser
-    .findOne({
-      where: { id: uid }
-    })
-    .then(result => {
-      if (result == null) {
-        res.status(404).send();
-      } else {
-        if (status != null) {
-          //Getting Bills by paymentstatus
-          bill
-            .findAll({
-              raw: true,
-              where: {
-                idCreditor: uid,
-                paymentStatus: status
-              }
-            })
-            .then(results => {
-              if (results == null) {
-                res.status(204).send();
-              } else {
-                res.status(200).json({
-                  bills: results
-                });
-              }
-            });
-        } else if (catID != null) {
-          //Getting Bills by category
-          bill
-            .findAll({
-              raw: true,
-              where: {
-                idCreditor: uid,
-                idCategory: catID
-              }
-            })
-            .then(results => {
-              if (results == null) {
-                res.status(204).send();
-              } else {
-                res.status(200).json({
-                  bills: results
-                });
-              }
-            });
-        } else if (credName != null) {
-          //Getting Bills by userID and CommercialUsername
-          commercialUser
-            .findAll({
-              attributes: ["id"],
-              where: {
-                name: {
-                  $like: "%" + request.body.query + "%"
-                }
-              }
-            })
-            .then(results => {
-              if (results == null) {
-                res.status(404).send();
-              }
-              creditors = results.array;
-              bills = [];
-              results.array.forEach(element => {
-                bill.findAll({
-                  where: {
-                    idDebitor: uid,
-                    idCreditor: comUser.id
-                  }
-                }).then(resultbills => {
-                  if (resultbills == null) {
-                    res.status(404).send();
-                  }
-                })
-              });
-            });
-        } else if (prodName != null) {
-          //Getting Bills by  ItemName
 
-        } else {
-          bill.findAll({
-            raw: true,
-            where: {
-              idCreditor: uid
-            }.then(results => {
-              if (results == null) {
-                res.status(204).send();
-              } else {
-                res.status(200).json({
-                  bills: results
-                });
-              }
-            })
-          });
-        }
-      }
-    });
-};
-*/
 //TODO: Testen
 const putBill = function(req, res) {
   const data = {
@@ -308,7 +202,7 @@ const putBill = function(req, res) {
       .then(result => {
         if (result == null) {
           res.status(404).json({
-            message: "User doesn't has bill with given billID"
+            message: "No bill found"
           });
         } else {
           if (data.catID != undefined) {
@@ -329,7 +223,7 @@ const putBill = function(req, res) {
                 idPayedWith: data.paymentID,
                 paymentStatus: true
               });
-              res.status(200).send();
+              res.status(200).json({ message: "Payment succeeded" });
             } else {
               res.status(409).json({
                 message:

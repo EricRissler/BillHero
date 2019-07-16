@@ -32,18 +32,17 @@ const billModel = (sequelize, type) => {
       allownull: false
     },
     paymentStatus: {
-      type: type.STRING,
-      defaultValue: "unpayed"
+      type: type.Boolean,
+      defaultValue: false
     },
     idPayedWith: {
       type: type.CHAR(18),
-      allownull: true,
+      allownull: true
     },
     idCategory: {
       type: type.CHAR(18),
       allownull: true
     }
-
   });
 };
 
