@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const init = require("./controller/initdb");
+const init = require("./initdb");
 const apiroutes = require("./routes/apiRoutes");
 
 const app = express();

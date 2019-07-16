@@ -1,0 +1,15 @@
+const asyncForEach = async (array, callback) => {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+};
+Erklärung:
+du machst dir dann ein leeres Array const testArray = [] und rufst
+danach
+
+await asyncForEach( arrayDasDuBearbeitenWillst, async (elementDasDuAusDemArrayBearbeitenWillst) => {Sachen die du ausführen willst})
+
+und in dem asyncForEach kannst du dann mit testArray.push(xyz) die 
+Sachen reinfügen. Du musst natürlich in der AsyncForEach auch wieder 
+await DatenBankKramDenDuMachenWillst() aufrufen und dann macht der 
+für jedes Element in dem Array halt was mit der Datenbank

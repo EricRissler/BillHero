@@ -1,4 +1,4 @@
-const sequelize = require("../sequelize");
+const sequelize = require("./sequelize");
 const conn = sequelize.conn;
 const adress = sequelize.adress;
 const bill = sequelize.bill;
@@ -8,7 +8,7 @@ const generalPayment = sequelize.generalPaymentMethod;
 const item = sequelize.item;
 const prvUser = sequelize.privateUser;
 const userPayment = sequelize.userPaymentMethod;
-const paymentRegister = require("../paymentprovider/paymentprovider")
+const paymentRegister = require("./paymentprovider/paymentprovider")
   .registerPaymentmethod;
 const bcrypt = require("bcrypt");
 const BCRYPT_SALTROUNDS = 12;
