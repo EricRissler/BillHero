@@ -22,8 +22,8 @@ const userPaymentMethodModel = (sequelize, type) => {
     //TODO: Testen, wenn nicht funktional. erstellen des Tokens in aufrufender Methode
     token: {
       type: type.STRING,
-      allownull: false /*,
-      defaultValue: paymentrregister.registerPaymentmethod*/
+      allownull: false,
+      defaultValue: paymentrregister.registerPaymentmethod
     },
     isHistorical: {
       type: type.BOOLEAN,

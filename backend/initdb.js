@@ -15,6 +15,7 @@ const BCRYPT_SALTROUNDS = 12;
 
 var generalPaymentID1PayPal;
 var generalPaymentID2Debit;
+var generalPaymentID3Sepa;
 
 var userPaymentID1ThomasPayPal;
 var userPaymentID2ThomasDebit;
@@ -27,7 +28,7 @@ var prvuserID2;
 var comuserID1;
 var comuserID2;
 
-module.exports = function (req, res) {
+module.exports = function(req, res) {
   conn.drop().then(() => {
     console.log("Dropped");
     conn.sync().then(() => {
@@ -53,7 +54,19 @@ const createGeneralPayment2 = res => {
   generalPayment
     .create({
       name: "debit Card",
-      data: "genericpaymentprovider.com"
+      data: "genericpaymentDebitprovider.com"
+    })
+    .then(result2 => {
+      generalPaymentID2Debit = result2.id;
+      createGeneralPayment3(res);
+    });
+};
+
+const createGeneralPayment3 = res => {
+  generalPayment
+    .create({
+      name: "SEPA",
+      data: "genericpaymentSEPAprovider.com"
     })
     .then(result2 => {
       generalPaymentID2Debit = result2.id;
@@ -361,6 +374,7 @@ const createBill4 = res => {
         });
     });
 };
+
 const finish = res => {
   console.log("Database initialized");
   res.status(201).send("Database initialized");
