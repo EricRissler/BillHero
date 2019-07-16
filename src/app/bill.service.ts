@@ -19,7 +19,7 @@ export class BillService {
   paymentId: String;
   shortname:String;
   bills:Bill[];
-
+  bill:Bill[];
   uid: String;
   constructor(private http: HttpClient, private prvUserService: PrvUserServiceService) {
    // this.uid = prvUserService.getUID();
@@ -32,13 +32,22 @@ export class BillService {
     this.http
       .get<{bills:Bill[]}>("http://localhost:3000/api/prvusers/" + this.uid + "/bills")
       .subscribe(responseData => {
-        alert("test");
+        //alert(responseData.bills);
       // responseData.forEach(element => {
        //  this.bills=responseData.bills;
       // });
        // this.billID = responseData.billID;
-      console.log(responseData);
+       this.bills=responseData.bills;
+       console.log(this.bills[0]);
+       
+     // console.log(responseData.bill[0]);
+     // console.log(responseData.bill[1]);
       });
+       this.bills.forEach(element => {
+         alert(element.name);
+       //this.bill.push(new Bill("Media", "05.08.2019", 900, false));
+       });
+      return this.bills;
   }
 
 }
