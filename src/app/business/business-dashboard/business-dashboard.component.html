@@ -4,13 +4,21 @@
 
     <li><h2>Geben Sie bitte die Daten des Empfängers ein</h2></li>
 
-    <li><input type="text" class="form-control" placeholder="User-ID" /></li>
+    <li>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="User-ID"
+        [(ngModel)]="userID"
+      />
+    </li>
 
     <li>
       <input
         type="text"
         class="form-control"
         placeholder="Rechnungsnummer (optional)"
+        [(ngModel)]="billnr"
       />
     </li>
 
@@ -20,6 +28,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 1"
+        [(ngModel)]="product1"
       />
       <input
         id="price"
@@ -28,6 +37,7 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price1"
+        
       />
       <input
         id="number"
@@ -43,6 +53,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 2"
+        [(ngModel)]="product2"
       />
       <input
         id="price"
@@ -66,6 +77,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 3"
+        [(ngModel)]="product3"
       />
       <input
         id="price"
@@ -83,12 +95,39 @@
       />
     </li>
 
-    <li><input type="text" class="form-control" placeholder="Frist" /></li>
-
     <li>
-      <p class="endprice">Gesamt: {{ this.Endprice }} €</p>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Frist"
+        [(ngModel)]="deadline"
+      />
     </li>
 
-    <li><button class="commit" (click)="calculatePrice()">Absenden</button></li>
+    <li>
+      <p class="endprice">Gesamt: {{ this.endprice }} €</p>
+    </li>
+
+    <li>
+      <button
+        class="commit"
+        (click)="postBill()"
+        [disabled]="
+          this.userID == '' ||
+          this.product1 == '' ||
+          this.price1 == '' ||
+          this.quantity == '' ||
+          this.price1 == '' ||
+          this.deadline == '' ||
+          this.date == ''
+        "
+      >
+        Absenden
+      </button>
+
+      <button >
+        Neue Rechnung
+      </button>
+    </li>
   </ul>
 </div>

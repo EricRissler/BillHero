@@ -8,34 +8,34 @@ const op = require("../sequelize").op;
 //TODO: ITEMS
 const postBill = function(req, res) {
   const data = {
-    debID: req.params.uid,
-    creID: req.body.creID,
+    creID: req.params.uid,
+    debID: req.body.debID,
     amount: req.body.amount,
     billNr: req.body.billNr,
-    deadline: req.body.deadline,
-    items: req.body.items
+    date: req.body.date,
+    deadline: req.body.deadline
   };
-  privateUser
+  console.log(data);
+  commercialUser
     .findOne({
       where: {
         id: data.creID
       }
     })
-    .then(prvuser => {
-      if (prvuser == null) {
+    .then(comUser => {
+      if (comUser == null) {
         res.status(404).json({
           message: "Creditor not found"
         });
-        return;
       } else {
-        commercialUser
+        privateUser
           .findOne({
             where: {
               id: data.debID
             }
           })
-          .then(comuser => {
-            if (comuser == null) {
+          .then(prvUser => {
+            if (prvUser == null) {
               res.status(404).json({
                 message: "Debitor not found"
               });
