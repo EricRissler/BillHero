@@ -63,14 +63,14 @@ const postBill = function(req, res) {
                   /*console.log(result);
                   console.log("------------------");
                   console.log(data);*/
-                  data.items.forEach(billItem=>{
+                  data.items.forEach(billItem => {
                     item.create({
                       billID: result.id,
-                      itemName:billItem.itemName,
+                      itemName: billItem.itemName,
                       itemPrice: billItem.itemPrice,
                       itemAmount: billItem.itemAmount
-                    })
-                  })
+                    });
+                  });
                   res.status(201).json({
                     message: "Bill created succesfully",
                     bill: result
@@ -136,7 +136,11 @@ const searchBill = function(req, res) {
   const catId = req.header("catid");
   const credName = req.header("cred");
   const prodName = req.header("prod");
-
+  console.log("uid" + uid);
+  console.log("status" + status);
+  console.log("catId" + catId);
+  console.log("credName" + credName);
+  console.log("prodName" + prodName);
   privateUser
     .findOne({
       where: { id: uid }
@@ -168,7 +172,7 @@ const searchBill = function(req, res) {
                 })
               });*/
               res.status(200).json({
-                bills: modBills
+                bills: bills
               });
             });
         } else if (catId != null) {
