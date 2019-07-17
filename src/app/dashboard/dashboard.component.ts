@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     private billService: BillService,
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (!this.prvUserService.getUser()) {
@@ -40,8 +40,8 @@ export class DashboardComponent implements OnInit {
     }
     this.headerService.setHeader(true);
     this.firstname = this.prvUserService.getUser();
-    
-   
+
+
     //this.bill=this.billService.getUnpayedBills();
     this.getUnpayed();
 
@@ -57,11 +57,7 @@ export class DashboardComponent implements OnInit {
   getUnpayed() {
     this.uid = this.prvUserService.getUID();
     const headers = new HttpHeaders().set("status", "0");
-    this.http
-      .get<{ bills: Bill[] }>(
-        "http://localhost:3000/api/prvusers/" + this.uid + "/bills",
-        { headers }
-      )
+    this.http.get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills", { headers })
       .subscribe(responseData => {
         this.bill = responseData.bills;
         this.billcount = this.bill.length;
