@@ -8,28 +8,28 @@ const billModel = (sequelize, type) => {
     },
     idDebitor: {
       type: type.CHAR(18),
-      allownull: false
+      allowNull: false
     },
     idCreditor: {
       type: type.CHAR(18),
-      allownull: false
+      allowNull: false
     },
     amount: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     },
     billNr: {
       type: type.STRING,
-      allownull: true
+      allowNull: true
     },
     date: {
       type: type.STRING,
-      allownull: false,
+      allowNull: false,
       default: Date.now()
     },
     deadline: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     paymentStatus: {
       type: type.BOOLEAN,
@@ -37,11 +37,11 @@ const billModel = (sequelize, type) => {
     },
     idPayedWith: {
       type: type.CHAR(18),
-      allownull: true
+      allowNull: true
     },
     idCategory: {
       type: type.CHAR(18),
-      allownull: true
+      allowNull: true
     }
   });
 };
