@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { HeaderService } from "src/app/header.service";
-import { PaymentBank, PaymentCreditcard } from "src/app/shared/Payment.model";
 import { PrvUserServiceService } from "src/app/prv-user-service.service";
 import { HttpClient } from "@angular/common/http";
 
@@ -11,11 +10,10 @@ import { HttpClient } from "@angular/common/http";
 })
 export class NewPaymentComponent implements OnInit {
   newBank: boolean = false;
-  paymentbank: PaymentBank[];
+
   newCard: boolean = false;
   userID: string;
   paymentID: string;
-  paymentCreditcard: PaymentCreditcard[];
 
   name1: string;
   bic: string;
