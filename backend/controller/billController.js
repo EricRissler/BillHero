@@ -18,7 +18,8 @@ const postBill = function(req, res) {
     amount: req.body.amount,
     billNr: req.body.billNr,
     date: req.body.date,
-    deadline: req.body.deadline
+    deadline: req.body.deadline,
+    items: req.body.items
   };
   console.log(data);
   commercialUser
@@ -59,6 +60,17 @@ const postBill = function(req, res) {
                   deadline: data.deadline
                 })
                 .then(result => {
+                  /*console.log(result);
+                  console.log("------------------");
+                  console.log(data);*/
+                  data.items.forEach(billItem=>{
+                    item.create({
+                      billID: result.id,
+                      itemName:billItem.itemName,
+                      itemPrice: billItem.itemPrice,
+                      itemAmount: billItem.itemAmount
+                    })
+                  })
                   res.status(201).json({
                     message: "Bill created succesfully",
                     bill: result

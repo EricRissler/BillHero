@@ -15,15 +15,15 @@ export class NewPaymentComponent implements OnInit {
   userID: string;
   paymentID: string;
 
-  name1: string;
-  bic: string;
-  iban: string;
-  owner1: string;
+  name1: string = "";
+  bic: string = "";
+  iban: string = "";
+  owner1: string = "";
 
-  name2: string;
-  owner2: string;
-  cardnr: string;
-  date: string;
+  name2: string = "";
+  owner2: string = "";
+  cardnr: string = "";
+  date: string = "";
 
   nameP: string;
   data: string;

@@ -6,7 +6,8 @@ import {
   HttpClient
 } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { BillService } from './bill.service';
+import { BillService } from "./bill.service";
+import { Payment } from "./shared/Payment.model";
 
 @Injectable({
   providedIn: "root"
@@ -20,6 +21,10 @@ export class PrvUserServiceService {
   nationality: string;
   mail: string;
   password: string;
+  namefavpay1: string;
+  namefavpay2: string;
+  idfavpay1: string;
+  idfavpay2: string;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -35,6 +40,10 @@ export class PrvUserServiceService {
         birthdate: string;
         nationality: string;
         email: string;
+        idFavPaymentOne: string;
+        idFavPaymentTwo: string;
+        nameFavPaymentOne: string;
+        nameFavPaymentTwo: string;
       }>("http://localhost:3000/api/prvusers", { headers })
       .subscribe(responseData => {
         console.log("YAY");
@@ -46,6 +55,10 @@ export class PrvUserServiceService {
         this.birthdate = responseData.birthdate;
         this.nationality = responseData.nationality;
         this.mail = responseData.email;
+        this.namefavpay1 = responseData.nameFavPaymentOne;
+        this.namefavpay2 = responseData.nameFavPaymentTwo;
+        this.idfavpay1 = responseData.idFavPaymentOne;
+        this.idfavpay2 = responseData.idFavPaymentTwo;
 
         this.logged = true;
         this.router.navigate(["/dashboard"]);
@@ -63,5 +76,22 @@ export class PrvUserServiceService {
 
   getLogged() {
     return this.logged;
+  }
+
+  getIDPayOne() {
+    return this.idfavpay1;
+  }
+
+  getIDPayTwo() {
+    return this.idfavpay2;
+  }
+
+  getNamePayOne() {
+    console.log("favoneservice" + this.namefavpay1);
+    return this.namefavpay1;
+  }
+
+  getNamePayTwo() {
+    return this.namefavpay2;
   }
 }
