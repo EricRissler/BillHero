@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from "../prv-user.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
 declare var require: any;
 @Component({
   selector: "app-payment",

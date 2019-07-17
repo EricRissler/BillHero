@@ -3,7 +3,7 @@ import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
 import { HttpClient } from "@angular/common/http";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from "../prv-user.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 import { BillService } from "../bill.service";
 

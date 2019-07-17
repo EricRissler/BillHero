@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HeaderService } from "src/app/header.service";
 import { PaymentBank, PaymentCreditcard } from "src/app/shared/Payment.model";
-import { PrvUserServiceService } from "src/app/prv-user.service";
+import { PrvUserServiceService } from "src/app/prv-user-service.service";
 import { HttpClient } from "@angular/common/http";
 
 @Component({

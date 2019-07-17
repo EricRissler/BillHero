@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { PrvUserServiceService } from "./prv-user.service";
+import { PrvUserServiceService } from "./prv-user-service.service";
 import { Bill } from "./shared/bill.model";
 
 @Injectable({

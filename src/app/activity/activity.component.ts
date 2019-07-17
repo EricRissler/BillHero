@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from "../prv-user.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 
 @Component({
