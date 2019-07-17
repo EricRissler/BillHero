@@ -1,3 +1,5 @@
+import { Item } from './item.model';
+
 export class Bill {
   // public name: string;
   // public deadline: string;
@@ -13,6 +15,7 @@ export class Bill {
   public categoryID: String;
   public paymentId: String;
   public shortname: String;
+  public items: Item[];
   constructor(
     public name: String, public deadlineTEST: String, public price: String, public status: number) {
     this.shortname = name;

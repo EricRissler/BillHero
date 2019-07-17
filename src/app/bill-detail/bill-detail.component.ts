@@ -3,29 +3,41 @@ import { Item } from "../shared/item.model";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
+import { interval } from "rxjs";
+import { DetailService } from '../detail.service';
 @Component({
   selector: "app-bill-detail",
   templateUrl: "./bill-detail.component.html",
   styleUrls: ["./bill-detail.component.css"]
 })
 export class BillDetailComponent implements OnInit {
-  public price = "3242";
-
-  items: Item[] = [
-    new Item("PC", 3000),
-    new Item("HDMI Kabel", 240),
-    new Item("Maus", 2)
-  ];
+  public price:String;
+  public shortname:String;
+  public items: Item[];
+  
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
+    private detailService: DetailService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
+
+    interval(500).subscribe(count => {
+      this.shortname = this.detailService.getShortname();
+      this.items = this.detailService.getItems();
+      this.price = this.detailService.getPrice();
+      //this.price = this.detailService.getPrice();
+      //console.log("Items: "+this.items[0].itemName);
+    });
+    
+    //this.items = this.detailService.getItems();
+    // console.log("Items: "+this.items[0].itemName);
+
   }
 }
