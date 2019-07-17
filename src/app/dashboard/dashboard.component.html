@@ -11,7 +11,7 @@
     <div class="rightcontainer">
       <div class="billList" *ngFor="let bill of bill">
         <button class="standardPay" (click)="onPayStandard()">
-          Pay Standard
+          {{ nameFavPayOne }}
         </button>
         <ul class="list-group-item">
           <li id="billName" class="list-group">{{ bill.shortname }}</li>
@@ -22,11 +22,13 @@
               id="status"
               class="billStatus"
               disabled="false"
-              [ngStyle]="{ 'background-color': bill.paymentStatus==1 ? 'green' : 'red' }"
+              [ngStyle]="{
+                'background-color': bill.paymentStatus == 1 ? 'green' : 'red'
+              }"
             ></Button>
           </li>
         </ul>
-        <button class="alternativePay">Pay alternative</button>
+        <button class="alternativePay">{{ nameFavPayTwo }}</button>
       </div>
     </div>
     <div id="payedMessage" class="payedMessage" *ngIf="showMessage">

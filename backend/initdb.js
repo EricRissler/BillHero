@@ -53,7 +53,7 @@ const createGeneralPayment1 = res => {
 const createGeneralPayment2 = res => {
   generalPayment
     .create({
-      name: "debit Card",
+      name: "DebitCard",
       data: "genericpaymentDebitprovider.com"
     })
     .then(result2 => {
