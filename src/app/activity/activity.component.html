@@ -2,17 +2,16 @@
     <h2 class="headline">Deine zuletzt bezahlten Rechnungen auf einem Blick:</h2>
   <div class="leftcontainer">
     
-    <div class="billList" *ngFor="let bill of bill" draggable="true">
+    <div class="billList" *ngFor="let bill of bill">
       <ul class="list-group-item" id="list">
-        <li class="list-group">{{ bill.billnr }}</li>
         <li class="list-group">{{ bill.name }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}€</li>
+        <li class="list-group">{{ bill.amount }}€</li>
         <li>
           <Button
             class="billStatus"
             disabled="false"
-            [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+            [ngStyle]="{ 'background-color': bill.paymentStatus ? 'green' : 'red' }"
           ></Button>
         </li>
       </ul>
