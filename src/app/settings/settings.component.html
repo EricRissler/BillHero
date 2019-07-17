@@ -4,51 +4,29 @@
   <div class="payment1">
     <h2 id="choose">Bezahlmethode 1</h2>
 
-    <button id="delete1" class="btn btn-danger">
-      Delete
-    </button>
-
-    <div class="btn-group" appDropdown>
-      <button
-        id="dropdownleft"
-        type="button"
-        class="btn btn-primary dropdown-toggle"
-      >
-        {{ payment1 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payment of payments">
-          <a (click)="togglePayment1()"> {{ payments }}</a>
-        </li>
-      </ul>
-    </div>
+    <select
+      class="btn btn-primary dropdown-toggle"
+      name="methode 1"
+      id="dropdownleft"
+    >
+      <option *ngFor="let payments of payments" [value]="payments.name">
+        {{ payments.name }}
+      </option>
+    </select>
   </div>
 
   <div class="payment2">
     <h2 id="select">Bezahlmethode 2</h2>
 
-    <div class="btn-group" appDropdown>
-      <button
-        id="dropdownright"
-        type="button"
-        class="btn btn-primary dropdown-toggle"
-      >
-        {{ payment2 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payments of payment">
-          <a (click)="togglePayment2()"> {{ payments }}</a>
-        </li>
-      </ul>
-    </div>
-
-    <button id="delete2" class="btn btn-danger">
-      Delete
-    </button>
+    <select
+      class="btn btn-primary dropdown-toggle"
+      name="methode 2"
+      id="dropdownright"
+    >
+      <option *ngFor="let payments of payments" [value]="payments.name">
+        {{ payments.name }}
+      </option>
+    </select>
   </div>
 
   <div class="newPayment">

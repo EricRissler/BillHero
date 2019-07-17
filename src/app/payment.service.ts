@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { PrvUserServiceService } from "./prv-user-service.service";
+import { Payment } from "./shared/Payment.model";
 
 @Injectable({
   providedIn: "root"
@@ -11,17 +12,15 @@ export class PaymentService {
   constructor(
     private http: HttpClient,
     private prvUserHeader: PrvUserServiceService
-  ) {
-    this.userID = prvUserHeader.getUID();
-  }
+  ) {}
 
-  payments: string[];
+  payments: Payment[];
 
   getPayments() {
     //TODO: Prüfen dass pw und user kein ':' enthält
-
+    this.userID = this.prvUserHeader.getUID();
     this.http
-      .get<{ payment: string[] }>(
+      .get<{ payment: Payment[] }>(
         "http://localhost:3000/api/prvusers/" + this.userID + "/payments"
       )
       .subscribe(responseData => {
