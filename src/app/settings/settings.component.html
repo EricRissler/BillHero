@@ -19,8 +19,8 @@
       </button>
 
       <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment1()"> {{ payment }}</a>
+        <li *ngFor="let payment of payments">
+          <a (click)="togglePayment1()"> {{ payments }}</a>
         </li>
       </ul>
     </div>
@@ -40,8 +40,8 @@
       </button>
 
       <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment2()"> {{ payment }}</a>
+        <li *ngFor="let payments of payment">
+          <a (click)="togglePayment2()"> {{ payments }}</a>
         </li>
       </ul>
     </div>

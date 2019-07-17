@@ -58,6 +58,19 @@ export class NewPaymentComponent implements OnInit {
       .subscribe(responseData => {
         console.log("success");
       });
+
+    this.name1 = "";
+    this.bic = "";
+    this.iban = "";
+    this.owner1 = "";
+
+    this.name2 = "";
+    this.owner2 = "";
+    this.cardnr = "";
+    this.date = "";
+
+    this.nameP = "";
+    this.data = "";
   }
 
   ngOnInit() {

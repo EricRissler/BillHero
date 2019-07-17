@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user.service";
 import { Router } from "@angular/router";
+import { PaymentService } from "../payment.service";
 
 @Component({
   selector: "app-settings",
@@ -14,7 +15,7 @@ export class SettingsComponent implements OnInit {
 
   userID: string;
 
-  payment: string[];
+  payments: string[] = ["Meins", "Dieter", "Peter"];
 
   togglePayment1() {
     this.payment1 = "";
@@ -27,9 +28,11 @@ export class SettingsComponent implements OnInit {
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
+    private paymentService: PaymentService,
     private router: Router
   ) {
     this.userID = prvUserService.getUID();
+    // this.payments = paymentService.getPayments();
   }
 
   ngOnInit() {

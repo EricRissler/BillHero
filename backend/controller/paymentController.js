@@ -60,28 +60,31 @@ const postPayment = function(req, resp) {
                   });
               });
           } else if (genPaymentID == 2) {
+            //is DebitCard
             generalPayments
               .findOne({
                 where: { name: "DebitCard" }
               })
-              .then(res => {
+              .then(resgPay => {
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
                 );
-                userPayment.create(
-                  {
+                userPayment
+                  .create({
                     idUser: prvID,
-                    idPayment: res.id,
+                    idPayment: resgPay.id,
                     name: nameP,
                     token: token
-                  }.then(resPay => {
+                  })
+                  .then(resPay => {
+                    console.log("DebitCard created");
+                    console.log(resPay);
                     resp.status(201).json({
-                      message: "Debit created",
+                      message: "DebitCard created",
                       paymentMethod: resPay
                     });
-                  })
-                );
+                  });
               });
           } else {
             console.log("alid genpay");
