@@ -46,13 +46,13 @@ export class PrvUserServiceService {
         this.birthdate = responseData.birthdate;
         this.nationality = responseData.nationality;
         this.mail = responseData.email;
-        console.log("ausm Service:" + this.firstname);
-        this.logged=true;
+
+        this.logged = true;
         this.router.navigate(["/dashboard"]);
       });
   }
 
-  getUID(){
+  getUID() {
     return this.id;
   }
 
@@ -61,8 +61,7 @@ export class PrvUserServiceService {
     return this.firstname;
   }
 
-  getLogged(){
+  getLogged() {
     return this.logged;
   }
-
 }

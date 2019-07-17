@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
-import { HttpClient } from '@angular/common/http';
-import { HeaderService } from '../header.service';
-import { PrvUserServiceService } from '../prv-user-service.service';
-import { Router } from '@angular/router';
-import { BillService } from '../bill.service';
+import { HttpClient } from "@angular/common/http";
+import { HeaderService } from "../header.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
+import { Router } from "@angular/router";
+import { BillService } from "../bill.service";
 
 @Component({
   selector: "app-mybills",
@@ -13,20 +13,23 @@ import { BillService } from '../bill.service';
   styleUrls: ["./mybills.component.css"]
 })
 export class MybillsComponent implements OnInit {
-  category: Category[]=[
-    new Category("Arzt"),
-    new Category("Auto")
-  ]    
+  category: Category[] = [new Category("Arzt"), new Category("Auto")];
   billCategory: string = "";
-  constructor(private headerService: HeaderService,private http:HttpClient,
-    private prvUserService: PrvUserServiceService,private billService: BillService,
-    private router: Router) { }
+  constructor(
+    private headerService: HeaderService,
+    private http: HttpClient,
+    private prvUserService: PrvUserServiceService,
+    private billService: BillService,
+    private router: Router
+  ) {}
   public input: string = "";
+
 
   uid:String;
    bill: Bill[] ;
    bills: Bill[];
    //= [
+
   //   new Bill("Media Markt", "05.08.2019", 900, false),
   //   new Bill("Schreiner", "14.06.2019", 750, false),
   //   new Bill("Zahnarzt", "24.12.2019", 750, false),
@@ -43,23 +46,25 @@ export class MybillsComponent implements OnInit {
   // ];
 
   newCategory() {
-    this.category.push((new Category(this.input)));
-    this.input="";
+    this.category.push(new Category(this.input));
+    this.input = "";
   }
+
 
   billClick(id:String){
    // alert(id);
    console.log(id);
   }
 
-  ngOnInit() {
 
-    if(!this.prvUserService.getUser()){
+  ngOnInit() {
+    if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }else{
     this.uid= this.prvUserService.getUID();
     
     this.headerService.setHeader(true);
+
     
     //this.billService.setUID(this.uid); 
     this.bill=this.billService.getAllBills();
@@ -83,7 +88,7 @@ export class MybillsComponent implements OnInit {
     
     //  this.http.get<{bill:Bill[]}>('http://localhost:3000/api/mybills')
     //  .subscribe((billData) => {
-       
+
     //    this.bill=billData.bill;
 
     //  });
@@ -101,5 +106,8 @@ export class MybillsComponent implements OnInit {
          
       //     ];
     }
+
+
+   
   }
 }

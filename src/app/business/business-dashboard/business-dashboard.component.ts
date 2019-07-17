@@ -8,19 +8,19 @@ import { ComUserService } from "src/app/com-user.service";
   styleUrls: ["./business-dashboard.component.css"]
 })
 export class BusinessDashboardComponent implements OnInit {
-  userID: string;
-  billnr: string;
-  product1: string;
-  product2: string;
-  product3: string;
+  userID: string = "";
+  billnr: string = "";
+  product1: string = "";
+  product2: string = "";
+  product3: string = "";
   quantity1: number = 0;
   quantity2: number = 0;
   quantity3: number = 0;
   price1: number = 0;
   price2: number = 0;
   price3: number = 0;
-  deadline: string;
-  date: string;
+  deadline: string = "";
+  date: string = "";
   endprice: number = 0;
   comID: string;
 
@@ -72,6 +72,8 @@ export class BusinessDashboardComponent implements OnInit {
         console.log(this.userID);
         console.log(this.userID);
       });
+
+    this.refreshInput();
   }
 
   calcPrice() {

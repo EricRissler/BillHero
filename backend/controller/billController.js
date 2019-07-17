@@ -196,7 +196,7 @@ const putBill = function(req, res) {
       .findOne({
         where: {
           id: data.billID,
-          idCreditor: data.userID
+          idDebitor: data.userID
         }
       })
       .then(result => {

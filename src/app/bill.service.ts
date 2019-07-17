@@ -4,11 +4,11 @@ import { PrvUserServiceService } from './prv-user-service.service';
 import { Bill } from './shared/bill.model';
 import { Router } from '@angular/router';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BillService {
-
   billID: String;
   billNr: String;
   creditorID: String;
@@ -21,6 +21,7 @@ export class BillService {
   shortname: String;
   bills: Bill[];
   bill: Bill[];
+
   b: Bill;
   uid: String;
 
@@ -42,6 +43,7 @@ export class BillService {
     this.http
       .get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills")
       // .get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/3ff9d230-a7ef-11e9/bills")
+
       .subscribe(responseData => {
         //alert(responseData.bills);
         // responseData.forEach(element => {
@@ -49,6 +51,7 @@ export class BillService {
         // });
         // this.billID = responseData.billID;
         this.bills = responseData.bills;
+
 
         //console.log(responseData.bills[0].payStatus);
         // console.log(responseData.bill[1]);
@@ -62,7 +65,7 @@ export class BillService {
     //  this.bill.forEach(element => {
     //    alert(element.shortname);
     //  });
+        
     return this.bills;
   }
-
 }

@@ -37,13 +37,14 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price1"
-        
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity1"
+        (change)="calcPrice()"
       />
     </li>
 
@@ -62,12 +63,14 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price2"
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity2"
+        (change)="calcPrice()"
       />
     </li>
 
@@ -86,12 +89,14 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price3"
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity3"
+        (change)="calcPrice()"
       />
     </li>
 
@@ -117,16 +122,10 @@
           this.product1 == '' ||
           this.price1 == '' ||
           this.quantity == '' ||
-          this.price1 == '' ||
-          this.deadline == '' ||
-          this.date == ''
+          this.deadline == ''
         "
       >
         Absenden
-      </button>
-
-      <button >
-        Neue Rechnung
       </button>
     </li>
   </ul>
