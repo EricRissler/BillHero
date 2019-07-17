@@ -236,8 +236,8 @@ const createBill1 = res => {
     .then(result => {
       bill
         .create({
-          idDebitor: comuserID1,
-          idCreditor: prvuserID1,
+          idDebitor: prvuserID1,
+          idCreditor: comuserID1,
           amount: 98.99,
           billNr: "2368265386",
           date: "18.07.2019",
@@ -274,8 +274,8 @@ const createBill2 = res => {
     .then(result => {
       bill
         .create({
-          idDebitor: comuserID2,
-          idCreditor: prvuserID1,
+          idDebitor: prvuserID1,
+          idCreditor: comuserID2,
           amount: 500,
           billNr: "98445nf098347509",
           date: "11.06.2019",
@@ -309,15 +309,15 @@ const createBill3 = res => {
     .then(result => {
       bill
         .create({
-          idDebitor: comuserID1,
-          idCreditor: prvuserID2,
+          idDebitor: prvuserID2,
+          idCreditor: comuserID1,
           amount: 98.99,
           billNr: "2368265386",
           date: "18.07.2019",
           deadline: "21.08.2019",
           idCategory: result.id,
           paymentStatus: true,
-          idPayedWith: userPaymentID1ThomasPayPal
+          idPayedWith: userPaymentID4PeterDebit
         })
         .then(result => {
           item.create({
@@ -346,8 +346,8 @@ const createBill4 = res => {
     .then(result => {
       bill
         .create({
-          idDebitor: comuserID2,
-          idCreditor: prvuserID2,
+          idDebitor: prvuserID2,
+          idCreditor: comuserID2,
           amount: 150,
           billNr: "2368265386",
           date: "18.07.2019",

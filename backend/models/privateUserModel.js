@@ -31,7 +31,16 @@ const privatUserModel = (seqelize, type) => {
       allowNull: false
     },
     idAdress: {
-      type: type.CHAR(18)
+      type: type.CHAR(18),
+      allowNull: true
+    },
+    idFavPaymentOne: {
+      type: type.CHAR(18),
+      allowNull: true
+    },
+    idFavPaymentTwo: {
+      type: type.CHAR(18),
+      allowNull: true
     }
   });
 };
