@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from '../prv-user-service.service';
+import { PrvUserServiceService } from "../prv-user.service";
 declare var require: any;
 @Component({
   selector: "app-payment",
@@ -18,11 +18,14 @@ export class PaymentComponent implements OnInit {
   creditcardCheck = false;
   checkedValue: String;
 
-  constructor(private router: Router, private prvUserService: PrvUserServiceService, private headerService: HeaderService) {}
+  constructor(
+    private router: Router,
+    private prvUserService: PrvUserServiceService,
+    private headerService: HeaderService
+  ) {}
 
   ngOnInit() {
-
-    if(!this.prvUserService.getUser()){
+    if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }
 

@@ -6,7 +6,7 @@ import {
   HttpClientModule
 } from "@angular/common/http";
 import { Prvuser } from "../shared/prvuser.model";
-import { PrvUserServiceService } from "../prv-user-service.service";
+import { PrvUserServiceService } from "../prv-user.service";
 
 declare var require: any;
 @Component({

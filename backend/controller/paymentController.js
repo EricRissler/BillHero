@@ -3,10 +3,11 @@ const prvuser = require("../sequelize").privateUser;
 const userPayment = require("../sequelize").userPaymentMethod;
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
-const postPayment = function(req, res) {
+const postPayment = function(req, resp) {
+  console.log("Hanss");
   prvID = req.params.uid;
-  genPaymentID = req.body.generalPaymentID;
-  nameP = req.body.name;
+  genPaymentID = req.body.genPaymentID;
+  nameP = req.body.nameP;
   data = req.body.data;
   prvuser
     .findOne({
@@ -16,66 +17,82 @@ const postPayment = function(req, res) {
     })
     .then(result => {
       if (result == null) {
-        res.status(404).send();
+        console.log("User not found");
+        resp.status(404).json({
+          message: "User not found"
+        });
       } else {
+        console.log(prvID);
+        console.log(genPaymentID);
+        console.log(nameP);
+        console.log("data" + data);
         if (
           genPaymentID != undefined &&
           nameP != undefined &&
           data != undefined
         ) {
-          const data = data.split(":");
+          //const datarray = data.split(":");
           if (genPaymentID == 1) {
             //is Sepa
             generalPayments
               .findOne({
                 where: { name: "SEPA" }
               })
-              .then(res => {
+              .then(resgPay => {
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
                 );
-                userPayment.create(
-                  {
+                userPayment
+                  .create({
                     idUser: prvID,
-                    idPayment: res.id,
+                    idPayment: resgPay.id,
                     name: nameP,
                     token: token
-                  }.then(resPay => {
-                    res.status(201).json({
+                  })
+                  .then(resPay => {
+                    console.log("SEPA created");
+                    console.log(resPay);
+                    resp.status(201).json({
+                      message: "SEPA created",
                       paymentMethod: resPay
                     });
-                  })
-                );
+                  });
               });
           } else if (genPaymentID == 2) {
+            //is DebitCard
             generalPayments
               .findOne({
                 where: { name: "DebitCard" }
               })
-              .then(res => {
+              .then(resgPay => {
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
                 );
-                userPayment.create(
-                  {
+                userPayment
+                  .create({
                     idUser: prvID,
-                    idPayment: res.id,
+                    idPayment: resgPay.id,
                     name: nameP,
                     token: token
-                  }.then(resPay => {
-                    res.status(201).json({
+                  })
+                  .then(resPay => {
+                    console.log("DebitCard created");
+                    console.log(resPay);
+                    resp.status(201).json({
+                      message: "DebitCard created",
                       paymentMethod: resPay
                     });
-                  })
-                );
+                  });
               });
           } else {
-            res.status(400).send();
+            console.log("alid genpay");
+            resp.status(400).json({ message: "invalid genpayment" });
           }
         } else {
-          res.status(400).send();
+          console.log("keys undefined");
+          resp.status(400).json({ message: "keys undefined" });
         }
       }
     });
