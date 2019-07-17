@@ -1,18 +1,17 @@
 <div class="container">
   <div class="detail">
-    <h3>Firmenname</h3>
+    <h3>{{ shortname }}</h3>
     <hr />
     <div class="list">
-    <ul *ngFor="let item of items" class="itemsList">
-      <li class="item"> {{ item.item }}</li>
-      <li class="price"> {{ item.price }} €</li>
-    </ul>
-  </div>
+      <ul *ngFor="let items of items" class="itemsList">
+        <li class="item"> {{ items.itemName }}</li>
+        <li class="price"> {{ items.itemPrice }} €</li>
+      </ul>
+    </div>
     <hr />
     <div class="price">
-      <h4>Gesamt:  {{ price }} €</h4>
+      <h4>Gesamt: {{ price }} €</h4>
     </div>
-
     <div>
       <button class="payBtn" routerLink="/payment">Bezahlen</button>
     </div>

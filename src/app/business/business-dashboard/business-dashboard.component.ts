@@ -57,9 +57,9 @@ export class BusinessDashboardComponent implements OnInit {
           debID: this.userID,
           creID: this.comID,
           items: [
-            (this.product1, this.price1, this.quantity1),
-            (this.product2, this.price2, this.quantity2),
-            (this.product3, this.price3, this.quantity3)
+            {itemName: this.product1, itemPrice: this.price1, itemAmount: this.quantity1},
+            {itemName: this.product2, itemPrice: this.price2, itemAmount: this.quantity2},
+            {itemName: this.product3, itemPrice: this.price3, itemAmount: this.quantity3}
           ],
           amount: this.endprice,
           deadline: this.deadline,

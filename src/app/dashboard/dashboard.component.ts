@@ -37,7 +37,8 @@ export class DashboardComponent implements OnInit {
     }
     this.headerService.setHeader(true);
     this.firstname = this.prvUserService.getUser();
-
+    
+   
     //this.bill=this.billService.getUnpayedBills();
     this.getUnpayed();
 
