@@ -1,10 +1,12 @@
 .container {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
   height: 579px;
+  border: 2px solid #05619b;
+  border-radius: 10px;
   background-color: white;
 }
-.categoryDropDown{
+.categoryDropDown {
   width: 20%;
   border-radius: 40px;
   background-color: #05619b;
@@ -51,7 +53,8 @@
   border-radius: 8px;
   height: 550px;
   position: relative;
-  margin-top: 15px;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
   color: white;
 }
 
@@ -68,6 +71,7 @@
 .rightcontainer {
   float: left;
   width: 25%;
+  margin-top: 0.5%;
 }
 
 p {

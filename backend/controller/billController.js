@@ -5,7 +5,6 @@ const paymentProvider = require("../paymentprovider/paymentprovider");
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
 
-//TODO: ITEMS
 const postBill = function(req, res) {
   const data = {
     creID: req.params.uid,
@@ -85,17 +84,28 @@ const getBill = function(req, res) {
           bill: null
         });
       } else {
+        console.log("BILL " + foundBill.idCreditor);
         commercialUser
           .findOne({
             where: { id: foundBill.idCreditor },
-            attributes: ["shortname"],
             raw: true
           })
           .then(debitor => {
-            res.status(200).json({
-              bill: foundBill,
-              shortname: debitor.shortname
-            });
+            console.log(debitor);
+            console.log("suche items");
+            item
+              .findAll({
+                where: {
+                  billID: data.billId
+                }
+              })
+              .then(items => {
+                foundBill.shortname = debitor.shortname;
+                res.status(200).json({
+                  bill: foundBill,
+                  items: items
+                });
+              });
           });
       }
     });
@@ -104,10 +114,12 @@ const getBill = function(req, res) {
 //TODO: searchBillS
 const searchBill = function(req, res) {
   const uid = req.params.uid;
+
   const status = req.header("status");
   const catId = req.header("catid");
   const credName = req.header("cred");
   const prodName = req.header("prod");
+
   privateUser
     .findOne({
       where: { id: uid }
@@ -127,12 +139,14 @@ const searchBill = function(req, res) {
               }, order: [["updatedAt", "DESC"]],
               raw: true
             })
+
             .then(bills => {
              // console.log(bills);
               //no shortname
               res.status(200).json({
                 bills: bills
               })
+
             });
         } else if (catId != null) {
           bill
@@ -151,7 +165,9 @@ const searchBill = function(req, res) {
             .findALL({
               where: {
                 [op.or]: [
-                  { shortname: credName },
+                  {
+                    shortname: credName
+                  },
                   {
                     longname: credName
                   }
@@ -163,6 +179,7 @@ const searchBill = function(req, res) {
               console.log(comUsers);
             });
         } else if (prodName != null) {
+          //TODO:
         } else {
           console.log("getting all")
           bill
@@ -172,12 +189,10 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
-            
-              console.log(foundBills)
+
               foundBills.forEach(bill => {
                 bill.shortname = "GC";
               });
-              
               res.status(200).json({
                 bills: foundBills
               });
