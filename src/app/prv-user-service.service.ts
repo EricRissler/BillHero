@@ -6,6 +6,7 @@ import {
   HttpClient
 } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { BillService } from './bill.service';
 
 @Injectable({
   providedIn: "root"
