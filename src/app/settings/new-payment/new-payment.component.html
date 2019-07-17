@@ -50,7 +50,17 @@
       </li>
 
       <li>
-        <button id="confirm" type="submit" (click)="submitBank()">
+        <button
+          id="confirm"
+          type="submit"
+          (click)="submitBank()"
+          [disabled]="
+            this.name1 == '' ||
+            this.bic == '' ||
+            this.iban == '' ||
+            this.owner1 == ''
+          "
+        >
           Bankverbindung hinzufügen
         </button>
       </li>
@@ -108,7 +118,17 @@
       </li>
 
       <li>
-        <button id="confirm" type="submit" (click)="submitCreditcard()">
+        <button
+          id="confirm"
+          type="submit"
+          (click)="submitCreditcard()"
+          [disabled]="
+            this.name2 == '' ||
+            this.owner2 == '' ||
+            this.cardnr == '' ||
+            this.date == ''
+          "
+        >
           Kreditkarte hinzufügen
         </button>
       </li>
