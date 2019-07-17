@@ -122,9 +122,9 @@ const searchBill = function(req, res) {
             .findAll({
               where: {
                 idDebitor: uid,
-                order: [["updatedAt", "DESC"]],
+               
                 paymentStatus: status               
-              },
+              }, order: [["updatedAt", "DESC"]],
               raw: true
             })
             .then(bills => {
