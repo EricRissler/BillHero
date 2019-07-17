@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { PrvUserServiceService } from "../prv-user.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
 declare var require: any;
 @Component({
   selector: "app-register",

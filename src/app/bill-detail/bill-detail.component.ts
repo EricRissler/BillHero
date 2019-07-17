@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Item } from "../shared/item.model";
 import { HeaderService } from "../header.service";
-import { PrvUserServiceService } from "../prv-user.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 @Component({
   selector: "app-bill-detail",

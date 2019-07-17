@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HeaderService } from "src/app/header.service";
-import { PrvUserServiceService } from "src/app/prv-user.service";
+import { PrvUserServiceService } from "src/app/prv-user-service.service";
 import { Router } from "@angular/router";
 
 @Component({
