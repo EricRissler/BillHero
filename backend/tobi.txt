@@ -3,6 +3,7 @@ const asyncForEach = async (array, callback) => {
     await callback(array[index], index, array);
   }
 };
+
 Erklärung:
 du machst dir dann ein leeres Array const testArray = [] und rufst
 danach
