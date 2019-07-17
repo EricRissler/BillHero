@@ -1,6 +1,7 @@
 const privateUser = require("../sequelize").privateUser;
 const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
+const userpayment = require("../sequelize").userPaymentMethod;
 
 const getUser = function(req, res) {
   console.log(req.headers);
@@ -25,6 +26,34 @@ const getUser = function(req, res) {
       }
       bcrypt.compare(data.password, user.password).then(
         result => {
+          if (
+            user.idFavPaymentOne != null &&
+            user.idFavPaymentOne != undefined
+          ) {
+            userpayment
+              .findOne({
+                where: {
+                  id: idFavPaymentOne
+                }
+              })
+              .then(favPaymentOne => {
+                user.nameFavPaymentOne = favPaymentOne.name;
+              });
+          }
+          if (
+            user.idFavPaymentTwp != null &&
+            user.idFavPaymentTwo != undefined
+          ) {
+            userpayment
+              .findOne({
+                where: {
+                  id: idFavPaymentTwo
+                }
+              })
+              .then(favPaymentTwo => {
+                user.nameFavPaymentTwo = favPaymentTwo.name;
+              });
+          }
           res.status(200).json({
             id: user.id,
             firstname: user.firstname,
@@ -33,7 +62,9 @@ const getUser = function(req, res) {
             nationality: user.nationality,
             email: user.email,
             idFavPaymentOne: user.idFavPaymentOne,
-            idFavPaymentTwo: user.idFavPaymentTwo
+            nameFavPaymentOne: user.nameFavPaymentOne,
+            idFavPaymentTwo: user.idFavPaymentTwo,
+            nameFavPaymentTwo: user.nameFavPaymentTwo
           });
         },
         err => {
