@@ -166,12 +166,12 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
-              console.log(foundBills);
+            
 
               foundBills.forEach(bill => {
-                bill.shortname = "Generic companyname";
+                bill.shortname = "GC";
               });
-
+              
               res.status(200).json({
                 bills: foundBills
               });

@@ -1,13 +1,23 @@
 export class Bill {
-  
-    // public name: string;
-    // public deadline: string;
-    // public price: string;
-    // public status: boolean;
-    constructor(
-        public name: string,
-       public deadline: string,
-       public price: string,
-       public status: boolean
-     ){}
+  // public name: string;
+  // public deadline: string;
+  // public price: string;
+  // public status: boolean;
+  public billID: String;
+  public billNr: String;
+  public creditorID: String;
+  public debitorID: String;
+  public paymentStatus: number;
+  public amount: String;
+  public deadline: String;
+  public categoryID: String;
+  public paymentId: String;
+  public shortname: String;
+  constructor(
+    public name: String, public deadlineTEST: String, public price: String, public status: number) {
+    this.shortname = name;
+    this.deadline = deadlineTEST;
+    this.amount = price;
+    this.paymentStatus = status;
+  }
 }

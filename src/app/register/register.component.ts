@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Router } from '@angular/router';
-import { PrvUserServiceService } from '../prv-user-service.service';
+import { Router } from "@angular/router";
+import { PrvUserServiceService } from "../prv-user-service.service";
 declare var require: any;
 @Component({
   selector: "app-register",
@@ -25,8 +25,11 @@ export class RegisterComponent implements OnInit {
   birth: string = "";
 
   step: number = 1;
-  constructor(private http: HttpClient,private prvUserService: PrvUserServiceService,
-    private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private prvUserService: PrvUserServiceService,
+    private router: Router
+  ) {}
 
   postUser() {
     console.log("YAAAY");
@@ -46,16 +49,15 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe(responseData => {
         console.log(responseData.message);
-        this.step=this.step+1;
+        this.step = this.step + 1;
       });
-
   }
 
   changestep() {
-    if(this.step<2){
-    this.step = this.step + 1;
-    }else if (this.step==3){
-      this.prvUserService.Signin(this.mail, this.password); 
+    if (this.step < 2) {
+      this.step = this.step + 1;
+    } else if (this.step == 3) {
+      this.prvUserService.Signin(this.mail, this.password);
     }
   }
 

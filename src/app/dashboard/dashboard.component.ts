@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 declare var require: any;
 @Component({
@@ -13,22 +13,22 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-  bill: Bill[] = [
-    new Bill("Media Markt", "05.08.2019", "900", false),
-    new Bill("Schreiner", "14.06.2019", "72350", false),
-    new Bill("Zahnarzt", "24.12.2019", "750", false),
-    new Bill("MEWA", "01.01.2020", "750", false),
-    new Bill("BillHero", "01.01.2020", "123750", false),
-    new Bill("Media Markt", "05.08.2019", "900", false),
-    new Bill("Schreiner", "14.06.2019", "72350", false),
-    new Bill("Zahnarzt", "24.12.2019", "750", false)
-  ];
+  // bill: Bill[] = [
+  //   new Bill("Media Markt", "05.08.2019", "900", false),
+  //   new Bill("Schreiner", "14.06.2019", "72350", false),
+  //   new Bill("Zahnarzt", "24.12.2019", "750", false),
+  //   new Bill("MEWA", "01.01.2020", "750", false),
+  //   new Bill("BillHero", "01.01.2020", "123750", false),
+  //   new Bill("Media Markt", "05.08.2019", "900", false),
+  //   new Bill("Schreiner", "14.06.2019", "72350", false),
+  //   new Bill("Zahnarzt", "24.12.2019", "750", false)
+  // ];
 
   // test = new Array(10, 20, 54, 48, 87);
 
-  billcount = this.bill.length;
+  // billcount = this.bill.length;
   firstname: string;
-  showMessage: boolean=false;
+  showMessage: boolean = false;
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(!this.prvUserService.getUser()){
+    if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit {
     console.log("Ich bin de User:" + this.firstname);
   }
   onPayStandard() {
-    this.showMessage=true;
+    this.showMessage = true;
     setTimeout(() => {
-     this.showMessage=false;
-  }, 2000);
+      this.showMessage = false;
+    }, 2000);
   }
 }
