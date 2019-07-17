@@ -47,7 +47,10 @@ export class MybillsComponent implements OnInit {
     this.input="";
   }
 
-
+  billClick(id:String){
+   // alert(id);
+   console.log(id);
+  }
 
   ngOnInit() {
 

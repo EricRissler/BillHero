@@ -26,7 +26,7 @@
   </div>
   
   <div class="middlecontainer">
-    <div class="billList" *ngFor="let bill of bill" draggable="true">
+    <div class="billList" *ngFor="let bill of bill" (click)="billClick(bill.id)">
       <ul class="list-group-item" id="list">
           <!-- <button type="button" id="categoryDropDown" class="btn btn-primary dropdown-toggle">
               {{ billCategory }}
