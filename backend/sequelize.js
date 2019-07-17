@@ -10,7 +10,8 @@ const userPaymentMethodModel = require("./models/userPaymentsMethods");
 
 const conn = new Sequelize("billherodb", "billhero2", "billiboi", {
   host: "h2580603.stratoserver.net",
-  dialect: "mysql"
+  dialect: "mysql",
+  logging: false
 });
 
 const adress = adressModel(conn, Sequelize);

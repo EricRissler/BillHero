@@ -11,6 +11,10 @@ declare var require: any;
 export class RegisterComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
+  newBank: boolean = false;
+
+  newCard: boolean = false;
+
   country: string = "";
   firstname: string = "";
   lastname: string = "";
@@ -59,6 +63,16 @@ export class RegisterComponent implements OnInit {
     } else if (this.step == 3) {
       this.prvUserService.Signin(this.mail, this.password);
     }
+  }
+
+  newBankPayment() {
+    this.newBank = !this.newBank;
+    this.newCard = false;
+  }
+
+  newKreditcard() {
+    this.newCard = !this.newCard;
+    this.newBank = false;
   }
 
   ngOnInit() {}

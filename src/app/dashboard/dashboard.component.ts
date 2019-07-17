@@ -13,16 +13,16 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-  // bill: Bill[] = [
-  //   new Bill("Media Markt", "05.08.2019", "900", false),
-  //   new Bill("Schreiner", "14.06.2019", "72350", false),
-  //   new Bill("Zahnarzt", "24.12.2019", "750", false),
-  //   new Bill("MEWA", "01.01.2020", "750", false),
-  //   new Bill("BillHero", "01.01.2020", "123750", false),
-  //   new Bill("Media Markt", "05.08.2019", "900", false),
-  //   new Bill("Schreiner", "14.06.2019", "72350", false),
-  //   new Bill("Zahnarzt", "24.12.2019", "750", false)
-  // ];
+  bill: Bill[] = [
+    new Bill("Media Markt", "05.08.2019", "900", 0),
+    new Bill("Schreiner", "14.06.2019", "72350", 0),
+    new Bill("Zahnarzt", "24.12.2019", "750", 0),
+    new Bill("MEWA", "01.01.2020", "750", 0),
+    new Bill("BillHero", "01.01.2020", "123750", 0),
+    new Bill("Media Markt", "05.08.2019", "900", 0),
+    new Bill("Schreiner", "14.06.2019", "72350", 0),
+    new Bill("Zahnarzt", "24.12.2019", "750", 0)
+  ];
 
   // test = new Array(10, 20, 54, 48, 87);
 
