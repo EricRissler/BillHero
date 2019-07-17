@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
-import { HttpClient } from '@angular/common/http';
-import { HeaderService } from '../header.service';
-import { PrvUserServiceService } from '../prv-user-service.service';
-import { Router } from '@angular/router';
-import { BillService } from '../bill.service';
+import { HttpClient } from "@angular/common/http";
+import { HeaderService } from "../header.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
+import { Router } from "@angular/router";
+import { BillService } from "../bill.service";
 
 @Component({
   selector: "app-mybills",
@@ -52,8 +52,7 @@ export class MybillsComponent implements OnInit {
     console.log(id);
   }
 
-  ngOnInit() {
-
+ngOnInit(){
     if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     } else {

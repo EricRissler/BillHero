@@ -4,11 +4,11 @@ import { PrvUserServiceService } from './prv-user-service.service';
 import { Bill } from './shared/bill.model';
 import { Router } from '@angular/router';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BillService {
-
   billID: String;
   billNr: String;
   creditorID: String;
@@ -50,5 +50,4 @@ export class BillService {
       });
     return this.bills;
   }
-
 }

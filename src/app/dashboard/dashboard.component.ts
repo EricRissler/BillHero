@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(!this.prvUserService.getUser()){
+    if (!this.prvUserService.getUser()) {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
@@ -58,9 +58,9 @@ export class DashboardComponent implements OnInit {
     });
   }
   onPayStandard() {
-    this.showMessage=true;
+    this.showMessage = true;
     setTimeout(() => {
-     this.showMessage=false;
-  }, 2000);
+      this.showMessage = false;
+    }, 2000);
   }
 }
