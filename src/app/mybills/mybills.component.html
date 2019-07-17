@@ -35,14 +35,14 @@
             <select name="" class="categoryDropDown" id="">{{ billCategory }}
               <option *ngFor="let category of category" [value]="category.name"> {{category.name}} </option>
             </select>
-        <li class="list-group">{{ bill.name }}</li>
+        <li class="list-group">{{ bill.shortname }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}</li>
+        <li class="list-group">{{ bill.amount }}</li>
         <li>
           <Button
             class="billStatus"
             disabled="false"
-            [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+            [ngStyle]="{ 'background-color': bill.paymentStatus==1 ? 'green' : 'red' }"
           ></Button>
         </li>
       </ul>
