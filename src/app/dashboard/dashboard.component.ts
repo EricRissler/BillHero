@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
-import { Router } from '@angular/router';
-import { BillService } from '../bill.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from "@angular/router";
+import { BillService } from "../bill.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 declare var require: any;
 @Component({
@@ -15,21 +15,19 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-
   bill: Bill[];
-
 
   // test = new Array(10, 20, 54, 48, 87);
 
   billcount: number;
   firstname: string;
-  showMessage: boolean=false;
+  showMessage: boolean = false;
   uid: String;
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
     private billService: BillService,
-    private http:HttpClient,
+    private http: HttpClient,
     private router: Router
   ) {}
 
@@ -39,25 +37,26 @@ export class DashboardComponent implements OnInit {
     }
     this.headerService.setHeader(true);
     this.firstname = this.prvUserService.getUser();
-    this.uid= this.prvUserService.getUID();
-   
-    //this.bill=this.billService.getUnpayedBills();
-   this.getUnpayed();
 
-    if (this.bill==null) {
-   this.getUnpayed();
-     }
-     
-  
+    //this.bill=this.billService.getUnpayedBills();
+    this.getUnpayed();
+
+    if (this.bill == null) {
+      this.getUnpayed();
     }
-  getUnpayed(){
+  }
+  getUnpayed() {
+    this.uid = this.prvUserService.getUID();
     const headers = new HttpHeaders().set("status", "0");
     this.http
-    .get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills", { headers })
-    .subscribe(responseData => {
-      this.bill = responseData.bills;
-      this.billcount = this.bill.length;
-    });
+      .get<{ bills: Bill[] }>(
+        "http://localhost:3000/api/prvusers/" + this.uid + "/bills",
+        { headers }
+      )
+      .subscribe(responseData => {
+        this.bill = responseData.bills;
+        this.billcount = this.bill.length;
+      });
   }
   onPayStandard() {
     this.showMessage = true;
