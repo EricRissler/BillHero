@@ -200,7 +200,7 @@ const createComUser1 = res => {
 
 const createComUser2 = res => {
   const paymentToken = paymentRegister("DB AG", "KontoNr 123");
-  const pwcomUser4 = "bieteKleidung";
+  const pwcomUser4 = "test";
   bcrypt.hash(pwcomUser4, BCRYPT_SALTROUNDS).then(pwhash => {
     adress
       .create({
@@ -214,7 +214,7 @@ const createComUser2 = res => {
           .create({
             longname: "MEWA Textil OHG",
             shortname: "MEWA",
-            email: "info@mewa.com",
+            email: "mewa",
             password: pwhash,
             incomingPaymentToken: paymentToken,
             idAdress: result.id
