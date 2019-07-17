@@ -5,6 +5,12 @@ const paymentProvider = require("../paymentprovider/paymentprovider");
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
 
+const asyncForEach = async (array, callback) => {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+};
+
 const postBill = function(req, res) {
   const data = {
     creID: req.params.uid,
@@ -12,7 +18,8 @@ const postBill = function(req, res) {
     amount: req.body.amount,
     billNr: req.body.billNr,
     date: req.body.date,
-    deadline: req.body.deadline
+    deadline: req.body.deadline,
+    items: req.body.items
   };
   console.log(data);
   commercialUser
@@ -53,6 +60,17 @@ const postBill = function(req, res) {
                   deadline: data.deadline
                 })
                 .then(result => {
+                  /*console.log(result);
+                  console.log("------------------");
+                  console.log(data);*/
+                  data.items.forEach(billItem=>{
+                    item.create({
+                      billID: result.id,
+                      itemName:billItem.itemName,
+                      itemPrice: billItem.itemPrice,
+                      itemAmount: billItem.itemAmount
+                    })
+                  })
                   res.status(201).json({
                     message: "Bill created succesfully",
                     bill: result
@@ -114,7 +132,6 @@ const getBill = function(req, res) {
 //TODO: searchBillS
 const searchBill = function(req, res) {
   const uid = req.params.uid;
-
   const status = req.header("status");
   const catId = req.header("catid");
   const credName = req.header("cred");
@@ -129,24 +146,30 @@ const searchBill = function(req, res) {
         res.status(404).send();
       } else {
         if (status != null) {
-          console.log("looking for bills wit status "+status);
+          console.log("looking for bills wit status " + status);
           bill
             .findAll({
               where: {
                 idDebitor: uid,
-               
-                paymentStatus: status               
-              }, order: [["updatedAt", "DESC"]],
+                paymentStatus: status
+              },
+              order: [["updatedAt", "DESC"]],
               raw: true
             })
-
             .then(bills => {
-             // console.log(bills);
-              //no shortname
+              const modBills = [];
+              /*await asyncForEach(bills, async(bill)=>{
+                commercialUser.findOne({
+                  where: {id: bill.idCreditor}
+                }).then(comUser=>{
+                  bill.longname = comUser.longname;
+                  bill.shortname = comUser.shortname;
+                  modBills.push(bill);
+                })
+              });*/
               res.status(200).json({
-                bills: bills
-              })
-
+                bills: modBills
+              });
             });
         } else if (catId != null) {
           bill
@@ -181,7 +204,7 @@ const searchBill = function(req, res) {
         } else if (prodName != null) {
           //TODO:
         } else {
-          console.log("getting all")
+          console.log("getting all");
           bill
             .findAll({
               where: { idDebitor: uid },
@@ -189,7 +212,6 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
-
               foundBills.forEach(bill => {
                 bill.shortname = "GC";
               });

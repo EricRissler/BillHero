@@ -6,6 +6,7 @@ import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 import { BillService } from "../bill.service";
+import { DetailService } from '../detail.service';
 
 @Component({
   selector: "app-mybills",
@@ -19,7 +20,7 @@ export class MybillsComponent implements OnInit {
   ]
   billCategory: string = "";
   constructor(private headerService: HeaderService, private http: HttpClient,
-    private prvUserService: PrvUserServiceService, private billService: BillService,
+    private prvUserService: PrvUserServiceService, private billService: BillService, private detailService: DetailService,
     private router: Router) { }
   public input: string = "";
 
@@ -48,8 +49,7 @@ export class MybillsComponent implements OnInit {
   }
 
   billClick(id: String) {
-    // alert(id);
-    console.log(id);
+    this.detailService.getDetail(id);
   }
 
 ngOnInit(){
