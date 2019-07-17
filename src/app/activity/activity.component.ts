@@ -22,11 +22,11 @@ export class ActivityComponent implements OnInit {
       this.router.navigate(["/signin"]);
     }
 
-    this.headerService.setHeader(true);
-    this.bill = [
-      new Bill("Media Markt", "05.08.2019", "900", true),
-      new Bill("Schreiner", "14.06.2019", "750", true),
-      new Bill("Zahnarzt", "24.12.2019", "750", true)
-    ];
+    //  this.headerService.setHeader(true);
+    //  this.bill = [
+    //    new Bill("Media Markt", "05.08.2019", "900", true),
+    //    new Bill("Schreiner", "14.06.2019", "750", true),
+    //    new Bill("Zahnarzt", "24.12.2019", "750", true)
+    //  ];
   }
 }

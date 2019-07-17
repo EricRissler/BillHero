@@ -49,17 +49,14 @@ export class NewPaymentComponent implements OnInit {
   postPayment() {
     console.log("YAAAY");
     this.http
-      .post<{ message: String }>(
-        "http://localhost/api/prvusers/" + this.userID + "/payments",
-        {
-          prvID: this.userID,
-          genPaymentID: this.paymentID,
-          nameP: this.nameP,
-          data: this.data
-        }
-      )
+      .post("http://localhost:3000/api/prvusers/" + this.userID + "/payments", {
+        prvID: this.userID,
+        genPaymentID: this.paymentID,
+        nameP: this.nameP,
+        data: this.data
+      })
       .subscribe(responseData => {
-        console.log(responseData.message);
+        console.log("success");
       });
   }
 
