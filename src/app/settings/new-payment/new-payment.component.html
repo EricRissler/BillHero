@@ -1,5 +1,7 @@
 <div class="container">
   <h1>Neue Zahlmethode hinzufügen</h1>
+  <button class="back" routerLink="/settings">Zurück</button>
+
   <hr />
 
   <div class="bankAccount">
@@ -8,7 +10,6 @@
       <span class="caret"></span>
     </button>
 
-    <!-- <form ng-submit="submitBank()"></form> -->
     <ul id="list" *ngIf="newBank">
       <li>
         <input
@@ -98,7 +99,12 @@
       </li>
 
       <li>
-        <input id="date" type="text" class="form-control" [(ngModel)]="date" />
+        <input
+          type="text"
+          placeholder="Gültig bis"
+          class="form-control"
+          [(ngModel)]="date"
+        />
       </li>
 
       <li>

@@ -15,7 +15,9 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
+
   bill: Bill[];
+
 
   // test = new Array(10, 20, 54, 48, 87);
 
