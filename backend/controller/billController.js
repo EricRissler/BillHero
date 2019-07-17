@@ -92,10 +92,19 @@ const getBill = function(req, res) {
             raw: true
           })
           .then(debitor => {
-            res.status(200).json({
-              bill: foundBill,
-              shortname: debitor.shortname
-            });
+            item
+              .findAll({
+                where: {
+                  billID: data.billId
+                }
+              })
+              .then(items => {
+                foundBill.shortname = debitor.shortname;
+                res.status(200).json({
+                  bill: foundBill,
+                  items: items
+                });
+              });
           });
       }
     });
@@ -127,8 +136,10 @@ const searchBill = function(req, res) {
               },
               raw: true
             })
-            .then(bills => {
-              //TODO: get shortnames for each Bill
+            .then(foundBills => {
+              foundBills.forEach(bill => {
+                bill.shortname = "GC";
+              });
             });
         } else if (catId != null) {
           bill
@@ -166,12 +177,10 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(foundBills => {
-            
-
               foundBills.forEach(bill => {
                 bill.shortname = "GC";
               });
-              
+
               res.status(200).json({
                 bills: foundBills
               });
