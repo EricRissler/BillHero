@@ -7,17 +7,17 @@ export class Bill {
   public billNr: String;
   public creditorID: String;
   public debitorID: String;
-  public payStatus: boolean;
-  public amount: number;
+  public paymentStatus: number;
+  public amount: String;
   public deadline: String;
   public categoryID: String;
   public paymentId: String;
   public shortname: String;
   constructor(
-    public name: string, public deadlineTEST: string, public price: number, public status: boolean, ) {
+    public name: String, public deadlineTEST: String, public price: String, public status: number) {
     this.shortname = name;
     this.deadline = deadlineTEST;
     this.amount = price;
-    this.payStatus = status;
+    this.paymentStatus = status;
   }
 }
