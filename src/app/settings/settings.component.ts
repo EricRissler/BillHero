@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { PaymentService } from "../payment.service";
 import { HttpClient } from "@angular/common/http";
 import { Payment } from "../shared/Payment.model";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-settings",
@@ -12,12 +13,15 @@ import { Payment } from "../shared/Payment.model";
   styleUrls: ["./settings.component.css"]
 })
 export class SettingsComponent implements OnInit {
-  payment1: string = "Methode 1";
+  payment1: string = this.prvUserService.namefavpay1;
   payment2: string = "Methode 2";
 
   userID: string;
 
   payments: Payment[];
+
+  pay1Form: FormGroup;
+  pay2Form: FormGroup;
 
   togglePayment1() {
     this.payment1 = "";

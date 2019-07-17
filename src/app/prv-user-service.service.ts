@@ -77,4 +77,21 @@ export class PrvUserServiceService {
   getLogged() {
     return this.logged;
   }
+
+  getIDPayOne() {
+    return this.idfavpay1;
+  }
+
+  getIDPayTwo() {
+    return this.idfavpay2;
+  }
+
+  getNamePayOne() {
+    console.log("favoneservice" + this.namefavpay1);
+    return this.namefavpay1;
+  }
+
+  getNamePayTwo() {
+    return this.namefavpay2;
+  }
 }

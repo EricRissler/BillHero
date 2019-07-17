@@ -4,7 +4,6 @@ const userPayment = require("../sequelize").userPaymentMethod;
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
 const postPayment = function(req, resp) {
-  console.log("Hanss");
   prvID = req.params.uid;
   genPaymentID = req.body.genPaymentID;
   nameP = req.body.nameP;

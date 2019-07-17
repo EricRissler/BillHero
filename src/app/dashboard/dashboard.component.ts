@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
 
   // test = new Array(10, 20, 54, 48, 87);
 
+  nameFavPayOne: string;
+  nameFavPayTwo: string;
+
   billcount: number;
   firstname: string;
   showMessage: boolean = false;
@@ -44,7 +47,12 @@ export class DashboardComponent implements OnInit {
     if (this.bill == null) {
       this.getUnpayed();
     }
+
+    this.nameFavPayOne = this.prvUserService.getNamePayOne();
+    this.nameFavPayTwo = this.prvUserService.getNamePayTwo();
+    console.log("Favone" + this.nameFavPayOne);
   }
+
   getUnpayed() {
     this.uid = this.prvUserService.getUID();
     const headers = new HttpHeaders().set("status", "0");
