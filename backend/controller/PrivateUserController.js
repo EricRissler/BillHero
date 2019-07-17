@@ -31,7 +31,9 @@ const getUser = function(req, res) {
             lastname: user.lastname,
             birthdate: user.birthdate,
             nationality: user.nationality,
-            email: user.email
+            email: user.email,
+            idFavPaymentOne: user.idFavPaymentOne,
+            idFavPaymentTwo: user.idFavPaymentTwo
           });
         },
         err => {
