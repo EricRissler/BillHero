@@ -104,31 +104,35 @@ const getBill = function(req, res) {
 //TODO: searchBillS
 const searchBill = function(req, res) {
   const uid = req.params.uid;
-  const status = req.query.status;
-  const catId = req.query.catid;
-  const credName = req.query.cred;
-  const prodName = req.query.prod;
-
+  const status = req.header("status");
+  const catId = req.header("catid");
+  const credName = req.header("cred");
+  const prodName = req.header("prod");
   privateUser
     .findOne({
       where: { id: uid }
     })
     .then(prvUser => {
-      console.log(prvUser);
       if (prvUser == null) {
         res.status(404).send();
       } else {
         if (status != null) {
+          console.log("looking for bills wit status "+status);
           bill
-            .findALL({
+            .findAll({
               where: {
                 idDebitor: uid,
-                paymentStatus: status
-              },
+               
+                paymentStatus: status               
+              }, order: [["updatedAt", "DESC"]],
               raw: true
             })
             .then(bills => {
-              //TODO: get shortnames for each Bill
+             // console.log(bills);
+              //no shortname
+              res.status(200).json({
+                bills: bills
+              })
             });
         } else if (catId != null) {
           bill
@@ -160,14 +164,16 @@ const searchBill = function(req, res) {
             });
         } else if (prodName != null) {
         } else {
+          console.log("getting all")
           bill
             .findAll({
               where: { idDebitor: uid },
+              order: [["updatedAt", "DESC"]],
               raw: true
             })
             .then(foundBills => {
             
-
+              console.log(foundBills)
               foundBills.forEach(bill => {
                 bill.shortname = "GC";
               });
