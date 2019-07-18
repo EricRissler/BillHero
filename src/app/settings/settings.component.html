@@ -8,8 +8,9 @@
       class="btn btn-primary dropdown-toggle"
       name="methode 1"
       id="dropdownleft"
+      [(ngModel)]="selectedOption1"
     >
-      <option *ngFor="let payments of payments" [value]="payments.name">
+      <option *ngFor="let payments of payments" [value]="payments.id">
         {{ payments.name }}
       </option>
     </select>
@@ -22,16 +23,27 @@
       class="btn btn-primary dropdown-toggle"
       name="methode 2"
       id="dropdownright"
+      [(ngModel)]="selectedOption2"
     >
-      <option *ngFor="let payments of payments" [value]="payments.name">
+      <option *ngFor="let payments of payments" [value]="payments.id">
         {{ payments.name }}
       </option>
     </select>
   </div>
 
   <div class="newPayment">
-    <button class="newPaymentBtn" routerLink="/newPayment">
-      Neue Zahlungsmethode hinzufügen
-    </button>
+    <ul class="ulButtons">
+      <li id="liButtons" class="paymentButton">
+        <button class="putPayment" (click)="putPayment()">
+          Zahlungsmethode festlegen
+        </button>
+      </li>
+
+      <li id="liButtons" class="newPaymentButton">
+        <button class="newPaymentBtn" routerLink="/newPayment">
+          Neue Zahlungsmethode erstellen
+        </button>
+      </li>
+    </ul>
   </div>
 </div>

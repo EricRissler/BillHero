@@ -9,20 +9,19 @@ const userPaymentMethodModel = (sequelize, type) => {
     },
     idUser: {
       type: type.CHAR(18),
-      allownull: false
+      allowNull: false
     },
     idPaymentMethod: {
       type: type.CHAR(18),
-      allownull: false
+      allowNull: false
     },
     name: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
-    //TODO: Testen, wenn nicht funktional. erstellen des Tokens in aufrufender Methode
     token: {
       type: type.STRING,
-      allownull: false,
+      allowNull: false,
       defaultValue: paymentrregister.registerPaymentmethod
     },
     isHistorical: {

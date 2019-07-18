@@ -32,4 +32,17 @@ export class PaymentService {
 
     return this.payments;
   }
+
+  putPayments(idfavPayOne: string, idfavPayTwo: string) {
+    this.userID = this.prvUserHeader.getUID();
+    this.http
+      .put<{ message: string }>(
+        "http://localhost:3000/api/prvusers/" + this.userID + "/payments",
+        {
+          IDfavPaymentOne: idfavPayOne,
+          IDfavPaymentTwo: idfavPayTwo
+        }
+      )
+      .subscribe(responceData => {});
+  }
 }

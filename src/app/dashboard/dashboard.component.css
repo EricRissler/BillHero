@@ -11,14 +11,13 @@
   display: flex;
   margin-top: 20px;
 }
-.payedMessage{
+.payedMessage {
   display: flex;
   width: 100%;
   margin-left: 80%;
-  
 }
-.message{
- text-align: right;
+.message {
+  text-align: right;
 }
 .list-group-item {
   width: 450px;
@@ -51,6 +50,7 @@
   border-color: black;
   background-color: #05619b;
   color: white;
+  width: 20%;
 }
 
 .alternativePay {
@@ -61,6 +61,7 @@
   background-color: #bc0000;
   color: white;
   margin-right: 2%;
+  width: 20%;
 }
 
 .title {

@@ -3,7 +3,7 @@ const prvuser = require("../sequelize").privateUser;
 const userPayment = require("../sequelize").userPaymentMethod;
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
-const postPayment = function(req, resp) {
+const postPayment = function (req, resp) {
   prvID = req.params.uid;
   genPaymentID = req.body.genPaymentID;
   nameP = req.body.nameP;
@@ -16,15 +16,10 @@ const postPayment = function(req, resp) {
     })
     .then(result => {
       if (result == null) {
-        console.log("User not found");
         resp.status(404).json({
           message: "User not found"
         });
       } else {
-        console.log(prvID);
-        console.log(genPaymentID);
-        console.log(nameP);
-        console.log("data" + data);
         if (
           genPaymentID != undefined &&
           nameP != undefined &&
@@ -38,6 +33,7 @@ const postPayment = function(req, resp) {
                 where: { name: "SEPA" }
               })
               .then(resgPay => {
+                const gPayID = resgPay.id;
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
@@ -45,13 +41,11 @@ const postPayment = function(req, resp) {
                 userPayment
                   .create({
                     idUser: prvID,
-                    idPayment: resgPay.id,
+                    idPaymentMethod: gPayID,
                     name: nameP,
                     token: token
                   })
                   .then(resPay => {
-                    console.log("SEPA created");
-                    console.log(resPay);
                     resp.status(201).json({
                       message: "SEPA created",
                       paymentMethod: resPay
@@ -65,6 +59,7 @@ const postPayment = function(req, resp) {
                 where: { name: "DebitCard" }
               })
               .then(resgPay => {
+                const gPayID = resgPay.id;
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
@@ -72,13 +67,11 @@ const postPayment = function(req, resp) {
                 userPayment
                   .create({
                     idUser: prvID,
-                    idPayment: resgPay.id,
+                    idPaymentMethod: gPayID,
                     name: nameP,
                     token: token
                   })
                   .then(resPay => {
-                    console.log("DebitCard created");
-                    console.log(resPay);
                     resp.status(201).json({
                       message: "DebitCard created",
                       paymentMethod: resPay
@@ -86,18 +79,16 @@ const postPayment = function(req, resp) {
                   });
               });
           } else {
-            console.log("alid genpay");
             resp.status(400).json({ message: "invalid genpayment" });
           }
         } else {
-          console.log("keys undefined");
           resp.status(400).json({ message: "keys undefined" });
         }
       }
     });
 };
 
-const getPayments = function(req, res) {
+const getPayments = function (req, res) {
   prvID = req.params.uid;
   userPayment
     .findAll({
@@ -118,7 +109,7 @@ const getPayments = function(req, res) {
     });
 };
 
-const deletePayment = function(req, res) {
+const deletePayment = function (req, res) {
   prvID = req.params.uid;
   userPaymentID = req.body.paymentID;
   userPayment

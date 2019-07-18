@@ -8,12 +8,12 @@ const generalPaymentMethodModel = (sequelize, type) => {
     },
     name: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     //Not used in this prototype, probably needed for productive use, eg url of specific paymentProvider
     data: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     }
   });
 };

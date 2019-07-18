@@ -8,24 +8,24 @@ const adressModel = (seqelize, type) => {
     },
     strHouseNr: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     zipCode: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     city: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     country: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     additonal: {
       type: type.STRING,
-      allowNulll: true
-    },
-  })
-}
+      allowNull: true
+    }
+  });
+};
 module.exports = adressModel;
