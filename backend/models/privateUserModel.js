@@ -1,7 +1,7 @@
 const privatUserModel = (seqelize, type) => {
   return seqelize.define("privateUser", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
@@ -31,15 +31,15 @@ const privatUserModel = (seqelize, type) => {
       allowNull: false
     },
     idAdress: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: true
     },
     idFavPaymentOne: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: true
     },
     idFavPaymentTwo: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: true
     }
   });
