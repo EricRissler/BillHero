@@ -230,6 +230,7 @@ const searchBill = function(req, res) {
 
 //TODO: Testen
 const putBill = function(req, res) {
+  console.log("welcome in PutBill");
   const data = {
     userID: req.params.uid,
     billID: req.params.bid,
@@ -258,23 +259,29 @@ const putBill = function(req, res) {
             });
             res.status(200).send();
           } else if (data.paymentID != undefined) {
-            //TODO: get paymenttopkens from creditor and debitor
-            if (
-              paymentProvider.payBill(
-                result.idCreditor,
-                result.idDebitor,
-                result.amount
-              )
-            ) {
-              result.update({
-                idPayedWith: data.paymentID,
-                paymentStatus: true
-              });
-              res.status(200).json({ message: "Payment succeeded" });
+            if (result.paymentStatus == false) {
+              //TODO: get paymenttopkens from creditor and debitor
+              if (
+                paymentProvider.payBill(
+                  result.idCreditor,
+                  result.idDebitor,
+                  result.amount
+                )
+              ) {
+                result.update({
+                  idPayedWith: data.paymentID,
+                  paymentStatus: true
+                });
+                res.status(200).json({ message: "Payment succeeded" });
+              } else {
+                res.status(409).json({
+                  message:
+                    "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
+                });
+              }
             } else {
-              res.status(409).json({
-                message:
-                  "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
+              res.status(304).json({
+                message: "Bill already payed"
               });
             }
           }
