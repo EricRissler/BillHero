@@ -1,17 +1,17 @@
 const billModel = (sequelize, type) => {
   return sequelize.define("bill", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     idDebitor: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: false
     },
     idCreditor: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: false
     },
     amount: {
@@ -35,11 +35,11 @@ const billModel = (sequelize, type) => {
       defaultValue: false
     },
     idPayedWith: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: true
     },
     idCategory: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: true
     }
   });

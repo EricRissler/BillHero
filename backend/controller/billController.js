@@ -4,6 +4,7 @@ const privateUser = require("../sequelize").privateUser;
 const userpayment = require("../sequelize").userPaymentMethod;
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
+const sequelize = require("../sequelize");
 
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
@@ -130,7 +131,7 @@ const getBill = function (req, res) {
 };
 
 //TODO: searchBillS
-const searchBill = async function (req, res) {
+const searchBill = function (req, res) {
   const uid = req.params.uid;
   const status = req.header("status");
   const catId = req.header("catid");
@@ -155,16 +156,6 @@ const searchBill = async function (req, res) {
               raw: true
             })
             .then(bills => {
-              const modBills = [];
-              /*await asyncForEach(bills, async(bill)=>{
-                commercialUser.findOne({
-                  where: {id: bill.idCreditor}
-                }).then(comUser=>{
-                  bill.longname = comUser.longname;
-                  bill.shortname = comUser.shortname;
-                  modBills.push(bill);
-                })
-              });*/
               res.status(200).json({
                 bills: bills
               });
@@ -199,7 +190,14 @@ const searchBill = async function (req, res) {
             .then(comUsers => {
             });
         } else if (prodName != null) {
-          //TODO:
+          /* console.log("uid: " + uid);
+           console.log("prodName: " + prodName);
+           const query = "SELECT bills.id, bills.idCreditor, bills.idDebitor, bills.amount, bills.billNr, bills.deadline, bills.paymentStatus, bills.idCategory FROM bills where bills.idDebitor = " + uid +
+             " AND bills.id in (SELECT DISTINCT billID FROM items WHERE items.name LIKE %" + prodName + "%)";
+           console.log("query: " + query);
+           sequelize.query(query, { type: sequelize.QueryTypes.SELECT }).then(result => {
+             console.log(result);
+           })*/
         } else {
           bill
             .findAll({
@@ -281,19 +279,6 @@ const putBill = function (req, res) {
           }
         }
       });
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
   } else {
     bill
       .findOne({
