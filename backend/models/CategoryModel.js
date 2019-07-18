@@ -1,13 +1,13 @@
 const categoryModel = (seqelize, type) => {
   return seqelize.define("category", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     idUser: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       allowNull: false
     },
     name: {

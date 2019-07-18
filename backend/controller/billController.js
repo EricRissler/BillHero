@@ -4,6 +4,7 @@ const privateUser = require("../sequelize").privateUser;
 const userpayment = require("../sequelize").userPaymentMethod;
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
+const sequelize = require("../sequelize");
 
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
@@ -130,7 +131,7 @@ const getBill = function (req, res) {
 };
 
 //TODO: searchBillS
-const searchBill = async function (req, res) {
+const searchBill = function (req, res) {
   const uid = req.params.uid;
   const status = req.header("status");
   const catId = req.header("catid");
@@ -155,16 +156,6 @@ const searchBill = async function (req, res) {
               raw: true
             })
             .then(bills => {
-              const modBills = [];
-              /*await asyncForEach(bills, async(bill)=>{
-                commercialUser.findOne({
-                  where: {id: bill.idCreditor}
-                }).then(comUser=>{
-                  bill.longname = comUser.longname;
-                  bill.shortname = comUser.shortname;
-                  modBills.push(bill);
-                })
-              });*/
               res.status(200).json({
                 bills: bills
               });
@@ -199,7 +190,14 @@ const searchBill = async function (req, res) {
             .then(comUsers => {
             });
         } else if (prodName != null) {
-          //TODO:
+          /* console.log("uid: " + uid);
+           console.log("prodName: " + prodName);
+           const query = "SELECT bills.id, bills.idCreditor, bills.idDebitor, bills.amount, bills.billNr, bills.deadline, bills.paymentStatus, bills.idCategory FROM bills where bills.idDebitor = " + uid +
+             " AND bills.id in (SELECT DISTINCT billID FROM items WHERE items.name LIKE %" + prodName + "%)";
+           console.log("query: " + query);
+           sequelize.query(query, { type: sequelize.QueryTypes.SELECT }).then(result => {
+             console.log(result);
+           })*/
         } else {
           bill
             .findAll({
@@ -227,8 +225,60 @@ const putBill = function (req, res) {
     catID: req.body.categoryID,
     paymentID: req.body.paymentID
   };
+  console.log(data);
   if (data.paymentID == undefined && data.catID == undefined) {
     res.status(406).send();
+  } else if (data.paymentID == "paypal" || data.paymentID == "debitcard" || data.paymentID == "sepa") {
+    console.log("in longPayment");
+    bill
+      .findOne({
+        where: {
+          id: data.billID,
+          idDebitor: data.userID
+        }
+      })
+      .then(foundBill => {
+        if (foundBill == null) {
+          res.status(404).json({
+            message: "No bill found"
+          });
+        } else {
+          if (foundBill.paymentStatus == false) {
+            commercialUser.findOne({
+              where: { id: foundBill.idCreditor },
+              raw: true
+            }).then(comuser => {
+              const tokenIN = comuser.incomingPaymentToken;
+
+              const tokenFrom = "userPay.token";
+              if (
+                paymentProvider.payBill(
+                  tokenIN,
+                  foundBill.tokenFrom,
+                  foundBill.amount
+                )
+              ) {
+                foundBill.update({
+                  idPayedWith: data.paymentID,
+                  paymentStatus: true
+                });
+                res.status(200).json({ message: "Payment succeeded" });
+              } else {
+                res.status(409).json({
+                  message:
+                    "Payment denied by Paymentprovider"
+                });
+              }
+
+            })
+
+          } else {
+            res.status(304).json({
+              message: "Bill already payed"
+            });
+          }
+        }
+      });
   } else {
     bill
       .findOne({
@@ -244,11 +294,13 @@ const putBill = function (req, res) {
           });
         } else {
           if (data.catID != undefined) {
+            //Änderung der Kategorie
             foundBill.update({
               idCategory: data.catID
             });
             res.status(200).send();
           } else if (data.paymentID != undefined) {
+            //Bezahlen der Rechnung
             if (foundBill.paymentStatus == false) {
               commercialUser.findOne({
                 where: { id: foundBill.idCreditor },
@@ -256,26 +308,32 @@ const putBill = function (req, res) {
               }).then(comuser => {
                 const tokenIN = comuser.incomingPaymentToken;
                 userpayment.findOne({
-                  where: { id: paymentID }
+                  where: { id: data.paymentID }
                 }).then(userPay => {
-                  tokenFrom = userPay.token;
-                  if (
-                    paymentProvider.payBill(
-                      tokenIN,
-                      foundBill.tokenFrom,
-                      foundBill.amount
-                    )
-                  ) {
-                    foundBill.update({
-                      idPayedWith: data.paymentID,
-                      paymentStatus: true
+                  if (userPay == null) {
+                    res.status(404).json({
+                      message: "PaymentMethod not found"
                     });
-                    res.status(200).json({ message: "Payment succeeded" });
                   } else {
-                    res.status(409).json({
-                      message:
-                        "Payment denied by Paymentprovider"
-                    });
+                    tokenFrom = userPay.token;
+                    if (
+                      paymentProvider.payBill(
+                        tokenIN,
+                        tokenFrom,
+                        foundBill.amount
+                      )
+                    ) {
+                      foundBill.update({
+                        idPayedWith: data.paymentID,
+                        paymentStatus: true
+                      });
+                      res.status(200).json({ message: "Payment succeeded" });
+                    } else {
+                      res.status(409).json({
+                        message:
+                          "Payment denied by Paymentprovider"
+                      });
+                    }
                   }
                 })
               })
