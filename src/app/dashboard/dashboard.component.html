@@ -14,7 +14,7 @@
           {{ nameFavPayOne }}
         </button>
         <ul class="list-group-item">
-          <li id="billName" class="list-group">{{ bill.shortname }}</li>
+          <li id="billName" class="list-group">{{ bill.id }}</li>
           <li id="billDeadline" class="list-group">{{ bill.deadline }}</li>
           <li id="billPrice" class="list-group">{{ bill.amount }}€</li>
           <li>
@@ -28,7 +28,7 @@
             ></Button>
           </li>
         </ul>
-        <button class="alternativePay" (click)="onAlternativePay()">{{ nameFavPayTwo }}</button>
+        <button class="alternativePay" (click)="onAlternativePay(bill.id)">{{ nameFavPayTwo }}</button>
       </div>
     </div>
     <div id="payedMessage" class="payedMessage" *ngIf="showMessage">

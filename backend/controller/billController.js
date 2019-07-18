@@ -227,6 +227,7 @@ const putBill = function (req, res) {
     catID: req.body.categoryID,
     paymentID: req.body.paymentID
   };
+  console.log(data);
   if (data.paymentID == undefined && data.catID == undefined) {
     res.status(406).send();
   } else {
@@ -256,7 +257,7 @@ const putBill = function (req, res) {
               }).then(comuser => {
                 const tokenIN = comuser.incomingPaymentToken;
                 userpayment.findOne({
-                  where: { id: paymentID }
+                  where: { id: data.paymentID }
                 }).then(userPay => {
                   tokenFrom = userPay.token;
                   if (

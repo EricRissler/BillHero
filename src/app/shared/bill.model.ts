@@ -16,6 +16,7 @@ export class Bill {
   public paymentId: String;
   public shortname: String;
   public items: Item[];
+  public id: String;
   constructor(
     public name: String, public deadlineTEST: String, public price: String, public status: number) {
     this.shortname = name;
