@@ -10,6 +10,7 @@ export class FastPayService {
   uid:String;
   billID:String;
   idPayed:String;
+  message:String;
   constructor(private http: HttpClient) { }
 
 
@@ -17,12 +18,14 @@ export class FastPayService {
     //this.idPayed="bc0b1500-a8e9-11e9";
     this.http
     //.put<{}>("http://localhost:3000/api/prvusers/bc7b6300-a8e9-11e9/bills/48f30310-a8ea-11e9"
-    .put<{}>("http://localhost:3000/api/prvusers/"+uid+"/bills/"+billID,{
+    .put<{message:String}>("http://localhost:3000/api/prvusers/"+uid+"/bills/"+billID,{
       paymentID: idPayed
     })
-    .subscribe(responseData => {
-      alert("Test");
+    .subscribe(message => {
+      console.log(message);
+      this.message = message.message;
     });
+    return this.message;
   }
 
 }
