@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   nameFavPayOne: string;
   nameFavPayTwo: string;
 
-  billcount: number;
+  billcount=0;
   firstname: string;
   showMessage: boolean = false;
   uid: String;
@@ -65,9 +65,8 @@ export class DashboardComponent implements OnInit {
         this.billcount = this.bill.length;
       });
   }
-  onPayStandard() {
-
-    this.fastPay.fastPay();
+  onPayStandard(billID:String) {
+    this.fastPay.fastPay(this.prvUserService.getIDPayOne(),this.uid,billID);
 
     this.showMessage = true;
     setTimeout(() => {
