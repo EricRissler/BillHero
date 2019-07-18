@@ -48,8 +48,12 @@ const postBill = function (req, res) {
               });
               return;
             } else {
-              if (data.date == "") {
-                data.date = null;
+              if (data.date == "" || data.date == null || data.date == undefined) {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                data.date = dd + "." + mm + "." + yyyy;
               }
               bill
                 .create({
