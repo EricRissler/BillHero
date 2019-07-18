@@ -11,7 +11,7 @@ const asyncForEach = async (array, callback) => {
   }
 };
 
-const postBill = function(req, res) {
+const postBill = function (req, res) {
   const data = {
     creID: req.params.uid,
     debID: req.body.debID,
@@ -21,7 +21,6 @@ const postBill = function(req, res) {
     deadline: req.body.deadline,
     items: req.body.items
   };
-  console.log(data);
   commercialUser
     .findOne({
       where: {
@@ -60,9 +59,6 @@ const postBill = function(req, res) {
                   deadline: data.deadline
                 })
                 .then(result => {
-                  /*console.log(result);
-                  console.log("------------------");
-                  console.log(data);*/
                   data.items.forEach(billItem => {
                     item.create({
                       billID: result.id,
@@ -83,7 +79,7 @@ const postBill = function(req, res) {
 };
 
 //TODO: ITEMS
-const getBill = function(req, res) {
+const getBill = function (req, res) {
   const data = {
     userId: req.params.uid,
     billId: req.params.bid
@@ -102,15 +98,12 @@ const getBill = function(req, res) {
           bill: null
         });
       } else {
-        console.log("BILL " + foundBill.idCreditor);
         commercialUser
           .findOne({
             where: { id: foundBill.idCreditor },
             raw: true
           })
           .then(debitor => {
-            console.log(debitor);
-            console.log("suche items");
             item
               .findAll({
                 where: {
@@ -130,17 +123,12 @@ const getBill = function(req, res) {
 };
 
 //TODO: searchBillS
-const searchBill = function(req, res) {
+const searchBill = function (req, res) {
   const uid = req.params.uid;
   const status = req.header("status");
   const catId = req.header("catid");
   const credName = req.header("cred");
   const prodName = req.header("prod");
-  console.log("uid" + uid);
-  console.log("status" + status);
-  console.log("catId" + catId);
-  console.log("credName" + credName);
-  console.log("prodName" + prodName);
   privateUser
     .findOne({
       where: { id: uid }
@@ -150,7 +138,6 @@ const searchBill = function(req, res) {
         res.status(404).send();
       } else {
         if (status != null) {
-          console.log("looking for bills wit status " + status);
           bill
             .findAll({
               where: {
@@ -203,12 +190,10 @@ const searchBill = function(req, res) {
               raw: true
             })
             .then(comUsers => {
-              console.log(comUsers);
             });
         } else if (prodName != null) {
           //TODO:
         } else {
-          console.log("getting all");
           bill
             .findAll({
               where: { idDebitor: uid },
@@ -229,8 +214,7 @@ const searchBill = function(req, res) {
 };
 
 //TODO: Testen
-const putBill = function(req, res) {
-  console.log("welcome in PutBill");
+const putBill = function (req, res) {
   const data = {
     userID: req.params.uid,
     billID: req.params.bid,
