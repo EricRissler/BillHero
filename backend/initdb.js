@@ -28,7 +28,7 @@ var prvuserID2;
 var comuserID1;
 var comuserID2;
 
-module.exports = function(req, res) {
+module.exports = function (req, res) {
   conn.drop().then(() => {
     console.log("Dropped");
     conn.sync().then(() => {
@@ -79,6 +79,35 @@ const createUser1 = res => {
   bcrypt.hash(pwprvUser1, BCRYPT_SALTROUNDS).then(pwhash => {
     adress
       .create({
+        strHouseNr: "Waldweg 3",
+        zipCode: "68163",
+        city: "Mannheim",
+        country: "Deutschland",
+        additonal: "linke Haushälfte"
+      })
+      .then(result => {
+        prvUser
+          .create({
+            firstname: "Thomas",
+            lastname: "Hackl",
+            birthdate: "20.08.1986",
+            nationality: "Deutsch",
+            email: "thomas.hackl@gmx.de",
+            password: pwhash,
+            idAdress: result.id
+          })
+          .then(result => {
+            createUser2(res);
+          });
+      });
+  });
+};
+
+const createUser2 = res => {
+  const pwprvUser2 = "test";
+  bcrypt.hash(pwprvUser2, BCRYPT_SALTROUNDS).then(pwhash => {
+    adress
+      .create({
         strHouseNr: "test",
         zipCode: "test",
         city: "test",
@@ -89,81 +118,15 @@ const createUser1 = res => {
         prvUser
           .create({
             firstname: "test",
-            lastname: "User",
-            birthdate: "test",
-            nationality: "test",
-            email: "testUser",
-            password: pwhash,
-            idAdress: result.id
-          })
-          .then(result => {
-            prvuserID1 = result.id;
-            userPayment
-              .create({
-                idUser: prvuserID1,
-                idPaymentMethod: generalPaymentID1PayPal,
-                name: "Thomas SEPA"
-              })
-              .then(result => {
-                userPaymentID1ThomasPayPal = result.id;
-                userPayment
-                  .create({
-                    idUser: prvuserID1,
-                    idPaymentMethod: generalPaymentID2Debit,
-                    name: "Thomas Kreditkarte"
-                  })
-                  .then(result => {
-                    userPaymentID2ThomasDebit = result.id;
-                    createUser2(res);
-                  });
-              });
-          });
-      });
-  });
-};
-
-const createUser2 = res => {
-  const pwprvUser2 = "mueller123";
-  bcrypt.hash(pwprvUser2, BCRYPT_SALTROUNDS).then(pwhash => {
-    adress
-      .create({
-        strHouseNr: "Waldweg 12",
-        zipCode: "63576",
-        city: "Freigericht",
-        country: "Germany"
-      })
-      .then(result => {
-        prvUser
-          .create({
-            firstname: "Peter",
-            lastname: "Müller",
+            lastname: "test",
             birthdate: "15.09.1967",
-            nationality: "german",
-            email: "pmueller67@yahoo.com",
+            nationality: "test",
+            email: "test",
             password: pwhash,
             idAdress: result.id
           })
           .then(result => {
-            prvuserID2 = result.id;
-            userPayment
-              .create({
-                idUser: prvuserID2,
-                idPaymentMethod: generalPaymentID1PayPal,
-                name: "Peter PayPalKonto"
-              })
-              .then(result => {
-                userPaymentID3PeterPayPal = result.id;
-                userPayment
-                  .create({
-                    idUser: prvuserID2,
-                    idPaymentMethod: generalPaymentID2Debit,
-                    name: "Peter DebitCardKonto"
-                  })
-                  .then(result => {
-                    userPaymentID4PeterDebit = result.id;
-                    createComUser1(res);
-                  });
-              });
+            createComUser1(res);
           });
       });
   });
@@ -221,12 +184,12 @@ const createComUser2 = res => {
           })
           .then(result => {
             comuserID2 = result.id;
-            createBill1(res);
+            finish(res);
           });
       });
   });
 };
-
+/*
 const createBill1 = res => {
   category
     .create({
@@ -374,7 +337,7 @@ const createBill4 = res => {
         });
     });
 };
-
+*/
 const finish = res => {
   console.log("Database initialized");
   res.status(201).send("Database initialized");
