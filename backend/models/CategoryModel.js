@@ -8,17 +8,17 @@ const categoryModel = (seqelize, type) => {
     },
     idUser: {
       type: type.CHAR(18),
-      allowNulll: false
+      allowNull: false
     },
     name: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     isHitorical: {
       type: type.BOOLEAN,
-      allowNulll: false,
+      allowNull: false,
       defaultValue: false
     }
-  })
-}
+  });
+};
 module.exports = categoryModel;

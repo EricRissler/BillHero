@@ -4,7 +4,8 @@
     <hr />
     <div class="list">
       <ul *ngFor="let items of items" class="itemsList">
-        <li class="item"> {{ items.itemName }}</li>
+        <li class="item"> {{items.itemAmount}} </li>
+        <li class="item"> {{ x }} {{ items.itemName }}</li>
         <li class="price"> {{ items.itemPrice }} €</li>
       </ul>
     </div>
