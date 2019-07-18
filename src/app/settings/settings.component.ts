@@ -16,6 +16,15 @@ export class SettingsComponent implements OnInit {
   payment1: string = this.prvUserService.namefavpay1;
   payment2: string = "Methode 2";
 
+  namefavPayOne: string;
+  idfavPayOne: string;
+
+  namefavPayTwo: string;
+  idfavPayTwo: string;
+
+  selectedOption1: string;
+  selectedOption2: string;
+
   userID: string;
 
   payments: Payment[];
@@ -29,6 +38,14 @@ export class SettingsComponent implements OnInit {
 
   togglePayment2() {
     this.payment2 = "";
+  }
+
+  putPayment() {
+    this.idfavPayOne = this.selectedOption1;
+    this.idfavPayTwo = this.selectedOption2;
+    alert("payOne: " + this.idfavPayOne);
+    alert("payTwo: " + this.idfavPayTwo);
+    this.paymentService.putPayments(this.idfavPayOne, this.idfavPayTwo);
   }
 
   constructor(
