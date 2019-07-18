@@ -14,10 +14,7 @@ import { DetailService } from '../detail.service';
   styleUrls: ["./mybills.component.css"]
 })
 export class MybillsComponent implements OnInit {
-  category: Category[] = [
-    new Category("Arzt"),
-    new Category("Auto")
-  ]
+  category: Category[] = [];
   billCategory: string = "";
   constructor(private headerService: HeaderService, private http: HttpClient,
     private prvUserService: PrvUserServiceService, private billService: BillService, private detailService: DetailService,
