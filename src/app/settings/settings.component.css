@@ -1,7 +1,7 @@
 .container {
   margin-top: 8px;
   margin-bottom: 8px;
-  min-height: 579px;
+  height: 570px;
   border: 2px solid #05619b;
   border-radius: 10px;
   background-color: white;
@@ -51,7 +51,36 @@ h1 {
   color: white;
   padding-left: 50px;
   padding-right: 50px;
-  font-size: 25px;
+  font-size: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.putPayment {
+  background-color: #05619b;
+  border: 4px solid white;
+  border-radius: 50px;
+  color: white;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.ulButtons {
+  list-style: none;
+  margin-bottom: 20%;
+}
+
+#liButtons {
+  display: block;
+}
+
+.paymentButton {
+  margin-left: 10%;
+}
+
+.newPaymentButton {
+  margin-right: 50%;
 }
