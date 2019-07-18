@@ -10,7 +10,7 @@
     </div>
     <div class="rightcontainer">
       <div class="billList" *ngFor="let bill of bill">
-        <button class="standardPay" (click)="onPayStandard()">
+        <button class="standardPay" (click)="onPayStandard(bill.id)">
           {{ nameFavPayOne }}
         </button>
         <ul class="list-group-item">
