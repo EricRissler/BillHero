@@ -1,9 +1,11 @@
 const bill = require("../sequelize").bill;
 const commercialUser = require("../sequelize").commercialUser;
 const privateUser = require("../sequelize").privateUser;
-const paymentProvider = require("../paymentprovider/paymentprovider");
+const userpayment = require("../sequelize").userPaymentMethod;
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
+
+const paymentProvider = require("../paymentprovider/paymentprovider");
 
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
@@ -78,7 +80,6 @@ const postBill = function (req, res) {
     });
 };
 
-//TODO: ITEMS
 const getBill = function (req, res) {
   const data = {
     userId: req.params.uid,
@@ -213,7 +214,6 @@ const searchBill = function (req, res) {
     });
 };
 
-//TODO: Testen
 const putBill = function (req, res) {
   const data = {
     userID: req.params.uid,
@@ -231,38 +231,50 @@ const putBill = function (req, res) {
           idDebitor: data.userID
         }
       })
-      .then(result => {
-        if (result == null) {
+      .then(foundBill => {
+        if (foundBill == null) {
           res.status(404).json({
             message: "No bill found"
           });
         } else {
           if (data.catID != undefined) {
-            result.update({
+            foundBill.update({
               idCategory: data.catID
             });
             res.status(200).send();
           } else if (data.paymentID != undefined) {
-            if (result.paymentStatus == false) {
-              //TODO: get paymenttopkens from creditor and debitor
-              if (
-                paymentProvider.payBill(
-                  result.idCreditor,
-                  result.idDebitor,
-                  result.amount
-                )
-              ) {
-                result.update({
-                  idPayedWith: data.paymentID,
-                  paymentStatus: true
-                });
-                res.status(200).json({ message: "Payment succeeded" });
-              } else {
-                res.status(409).json({
-                  message:
-                    "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
-                });
-              }
+            if (foundBill.paymentStatus == false) {
+              commercialUser.findOne({
+                where: { id: foundBill.idCreditor },
+                raw: true
+              }).then(comuser => {
+                const tokenIN = comuser.incomingPaymentToken;
+                userpayment.findOne({
+                  where: { id: paymentID }
+                }).then(userPay => {
+                  tokenFrom = userPay.token;
+
+                  if (
+                    paymentProvider.payBill(
+                      tokenIN,
+                      foundBill.tokenFrom,
+                      foundBill.amount
+                    )
+                  ) {
+                    foundBill.update({
+                      idPayedWith: data.paymentID,
+                      paymentStatus: true
+                    });
+                    res.status(200).json({ message: "Payment succeeded" });
+                  } else {
+                    res.status(409).json({
+                      message:
+                        "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
+                    });
+                  }
+                })
+              })
+
             } else {
               res.status(304).json({
                 message: "Bill already payed"
