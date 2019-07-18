@@ -3,8 +3,7 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 const userpayment = require("../sequelize").userPaymentMethod;
 
-const getUser = function(req, res) {
-  console.log(req.headers);
+const getUser = function (req, res) {
   const authdata = req.header("authData").split(":");
   const data = {
     email: authdata[0],
@@ -26,7 +25,6 @@ const getUser = function(req, res) {
       }
       bcrypt.compare(data.password, user.password).then(
         result => {
-          console.log(user);
 
           userpayment
             .findOne({
@@ -82,7 +80,7 @@ const getUser = function(req, res) {
     });
 };
 
-const postUser = function(req, res) {
+const postUser = function (req, res) {
   const BCYRPT_SALTROUNDS = 12;
   const data = {
     country: req.body.country,
@@ -97,8 +95,6 @@ const postUser = function(req, res) {
     city: req.body.city,
     bdate: req.body.bdate
   };
-  console.log("Yay im Server");
-  console.log(data);
 
   //Prüfen ob alle Felder gefüllt sind
   for (var key in data) {
@@ -133,8 +129,7 @@ const postUser = function(req, res) {
             country: data.country,
             additonal: data.additional
           })
-          .then(function(result) {
-            console.log("Created Adress");
+          .then(function (result) {
             bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
               hash => {
                 privateUser
@@ -148,7 +143,6 @@ const postUser = function(req, res) {
                     idAdress: result.id
                   })
                   .then(result => {
-                    console.log("Created User");
                     res.status(201).json({
                       message: "User created",
                       uid: result.id
@@ -164,13 +158,12 @@ const postUser = function(req, res) {
           })
           .catch(err => {
             res.status(501).json(err);
-            console.log(err);
           });
       }
     });
 };
 //TODO: get commercial and private user
-const getByID = function(req, res) {
+const getByID = function (req, res) {
   const reqID = req.params.uid;
   privateUser
     .findOne({
@@ -193,38 +186,45 @@ const getByID = function(req, res) {
     });
 };
 
+const putUser = function (req, res) {
+  let IDfavOne = req.body.IDfavPaymentOne;
+  let IDfavTwo = req.body.IDfavPaymentTWO;
+  const uid = req.params.uid;
+  privateUser.findOne({
+    where: {
+      id: uid
+    }
+  }).then(user => {
+    if (user == null) {
+      res.status(404).send();
+    } else {
+      if (IDfavOne == null || IDfavOne == "" || IDfavOne == undefined) {
+        IDfavOne = user.idFavPaymentOne;
+      }
+      if (IDfavTwo == null || IDfavTwo == "" || IDfavTwo == undefined) {
+        IDfavTwo = user.idFavPaymentTwo;
+      }
+      privateUser.update({
+        where: {
+          id: uid
+        },
+        idFavPaymentOne: IDfavOne,
+        idFavPaymentTwo: IDfavTwo
+      }).then(result => {
+        res.status(201).json({
+          message: "Paymentmethod changed",
+          user: result
+        })
+      })
+
+    }
+
+  })
+
+}
+
 module.exports = {
   get: getUser,
   post: postUser,
   getByID: getByID
 };
-/*
-if (
-            user.idFavPaymentOne != null &&
-            user.idFavPaymentOne != undefined
-          ) {
-            userpayment
-              .findOne({
-                where: {
-                  id: idFavPaymentOne
-                }
-              })
-              .then(favPaymentOne => {
-                user.nameFavPaymentOne = favPaymentOne.name;
-              });
-          }
-          if (
-            user.idFavPaymentTwp != null &&
-            user.idFavPaymentTwo != undefined
-          ) {
-            userpayment
-              .findOne({
-                where: {
-                  id: idFavPaymentTwo
-                }
-              })
-              .then(favPaymentTwo => {
-                user.nameFavPaymentTwo = favPaymentTwo.name;
-              });
-          }
-*/
