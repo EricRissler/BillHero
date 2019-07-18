@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
 import { Category } from "../shared/category.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
@@ -15,8 +15,8 @@ import { DetailService } from '../detail.service';
 })
 export class MybillsComponent implements OnInit {
   category: Category[] = [];
-  billCategory: string = "";
-  constructor(private headerService: HeaderService, private http: HttpClient,
+  //billCategory: string = "";
+  constructor(private headerService: HeaderService,  private http: HttpClient,
     private prvUserService: PrvUserServiceService, private billService: BillService, private detailService: DetailService,
     private router: Router) { }
   public input: string = "";
@@ -57,19 +57,35 @@ ngOnInit(){
 
       this.headerService.setHeader(true);
 
-      this.getPayed();
+      this.getAll();
       if (this.bill == null) {
-        this.getPayed();
+        this.getAll();
       }
 
     }
     
   }
-  getPayed(){
+  getAll(){
     this.http
     .get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills")
     .subscribe(responseData => {
       this.bill = responseData.bills;
     });
+  }
+  getPayed(){
+    this.uid = this.prvUserService.getUID();
+    const headers = new HttpHeaders().set("status", "1");
+    this.http.get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills", { headers })
+      .subscribe(responseData => {
+        this.bill = responseData.bills;
+      });
+  }
+  getUnpayed(){
+    this.uid = this.prvUserService.getUID();
+    const headers = new HttpHeaders().set("status", "0");
+    this.http.get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills", { headers })
+      .subscribe(responseData => {
+        this.bill = responseData.bills;
+      });
   }
 }
