@@ -8,19 +8,19 @@ const commercialUserModel = (seqelize, type) => {
     },
     billID: {
       type: type.CHAR(18),
-      allownull: false
+      allowNull: false
     },
     itemName: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     itemPrice: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     },
     itemAmount: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     }
   });
 };

@@ -4,9 +4,10 @@ const CategoryController = require("../controller/categoryController");
 const billController = require("../controller/billController");
 const PaymentController = require("../controller/paymentController");
 
-router.post("/", UserController.post);
-router.get("/", UserController.get);
-router.get("/:uid", UserController.getByID);
+router.post("/", UserController.postUser);
+router.get("/", UserController.getUser);
+router.get("/:uid", UserController.getUserByID);
+router.put("/:uid", UserController.putUser);
 router.post("/:uid/categories", CategoryController.postCat);
 router.get("/:uid/categories", CategoryController.getCat);
 //router.delete("/:uid/categories/:cid", CategoryController.deleteCat);
