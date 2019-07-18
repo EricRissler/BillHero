@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { PrvUserServiceService } from "./prv-user-service.service";
 import { Payment } from "./shared/Payment.model";
+import { Prvuser } from "./shared/prvuser.model";
 
 @Injectable({
   providedIn: "root"
@@ -36,8 +37,8 @@ export class PaymentService {
   putPayments(idfavPayOne: string, idfavPayTwo: string) {
     this.userID = this.prvUserHeader.getUID();
     this.http
-      .put<{ message: string }>(
-        "http://localhost:3000/api/prvusers/" + this.userID + "/payments",
+      .put<{ prvUser: Prvuser }>(
+        "http://localhost:3000/api/prvusers/" + this.userID,
         {
           IDfavPaymentOne: idfavPayOne,
           IDfavPaymentTwo: idfavPayTwo
