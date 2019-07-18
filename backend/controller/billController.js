@@ -113,6 +113,8 @@ const getBill = function (req, res) {
               })
               .then(items => {
                 foundBill.shortname = debitor.shortname;
+                //foundBill.longname = debitor.longname;
+                //longname wird nich nicht in Frontend gebraucht
                 res.status(200).json({
                   bill: foundBill,
                   items: items
@@ -124,7 +126,7 @@ const getBill = function (req, res) {
 };
 
 //TODO: searchBillS
-const searchBill = function (req, res) {
+const searchBill = async function (req, res) {
   const uid = req.params.uid;
   const status = req.header("status");
   const catId = req.header("catid");
@@ -253,7 +255,6 @@ const putBill = function (req, res) {
                   where: { id: paymentID }
                 }).then(userPay => {
                   tokenFrom = userPay.token;
-
                   if (
                     paymentProvider.payBill(
                       tokenIN,
@@ -269,7 +270,7 @@ const putBill = function (req, res) {
                   } else {
                     res.status(409).json({
                       message:
-                        "Payment was denied by Paymentprovider. Please check your account data for used Paymentmethod"
+                        "Payment denied by Paymentprovider"
                     });
                   }
                 })
