@@ -162,6 +162,7 @@ const postUser = function (req, res) {
       }
     });
 };
+
 //TODO: get commercial and private user
 const getByID = function (req, res) {
   const reqID = req.params.uid;
@@ -224,7 +225,8 @@ const putUser = function (req, res) {
 }
 
 module.exports = {
-  get: getUser,
-  post: postUser,
-  getByID: getByID
+  getUser: getUser,
+  postUser: postUser,
+  getUserByID: getByID,
+  putUser: putUser
 };
