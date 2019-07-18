@@ -43,8 +43,6 @@ export class SettingsComponent implements OnInit {
   putPayment() {
     this.idfavPayOne = this.selectedOption1;
     this.idfavPayTwo = this.selectedOption2;
-    alert("payOne: " + this.idfavPayOne);
-    alert("payTwo: " + this.idfavPayTwo);
     this.paymentService.putPayments(this.idfavPayOne, this.idfavPayTwo);
   }
 
