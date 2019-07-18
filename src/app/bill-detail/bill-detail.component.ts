@@ -14,7 +14,7 @@ export class BillDetailComponent implements OnInit {
   public price:String;
   public shortname:String;
   public items: Item[];
-  
+  public x =" x ";
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
@@ -27,6 +27,10 @@ export class BillDetailComponent implements OnInit {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
+
+    this.detailService.setItems();
+    this.detailService.setPrice();
+    this.detailService.setShortname();
 
     interval(500).subscribe(count => {
       this.shortname = this.detailService.getShortname();
