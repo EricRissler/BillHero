@@ -38,14 +38,19 @@ const postPayment = function(req, resp) {
                 where: { name: "SEPA" }
               })
               .then(resgPay => {
+                const gPayID = resgPay.id;
+                console.log("gPayID " + gPayID);
+                console.log("resgPay.id " + resgPay.id);
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
                 );
+                console.log("gPayID " + gPayID);
+                console.log("resgPay.id " + resgPay.id);
                 userPayment
                   .create({
                     idUser: prvID,
-                    idPayment: resgPay.id,
+                    idPaymentMethod: gPayID,
                     name: nameP,
                     token: token
                   })
