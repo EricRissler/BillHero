@@ -10,7 +10,7 @@ list-style: none;
 
 .list{
   height: 50%;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .detail {
