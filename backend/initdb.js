@@ -102,7 +102,7 @@ const createUser1 = res => {
               .create({
                 idUser: prvuserID1,
                 idPaymentMethod: generalPaymentID1PayPal,
-                name: "Thomas PayPalKonto"
+                name: "Thomas SEPA"
               })
               .then(result => {
                 userPaymentID1ThomasPayPal = result.id;
@@ -110,7 +110,7 @@ const createUser1 = res => {
                   .create({
                     idUser: prvuserID1,
                     idPaymentMethod: generalPaymentID2Debit,
-                    name: "Thomas DebitCardKonto"
+                    name: "Thomas Kreditkarte"
                   })
                   .then(result => {
                     userPaymentID2ThomasDebit = result.id;
