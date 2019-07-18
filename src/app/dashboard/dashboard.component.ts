@@ -5,6 +5,7 @@ import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 import { BillService } from "../bill.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { FastPayService } from '../fast-pay.service';
 
 declare var require: any;
 @Component({
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit {
     private prvUserService: PrvUserServiceService,
     private billService: BillService,
     private http: HttpClient,
+    private fastPay: FastPayService,
     private router: Router
   ) { }
 
@@ -48,7 +50,7 @@ export class DashboardComponent implements OnInit {
     if (this.bill == null) {
       this.getUnpayed();
     }
-
+    
     this.nameFavPayOne = this.prvUserService.getNamePayOne();
     this.nameFavPayTwo = this.prvUserService.getNamePayTwo();
     console.log("Favone" + this.nameFavPayOne);
@@ -64,9 +66,17 @@ export class DashboardComponent implements OnInit {
       });
   }
   onPayStandard() {
+
+    this.fastPay.fastPay();
+
     this.showMessage = true;
     setTimeout(() => {
       this.showMessage = false;
     }, 2000);
+  }
+  onAlternativePay(){
+
+
+
   }
 }
