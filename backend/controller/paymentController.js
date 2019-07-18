@@ -39,14 +39,10 @@ const postPayment = function(req, resp) {
               })
               .then(resgPay => {
                 const gPayID = resgPay.id;
-                console.log("gPayID " + gPayID);
-                console.log("resgPay.id " + resgPay.id);
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
                 );
-                console.log("gPayID " + gPayID);
-                console.log("resgPay.id " + resgPay.id);
                 userPayment
                   .create({
                     idUser: prvID,
@@ -70,6 +66,7 @@ const postPayment = function(req, resp) {
                 where: { name: "DebitCard" }
               })
               .then(resgPay => {
+                const gPayID = resgPay.id;
                 const token = paymentProvider.registerPaymentmethod(
                   result.name,
                   data
@@ -77,7 +74,7 @@ const postPayment = function(req, resp) {
                 userPayment
                   .create({
                     idUser: prvID,
-                    idPayment: resgPay.id,
+                    idPaymentMethod: gPayID,
                     name: nameP,
                     token: token
                   })
