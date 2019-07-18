@@ -4,6 +4,7 @@ import { HeaderService } from "../header.service";
 import { PrvUserServiceService } from "../prv-user-service.service";
 import { Router } from "@angular/router";
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { DetailService } from '../detail.service';
 
 @Component({
   selector: "app-activity",
@@ -16,6 +17,7 @@ export class ActivityComponent implements OnInit {
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
+    private detailService: DetailService,
     private http: HttpClient,
     private router: Router
   ) { }
@@ -26,10 +28,16 @@ export class ActivityComponent implements OnInit {
       this.router.navigate(["/signin"]);
     }
     this.headerService.setHeader(true);
+    this.detailService.setItems();
+    this.detailService.setPrice();
+    this.detailService.setShortname();
     this.getPayed();
     if (this.bill == null) {
       this.getPayed();
     }
+  }
+  billClick(id: String) {
+    this.detailService.getDetail(id);
   }
 
   getPayed() {

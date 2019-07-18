@@ -2,7 +2,7 @@
     <h2 class="headline">Deine zuletzt bezahlten Rechnungen auf einem Blick:</h2>
   <div class="leftcontainer">
     
-    <div class="billList" *ngFor="let bill of bill">
+    <div class="billList" *ngFor="let bill of bill" (click)="billClick(bill.id)">
       <ul class="list-group-item" id="list">
         <li class="list-group">{{ bill.name }}</li>
         <li class="list-group">{{ bill.deadline }}</li>

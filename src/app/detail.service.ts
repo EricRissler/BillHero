@@ -9,38 +9,48 @@ import { Bill } from './shared/bill.model';
 })
 export class DetailService {
 
-    public items:Item[];
-    public bill: Bill;
-    public price:String;
-    public uid:String;
-    public shortname:String;
+  public items: Item[];
+  public bill: Bill;
+  public price: String;
+  public amount: number;
+  public uid: String;
+  public shortname: String;
   constructor(private http: HttpClient, private prvUserService: PrvUserServiceService) { }
 
-getDetail(id: String){
-  this.uid = this.prvUserService.getUID();
-  
-  this.http
-  .get<{ bill: Bill, items:Item[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills/"+id)
-  .subscribe(responseData => {
-    console.log(responseData);
-    this.price = responseData.bill.amount;
-    this.shortname = responseData.bill.shortname;
-    this.items = responseData.items;
-    console.log(this.items);
-   // console.log(this.bill);
-  });
-   // this.items = this.bill.items;
-    //console.log(this.bill.items);
-}
+  getDetail(id: String) {
+    this.uid = this.prvUserService.getUID();
 
-getItems(){
-  return this.items;
-}
-getPrice(){
-  return this.price;
-}
-getShortname(){
-  return this.shortname;
-}
+    this.http
+      .get<{ bill: Bill, items: Item[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills/" + id)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.price = responseData.bill.amount;
+        this.shortname = responseData.bill.shortname;
+        this.items = responseData.items;
+        console.log(this.items);
+        // console.log(this.bill);
+      });
+    // this.items = this.bill.items;
+    //console.log(this.bill.items);
+  }
+
+  getItems() {
+    return this.items;
+  }
+  getPrice() {
+    return this.price;
+  }
+  getShortname() {
+    return this.shortname;
+  }
+  setItems() {
+    this.items = null;
+  }
+  setPrice() {
+    this.price = null
+  }
+  setShortname() {
+    this.shortname = null;
+  }
 
 }

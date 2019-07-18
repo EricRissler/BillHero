@@ -28,7 +28,7 @@
             ></Button>
           </li>
         </ul>
-        <button class="alternativePay">{{ nameFavPayTwo }}</button>
+        <button class="alternativePay" (click)="onAlternativePay()">{{ nameFavPayTwo }}</button>
       </div>
     </div>
     <div id="payedMessage" class="payedMessage" *ngIf="showMessage">
