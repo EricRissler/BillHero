@@ -24,8 +24,7 @@ const billModel = (sequelize, type) => {
     },
     date: {
       type: type.STRING,
-      allowNull: false,
-      default: Date.now()
+      allowNull: true
     },
     deadline: {
       type: type.STRING,
