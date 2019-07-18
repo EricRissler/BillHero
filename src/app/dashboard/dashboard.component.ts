@@ -23,10 +23,11 @@ export class DashboardComponent implements OnInit {
   nameFavPayOne: string;
   nameFavPayTwo: string;
 
-  billcount=0;
+  billcount = 0;
   firstname: string;
   showMessage: boolean = false;
   uid: String;
+  message: String;
   constructor(
     private headerService: HeaderService,
     private prvUserService: PrvUserServiceService,
@@ -50,7 +51,7 @@ export class DashboardComponent implements OnInit {
     if (this.bill == null) {
       this.getUnpayed();
     }
-    
+
     this.nameFavPayOne = this.prvUserService.getNamePayOne();
     this.nameFavPayTwo = this.prvUserService.getNamePayTwo();
     console.log("Favone" + this.nameFavPayOne);
@@ -65,17 +66,38 @@ export class DashboardComponent implements OnInit {
         this.billcount = this.bill.length;
       });
   }
-  onPayStandard(billID:String) {
-    this.fastPay.fastPay(this.prvUserService.getIDPayOne(),this.uid,billID);
+  onPayStandard(billID: String) {
 
-    this.showMessage = true;
-    setTimeout(() => {
-      this.showMessage = false;
-    }, 2000);
+    this.message = this.fastPay.fastPay(this.prvUserService.getIDPayOne(), this.uid, billID);
+    if (this.message == "Payment succeeded") {
+      for (let index = 0; index < this.bill.length; index++) {
+        if (this.bill[index].id == billID) {
+          this.bill.splice(index, 1);
+          this.billcount = this.bill.length;
+        }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 2000);
+      }
+
+
+    }
   }
-  onAlternativePay(){
+  onAlternativePay(billID: String) {
+    this.message = this.fastPay.fastPay(this.prvUserService.getIDPayTwo(), this.uid, billID);
+    if (this.message == "Payment succeeded") {
+      for (let index = 0; index < this.bill.length; index++) {
+        if (this.bill[index].id == billID) {
+          this.bill.splice(index, 1);
+          this.billcount = this.bill.length;
+        }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 2000);
 
-
-
+      }
+    }
   }
 }
