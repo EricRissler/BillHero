@@ -327,7 +327,7 @@ const putBill = function (req, res) {
                 }).then(userPay => {
                   if (userPay == null) {
                     res.status(404).json({
-                      message: "PamentMethod not found"
+                      message: "PaymentMethod not found"
                     });
                   } else {
                     tokenFrom = userPay.token;
