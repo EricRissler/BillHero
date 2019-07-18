@@ -7,9 +7,9 @@
       placeholder="Rechnung suchen"
     />
     <hr />
-    <p><a id="standard">Alle Rechnungen</a></p>
-    <p><a id="standard">Unbezahlte Rechnungen</a></p>
-    <p><a id="standard">Bezahlte Rechnungen</a></p>
+    <p><a id="standard" (click)="getAll()">Alle Rechnungen</a></p>
+    <p><a id="standard" (click)="getUnpayed()">Unbezahlte Rechnungen</a></p>
+    <p><a id="standard" (click)="getPayed()">Bezahlte Rechnungen</a></p>
     <hr />
     <input
       type="text"
@@ -37,14 +37,14 @@
               {{ billCategory }}
               <span class="caret"></span>
             </button> -->
-        <select name="" class="categoryDropDown" id=""
+         <!-- <select name="" class="categoryDropDown" id=""
           >{{
             billCategory
           }}
           <option *ngFor="let category of category" [value]="category.name">
             {{ category.name }}
-          </option>
-        </select>
+          </option> 
+        </select> -->
         <li class="list-group">{{ bill.shortname }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
         <li class="list-group">{{ bill.amount }}</li>

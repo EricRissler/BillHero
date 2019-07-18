@@ -15,6 +15,7 @@ export class DetailService {
   public amount: number;
   public uid: String;
   public shortname: String;
+  public billID:String;
   constructor(private http: HttpClient, private prvUserService: PrvUserServiceService) { }
 
   getDetail(id: String) {
@@ -27,6 +28,7 @@ export class DetailService {
         this.price = responseData.bill.amount;
         this.shortname = responseData.bill.shortname;
         this.items = responseData.items;
+        this.billID= responseData.bill.id;
         console.log(this.items);
         // console.log(this.bill);
       });
@@ -42,6 +44,9 @@ export class DetailService {
   }
   getShortname() {
     return this.shortname;
+  }
+  getID(){
+    return this.billID;
   }
   setItems() {
     this.items = null;
