@@ -3,7 +3,7 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 const userpayment = require("../sequelize").userPaymentMethod;
 
-const getUser = function(req, res) {
+const getUser = function (req, res) {
   const authdata = req.header("authData").split(":");
   const data = {
     email: authdata[0],
@@ -79,7 +79,7 @@ const getUser = function(req, res) {
     });
 };
 
-const postUser = function(req, res) {
+const postUser = function (req, res) {
   const BCYRPT_SALTROUNDS = 12;
   const data = {
     country: req.body.country,
@@ -128,7 +128,7 @@ const postUser = function(req, res) {
             country: data.country,
             additonal: data.additional
           })
-          .then(function(result) {
+          .then(function (result) {
             bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
               hash => {
                 privateUser
@@ -162,8 +162,8 @@ const postUser = function(req, res) {
     });
 };
 
-//TODO: get commercial and private user
-const getByID = function(req, res) {
+
+const getByID = function (req, res) {
   const reqID = req.params.uid;
   privateUser
     .findOne({
@@ -186,7 +186,7 @@ const getByID = function(req, res) {
     });
 };
 
-const putUser = function(req, res) {
+const putUser = function (req, res) {
   console.log("hello in Put");
   let IDfavOne = req.body.IDfavPaymentOne;
   let IDfavTwo = req.body.IDfavPaymentTwo;
