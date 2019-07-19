@@ -1,7 +1,7 @@
 const category = require("../sequelize").category;
 const prvUser = require("../sequelize").privateUser;
 
-const postCat = function (req, res) {
+const postCat = function(req, res) {
   const uid = req.params.uid;
   const catName = req.body.name;
   prvUser
@@ -46,7 +46,7 @@ const postCat = function (req, res) {
       }
     });
 };
-const getCat = function (req, res) {
+const getCat = function(req, res) {
   const uid = req.params.uid;
   prvUser
     .findOne({
@@ -75,10 +75,8 @@ const getCat = function (req, res) {
       }
     });
 };
-const deleteCat = function (req, res) { };
 
 module.exports = {
   postCat: postCat,
-  getCat: getCat,
-  deleteCat: deleteCat
+  getCat: getCat
 };

@@ -50,5 +50,5 @@ const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
 console.log("Listen on Port " + port);
-console.log("localhost:" + port);
+console.log("http://localhost:" + port);
 server.listen(port);
