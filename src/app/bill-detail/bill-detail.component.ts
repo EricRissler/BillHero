@@ -36,12 +36,7 @@ export class BillDetailComponent implements OnInit {
       this.shortname = this.detailService.getShortname();
       this.items = this.detailService.getItems();
       this.price = this.detailService.getPrice();
-      //this.price = this.detailService.getPrice();
-      //console.log("Items: "+this.items[0].itemName);
     });
     
-    //this.items = this.detailService.getItems();
-    // console.log("Items: "+this.items[0].itemName);
-
   }
 }

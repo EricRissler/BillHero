@@ -19,16 +19,12 @@ export class PaymentService {
  
 
   getPayments() {
-    //TODO: Prüfen dass pw und user kein ':' enthält
     this.userID = this.prvUserHeader.getUID();
     this.http
       .get<{ payment: Payment[] }>(
         "http://localhost:3000/api/prvusers/" + this.userID + "/payments"
       )
       .subscribe(responseData => {
-        console.log("YAY");
-        console.log(responseData);
-
         this.payments = responseData.payment;
       });
 
