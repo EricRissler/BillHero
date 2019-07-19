@@ -9,13 +9,14 @@ import { Prvuser } from "./shared/prvuser.model";
 })
 export class PaymentService {
   userID: string;
-
+  payments: Payment[];
+  
   constructor(
     private http: HttpClient,
     private prvUserHeader: PrvUserServiceService
   ) {}
 
-  payments: Payment[];
+ 
 
   getPayments() {
     //TODO: Prüfen dass pw und user kein ':' enthält

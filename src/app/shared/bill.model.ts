@@ -1,10 +1,6 @@
 import { Item } from './item.model';
 
 export class Bill {
-  // public name: string;
-  // public deadline: string;
-  // public price: string;
-  // public status: boolean;
   public billID: String;
   public billNr: String;
   public creditorID: String;
