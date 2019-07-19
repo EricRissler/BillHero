@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PrvUserServiceService } from './prv-user-service.service';
 import { Bill } from './shared/bill.model';
-import { Router } from '@angular/router';
+
 
 
 @Injectable({
@@ -23,7 +23,7 @@ export class BillService {
   uid: String;
 
   constructor(private http: HttpClient, private prvUserService: PrvUserServiceService,
-    private router: Router) {
+) {
 
   }
 

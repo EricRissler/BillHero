@@ -87,7 +87,6 @@ export class PrvUserServiceService {
   }
 
   getNamePayOne() {
-    console.log("favoneservice" + this.namefavpay1);
     return this.namefavpay1;
   }
 
