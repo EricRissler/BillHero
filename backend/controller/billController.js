@@ -4,17 +4,10 @@ const privateUser = require("../sequelize").privateUser;
 const userpayment = require("../sequelize").userPaymentMethod;
 const item = require("../sequelize").item;
 const op = require("../sequelize").op;
-const sequelize = require("../sequelize");
 
 const paymentProvider = require("../paymentprovider/paymentprovider");
 
-const asyncForEach = async (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-};
-
-const postBill = function (req, res) {
+const postBill = function(req, res) {
   const data = {
     creID: req.params.uid,
     debID: req.body.debID,
@@ -49,10 +42,14 @@ const postBill = function (req, res) {
               });
               return;
             } else {
-              if (data.date == "" || data.date == null || data.date == undefined) {
+              if (
+                data.date == "" ||
+                data.date == null ||
+                data.date == undefined
+              ) {
                 var today = new Date();
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var dd = String(today.getDate()).padStart(2, "0");
+                var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
                 var yyyy = today.getFullYear();
                 data.date = dd + "." + mm + "." + yyyy;
               }
@@ -85,7 +82,7 @@ const postBill = function (req, res) {
     });
 };
 
-const getBill = function (req, res) {
+const getBill = function(req, res) {
   const data = {
     userId: req.params.uid,
     billId: req.params.bid
@@ -131,7 +128,7 @@ const getBill = function (req, res) {
 };
 
 //TODO: searchBillS
-const searchBill = function (req, res) {
+const searchBill = function(req, res) {
   const uid = req.params.uid;
   const status = req.header("status");
   const catId = req.header("catid");
@@ -187,8 +184,7 @@ const searchBill = function (req, res) {
               },
               raw: true
             })
-            .then(comUsers => {
-            });
+            .then(comUsers => {});
         } else if (prodName != null) {
           /* console.log("uid: " + uid);
            console.log("prodName: " + prodName);
@@ -218,7 +214,7 @@ const searchBill = function (req, res) {
     });
 };
 
-const putBill = function (req, res) {
+const putBill = function(req, res) {
   const data = {
     userID: req.params.uid,
     billID: req.params.bid,
@@ -228,7 +224,11 @@ const putBill = function (req, res) {
   console.log(data);
   if (data.paymentID == undefined && data.catID == undefined) {
     res.status(406).send();
-  } else if (data.paymentID == "paypal" || data.paymentID == "debitcard" || data.paymentID == "sepa") {
+  } else if (
+    data.paymentID == "paypal" ||
+    data.paymentID == "debitcard" ||
+    data.paymentID == "sepa"
+  ) {
     console.log("in longPayment");
     bill
       .findOne({
@@ -244,34 +244,33 @@ const putBill = function (req, res) {
           });
         } else {
           if (foundBill.paymentStatus == false) {
-            commercialUser.findOne({
-              where: { id: foundBill.idCreditor },
-              raw: true
-            }).then(comuser => {
-              const tokenIN = comuser.incomingPaymentToken;
+            commercialUser
+              .findOne({
+                where: { id: foundBill.idCreditor },
+                raw: true
+              })
+              .then(comuser => {
+                const tokenIN = comuser.incomingPaymentToken;
 
-              const tokenFrom = "userPay.token";
-              if (
-                paymentProvider.payBill(
-                  tokenIN,
-                  foundBill.tokenFrom,
-                  foundBill.amount
-                )
-              ) {
-                foundBill.update({
-                  idPayedWith: data.paymentID,
-                  paymentStatus: true
-                });
-                res.status(200).json({ message: "Payment succeeded" });
-              } else {
-                res.status(409).json({
-                  message:
-                    "Payment denied by Paymentprovider"
-                });
-              }
-
-            })
-
+                const tokenFrom = "userPay.token";
+                if (
+                  paymentProvider.payBill(
+                    tokenIN,
+                    foundBill.tokenFrom,
+                    foundBill.amount
+                  )
+                ) {
+                  foundBill.update({
+                    idPayedWith: data.paymentID,
+                    paymentStatus: true
+                  });
+                  res.status(200).json({ message: "Payment succeeded" });
+                } else {
+                  res.status(409).json({
+                    message: "Payment denied by Paymentprovider"
+                  });
+                }
+              });
           } else {
             res.status(304).json({
               message: "Bill already payed"
@@ -302,42 +301,46 @@ const putBill = function (req, res) {
           } else if (data.paymentID != undefined) {
             //Bezahlen der Rechnung
             if (foundBill.paymentStatus == false) {
-              commercialUser.findOne({
-                where: { id: foundBill.idCreditor },
-                raw: true
-              }).then(comuser => {
-                const tokenIN = comuser.incomingPaymentToken;
-                userpayment.findOne({
-                  where: { id: data.paymentID }
-                }).then(userPay => {
-                  if (userPay == null) {
-                    res.status(404).json({
-                      message: "PaymentMethod not found"
-                    });
-                  } else {
-                    tokenFrom = userPay.token;
-                    if (
-                      paymentProvider.payBill(
-                        tokenIN,
-                        tokenFrom,
-                        foundBill.amount
-                      )
-                    ) {
-                      foundBill.update({
-                        idPayedWith: data.paymentID,
-                        paymentStatus: true
-                      });
-                      res.status(200).json({ message: "Payment succeeded" });
-                    } else {
-                      res.status(409).json({
-                        message:
-                          "Payment denied by Paymentprovider"
-                      });
-                    }
-                  }
+              commercialUser
+                .findOne({
+                  where: { id: foundBill.idCreditor },
+                  raw: true
                 })
-              })
-
+                .then(comuser => {
+                  const tokenIN = comuser.incomingPaymentToken;
+                  userpayment
+                    .findOne({
+                      where: { id: data.paymentID }
+                    })
+                    .then(userPay => {
+                      if (userPay == null) {
+                        res.status(404).json({
+                          message: "PaymentMethod not found"
+                        });
+                      } else {
+                        tokenFrom = userPay.token;
+                        if (
+                          paymentProvider.payBill(
+                            tokenIN,
+                            tokenFrom,
+                            foundBill.amount
+                          )
+                        ) {
+                          foundBill.update({
+                            idPayedWith: data.paymentID,
+                            paymentStatus: true
+                          });
+                          res
+                            .status(200)
+                            .json({ message: "Payment succeeded" });
+                        } else {
+                          res.status(409).json({
+                            message: "Payment denied by Paymentprovider"
+                          });
+                        }
+                      }
+                    });
+                });
             } else {
               res.status(304).json({
                 message: "Bill already payed"

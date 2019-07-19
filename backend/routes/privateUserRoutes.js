@@ -10,7 +10,6 @@ router.get("/:uid", UserController.getUserByID);
 router.put("/:uid", UserController.putUser);
 router.post("/:uid/categories", CategoryController.postCat);
 router.get("/:uid/categories", CategoryController.getCat);
-//router.delete("/:uid/categories/:cid", CategoryController.deleteCat);
 router.put("/:uid/bills/:bid", billController.putBill);
 router.get("/:uid/bills", billController.searchBill);
 router.get("/:uid/bills/:bid", billController.getBill);
