@@ -1,5 +1,4 @@
 .container {
-  /* min-height: 100%; */
   font-style: helvetica, arial;
   background-color: white;
   border: 2px solid #05619b;
@@ -20,8 +19,6 @@
 .ul {
   display: block;
   float: right;
-
-  /* max-width: 50px; */
 }
 
 li {

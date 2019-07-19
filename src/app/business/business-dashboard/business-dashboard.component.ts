@@ -49,7 +49,6 @@ export class BusinessDashboardComponent implements OnInit {
   }
 
   postBill() {
-    console.log("Bin in Bill");
     this.http
       .post<{ message: String }>(
         "http://localhost:3000/api/comusers/" + this.comID + "/bills",
@@ -68,9 +67,6 @@ export class BusinessDashboardComponent implements OnInit {
         }
       )
       .subscribe(responseData => {
-        console.log(responseData.message);
-        console.log(this.userID);
-        console.log(this.userID);
       });
 
     this.refreshInput();

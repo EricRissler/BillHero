@@ -18,8 +18,6 @@ export class DashboardComponent implements OnInit {
 
   bill: Bill[];
 
-  // test = new Array(10, 20, 54, 48, 87);
-
   nameFavPayOne: string;
   nameFavPayTwo: string;
 
@@ -44,8 +42,6 @@ export class DashboardComponent implements OnInit {
     this.headerService.setHeader(true);
     this.firstname = this.prvUserService.getUser();
 
-
-    //this.bill=this.billService.getUnpayedBills();
     this.getUnpayed();
 
     if (this.bill == null) {
@@ -54,7 +50,6 @@ export class DashboardComponent implements OnInit {
 
     this.nameFavPayOne = this.prvUserService.getNamePayOne();
     this.nameFavPayTwo = this.prvUserService.getNamePayTwo();
-    console.log("Favone" + this.nameFavPayOne);
   }
 
   getUnpayed() {
