@@ -7,11 +7,10 @@ import { BehaviorSubject, Observable } from "rxjs";
 export class HeaderService {
   changeHeader = false;
 
-  private _changeHeader: BehaviorSubject<boolean>;
+  
   subscribe: any;
 
   constructor() {
-    this._changeHeader = new BehaviorSubject<boolean>(false);
   }
 
   //--------------------------------------------------------------------
