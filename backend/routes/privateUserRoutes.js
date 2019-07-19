@@ -15,6 +15,6 @@ router.get("/:uid/bills", billController.searchBill);
 router.get("/:uid/bills/:bid", billController.getBill);
 router.get("/:uid/payments", PaymentController.getPayments);
 router.post("/:uid/payments", PaymentController.postPayment);
-router.delete("/:uid/payments", PaymentController.deletePayment);
+router.delete("/:uid/payments/:pid", PaymentController.deletePayment);
 
 module.exports = router;
