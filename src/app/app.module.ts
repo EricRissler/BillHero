@@ -1,11 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { MiddleComponent } from "./middle/middle.component";
-import { BottomComponent } from "./bottom/bottom.component";
+import { BottomComponent } from "./middle/bottom/bottom.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SigninComponent } from "./signin/signin.component";
 import { BillDetailComponent } from "./bill-detail/bill-detail.component";
@@ -19,17 +18,18 @@ import { ActivityComponent } from "./activity/activity.component";
 import { RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { SettingsComponent } from "./settings/settings.component";
-import { HttpClient } from "@angular/common/http";
+
 import { PaymentComponent } from "./payment/payment.component";
 import { PaypalComponent } from "./payment/paypal/paypal.component";
 import { PayedComponent } from "./payment/payed/payed.component";
 import { HeaderService } from "./header.service";
 import { NewPaymentComponent } from "./settings/new-payment/new-payment.component";
 import { BusinessComponent } from "./business/business.component";
-import { BusinessRegisterComponent } from "./business-register/business-register.component";
-import { BusinessLoginComponent } from "./business-login/business-login.component";
+import { BusinessRegisterComponent } from "./business/business-register/business-register.component";
+import { BusinessLoginComponent } from "./business/business-login/business-login.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
-import { BusinessDashboardComponent } from "./business-dashboard/business-dashboard.component";
+import { BusinessDashboardComponent } from "./business/business-dashboard/business-dashboard.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -61,7 +61,10 @@ import { BusinessDashboardComponent } from "./business-dashboard/business-dashbo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
+
+    HttpClientModule,
     RouterModule.forRoot([
       { path: "", component: MiddleComponent },
       { path: "signin", component: SigninComponent },

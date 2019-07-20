@@ -1,6 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Bill } from "../shared/bill.model";
-import { HeaderService } from '../header.service';
+import { HeaderService } from "../header.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
+import { Router } from "@angular/router";
+import { BillService } from "../bill.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { FastPayService } from '../fast-pay.service';
+
 declare var require: any;
 @Component({
   selector: "app-dashboard",
@@ -10,26 +16,88 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   private Billy = require("../../assets/img/Billy.png");
 
-  bill: Bill[] = [
-    new Bill("Media Markt", "05.08.2019", 900, false),
-    new Bill("Schreiner", "14.06.2019", 72350, false),
-    new Bill("Zahnarzt", "24.12.2019", 750, false),
-    new Bill("MEWA", "01.01.2020", 750, false),
-    new Bill("BillHero", "01.01.2020", 123750, false),
-    new Bill("Media Markt", "05.08.2019", 900, false),
-    new Bill("Schreiner", "14.06.2019", 72350, false),
-    new Bill("Zahnarzt", "24.12.2019", 750, false),
-  ];
+  bill: Bill[];
 
   // test = new Array(10, 20, 54, 48, 87);
 
-  billcount = this.bill.length;
+  nameFavPayOne: string;
+  nameFavPayTwo: string;
 
-  user: string = "Thomas";
-
-  constructor(private headerService: HeaderService) {}
+  billcount = 0;
+  firstname: string;
+  showMessage: boolean = false;
+  uid: String;
+  message: String;
+  constructor(
+    private headerService: HeaderService,
+    private prvUserService: PrvUserServiceService,
+    private billService: BillService,
+    private http: HttpClient,
+    private fastPay: FastPayService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    if (!this.prvUserService.getUser()) {
+      this.router.navigate(["/signin"]);
+    }
     this.headerService.setHeader(true);
+    this.firstname = this.prvUserService.getUser();
+
+
+    //this.bill=this.billService.getUnpayedBills();
+    this.getUnpayed();
+
+    if (this.bill == null) {
+      this.getUnpayed();
+    }
+
+    this.nameFavPayOne = this.prvUserService.getNamePayOne();
+    this.nameFavPayTwo = this.prvUserService.getNamePayTwo();
+    console.log("Favone" + this.nameFavPayOne);
+  }
+
+  getUnpayed() {
+    this.uid = this.prvUserService.getUID();
+    const headers = new HttpHeaders().set("status", "0");
+    this.http.get<{ bills: Bill[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills", { headers })
+      .subscribe(responseData => {
+        this.bill = responseData.bills;
+        this.billcount = this.bill.length;
+      });
+  }
+  onPayStandard(billID: String) {
+
+    this.message = this.fastPay.fastPay(this.prvUserService.getIDPayOne(), this.uid, billID);
+    if (this.message == "Payment succeeded") {
+      for (let index = 0; index < this.bill.length; index++) {
+        if (this.bill[index].id == billID) {
+          this.bill.splice(index, 1);
+          this.billcount = this.bill.length;
+        }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 2000);
+      }
+
+
+    }
+  }
+  onAlternativePay(billID: String) {
+    this.message = this.fastPay.fastPay(this.prvUserService.getIDPayTwo(), this.uid, billID);
+    if (this.message == "Payment succeeded") {
+      for (let index = 0; index < this.bill.length; index++) {
+        if (this.bill[index].id == billID) {
+          this.bill.splice(index, 1);
+          this.billcount = this.bill.length;
+        }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 2000);
+
+      }
+    }
   }
 }

@@ -4,8 +4,9 @@
   margin-top: 0.5%;
   margin-bottom: 0.5%;
   height: 589px;
+  background-color: white;
 }
-.lefttile {
+/* .lefttile {
   float: left;
   margin-left: 10%;
   margin-top: 10%;
@@ -21,12 +22,29 @@
   border: 1px solid black;
   height: 350px;
   width: 350px;
+} */
+
+.login {
+  float: left;
+  width: 30%;
+  height: 50%;
+  margin-top: 12%;
+  margin-left: 10%;
+}
+
+.register {
+  float: right;
+  width: 30%;
+  height: 50%;
+  margin-top: 12%;
+  margin-right: 10%;
 }
 
 #logreg {
   background-color: #05619b;
-  border: none;
-  border-radius: 50px;
+  border: 2px solid black;
+
+  border-radius: 8%;
   color: white;
   padding-left: 50px;
   padding-right: 50px;

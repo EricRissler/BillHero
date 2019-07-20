@@ -1,24 +1,24 @@
 const categoryModel = (seqelize, type) => {
   return seqelize.define("category", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     idUser: {
-      type: type.INTEGER,
-      allowNulll: false
+      type: type.CHAR(8),
+      allowNull: false
     },
     name: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     isHitorical: {
       type: type.BOOLEAN,
-      allowNulll: false,
+      allowNull: false,
       defaultValue: false
     }
-  })
-}
+  });
+};
 module.exports = categoryModel;

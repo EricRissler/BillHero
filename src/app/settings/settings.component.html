@@ -4,48 +4,46 @@
   <div class="payment1">
     <h2 id="choose">Bezahlmethode 1</h2>
 
-    <div class="btn-group" appDropdown>
-      <button
-        id="dropdownleft"
-        type="button"
-        class="btn btn-primary dropdown-toggle"
-      >
-        {{ payment1 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment1()"> {{ payment }}</a>
-        </li>
-      </ul>
-    </div>
+    <select
+      class="btn btn-primary dropdown-toggle"
+      name="methode 1"
+      id="dropdownleft"
+      [(ngModel)]="selectedOption1"
+    >
+      <option *ngFor="let payments of payments" [value]="payments.id">
+        {{ payments.name }}
+      </option>
+    </select>
   </div>
 
   <div class="payment2">
     <h2 id="select">Bezahlmethode 2</h2>
 
-    <div class="btn-group" appDropdown>
-      <button
-        id="dropdownright"
-        type="button"
-        class="btn btn-primary dropdown-toggle"
-      >
-        {{ payment2 }}
-        <span class="caret"></span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let payment of payment">
-          <a (click)="togglePayment2()"> {{ payment }}</a>
-        </li>
-      </ul>
-    </div>
+    <select
+      class="btn btn-primary dropdown-toggle"
+      name="methode 2"
+      id="dropdownright"
+      [(ngModel)]="selectedOption2"
+    >
+      <option *ngFor="let payments of payments" [value]="payments.id">
+        {{ payments.name }}
+      </option>
+    </select>
   </div>
 
   <div class="newPayment">
-    <button class="newPaymentBtn" routerLink="/newPayment">
-      Neue Zahlungsmethode hinzufügen
-    </button>
+    <ul class="ulButtons">
+      <li id="liButtons" class="paymentButton">
+        <button class="putPayment" (click)="putPayment()">
+          Zahlungsmethode festlegen
+        </button>
+      </li>
+
+      <li id="liButtons" class="newPaymentButton">
+        <button class="newPaymentBtn" routerLink="/newPayment">
+          Neue Zahlungsmethode erstellen
+        </button>
+      </li>
+    </ul>
   </div>
 </div>

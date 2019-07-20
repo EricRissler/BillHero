@@ -1,31 +1,31 @@
 const adressModel = (seqelize, type) => {
   return seqelize.define("adress", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(10),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     strHouseNr: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     zipCode: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     city: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     country: {
       type: type.STRING,
-      allowNulll: false
+      allowNull: false
     },
     additonal: {
       type: type.STRING,
-      allowNulll: true
-    },
-  })
-}
+      allowNull: true
+    }
+  });
+};
 module.exports = adressModel;

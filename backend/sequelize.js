@@ -6,11 +6,12 @@ const commercialUserModel = require("./models/commercialUserModel");
 const billModel = require("./models/billModel");
 const itemModel = require("./models/itemModel");
 const generalPaymentMethodModel = require("./models/generalPaymentmethodModel");
-const userPaymentMethodModel = require("./models/userPaymentsMethods");
+const userPaymentMethodModel = require("./models/userPaymentsMethodsModel");
 
 const conn = new Sequelize("billherotest", "billhero2", "billiboi", {
   host: "h2580603.stratoserver.net",
-  dialect: "mysql"
+  dialect: "mysql",
+  logging: false
 });
 
 const adress = adressModel(conn, Sequelize);

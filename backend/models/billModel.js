@@ -1,49 +1,47 @@
 const billModel = (sequelize, type) => {
   return sequelize.define("bill", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     idDebitor: {
-      type: type.INTEGER,
-      allownull: false
+      type: type.CHAR(8),
+      allowNull: false
     },
     idCreditor: {
-      type: type.INTEGER,
-      allownull: false
+      type: type.CHAR(8),
+      allowNull: false
     },
     amount: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     },
     billNr: {
       type: type.STRING,
-      allownull: true
+      allowNull: true
     },
     date: {
       type: type.STRING,
-      allownull: false,
-      default: Date.now()
+      allowNull: true
     },
     deadline: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     paymentStatus: {
-      type: type.STRING,
-      defaultValue: "unpayed"
+      type: type.BOOLEAN,
+      defaultValue: false
     },
     idPayedWith: {
-      type: type.STRING,
-      allownull: true,
+      type: type.CHAR(8),
+      allowNull: true
     },
     idCategory: {
-      type: type.INTEGER,
-      allownull: true
+      type: type.CHAR(8),
+      allowNull: true
     }
-
   });
 };
 

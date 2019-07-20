@@ -1,26 +1,26 @@
 const commercialUserModel = (seqelize, type) => {
   return seqelize.define("items", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     billID: {
-      type: type.INTEGER,
-      allownull: false
+      type: type.CHAR(8),
+      allowNull: false
     },
     itemName: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     itemPrice: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     },
     itemAmount: {
       type: type.DataTypes.DECIMAL(10, 2),
-      allownull: false
+      allowNull: false
     }
   });
 };

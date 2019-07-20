@@ -17,10 +17,10 @@
       <img class="creditcardLogo" [src]="creditcard" alt="Kreditkarte"/>
     </div>
   </div>
-  <p class="price">Zu bezahlender Betrag: 900 € </p>
+  <p class="price">Zu bezahlender Betrag: {{price}} € </p>
   <button class="payBtn" (click)="btnClick()" >Weiter geht's</button>
 </div>
 <div class="rightcontainer">
-  <app-bill-detail></app-bill-detail>
+  <!-- <app-bill-detail></app-bill-detail> -->
 </div>
 </div>

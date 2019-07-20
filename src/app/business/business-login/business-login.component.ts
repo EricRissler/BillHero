@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ComUserService } from "src/app/com-user.service";
 
 declare var require: any;
 
@@ -8,9 +9,16 @@ declare var require: any;
   styleUrls: ["./business-login.component.css"]
 })
 export class BusinessLoginComponent implements OnInit {
-  private Billy = require("../../assets/img/Billy.png");
+  private Billy = require("../../../assets/img/Billy.png");
 
-  constructor() {}
+  mail: string;
+  password: string;
+
+  constructor(private comUserService: ComUserService) {}
+
+  commitUserData() {
+    this.comUserService.Signin(this.mail, this.password);
+  }
 
   ngOnInit() {}
 }

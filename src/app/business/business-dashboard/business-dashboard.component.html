@@ -4,13 +4,21 @@
 
     <li><h2>Geben Sie bitte die Daten des Empfängers ein</h2></li>
 
-    <li><input type="text" class="form-control" placeholder="User-ID" /></li>
+    <li>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="User-ID"
+        [(ngModel)]="userID"
+      />
+    </li>
 
     <li>
       <input
         type="text"
         class="form-control"
         placeholder="Rechnungsnummer (optional)"
+        [(ngModel)]="billnr"
       />
     </li>
 
@@ -20,6 +28,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 1"
+        [(ngModel)]="product1"
       />
       <input
         id="price"
@@ -28,12 +37,14 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price1"
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity1"
+        (change)="calcPrice()"
       />
     </li>
 
@@ -43,6 +54,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 2"
+        [(ngModel)]="product2"
       />
       <input
         id="price"
@@ -51,12 +63,14 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price2"
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity2"
+        (change)="calcPrice()"
       />
     </li>
 
@@ -66,6 +80,7 @@
         type="text"
         class="form-control"
         placeholder="Produkt 3"
+        [(ngModel)]="product3"
       />
       <input
         id="price"
@@ -74,21 +89,44 @@
         class="form-control"
         placeholder="Preis"
         [(ngModel)]="price3"
+        (change)="calcPrice()"
       />
       <input
         id="number"
         type="number"
         class="form-control"
         [(ngModel)]="quantity3"
+        (change)="calcPrice()"
       />
     </li>
 
-    <li><input type="text" class="form-control" placeholder="Frist" /></li>
-
     <li>
-      <p class="endprice">Gesamt: {{ this.Endprice }} €</p>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Frist"
+        [(ngModel)]="deadline"
+      />
     </li>
 
-    <li><button class="commit" (click)="calculatePrice()">Absenden</button></li>
+    <li>
+      <p class="endprice">Gesamt: {{ this.endprice }} €</p>
+    </li>
+
+    <li>
+      <button
+        class="commit"
+        (click)="postBill()"
+        [disabled]="
+          this.userID == '' ||
+          this.product1 == '' ||
+          this.price1 == '' ||
+          this.quantity == '' ||
+          this.deadline == ''
+        "
+      >
+        Absenden
+      </button>
+    </li>
   </ul>
 </div>

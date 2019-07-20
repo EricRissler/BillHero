@@ -1,33 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { Bill } from '../shared/bill.model';
-import { HeaderService } from '../header.service';
+import { Component, OnInit } from "@angular/core";
+import { Bill } from "../shared/bill.model";
+import { HeaderService } from "../header.service";
+import { PrvUserServiceService } from "../prv-user-service.service";
+import { Router } from "@angular/router";
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { DetailService } from '../detail.service';
 
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.css']
+  selector: "app-activity",
+  templateUrl: "./activity.component.html",
+  styleUrls: ["./activity.component.css"]
 })
 export class ActivityComponent implements OnInit {
-  bill: Bill[] ;
-  constructor(private headerService: HeaderService) { }
+  bill: Bill[];
+  uid: String;
+  constructor(
+    private headerService: HeaderService,
+    private prvUserService: PrvUserServiceService,
+    private detailService: DetailService,
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+
+    if (!this.prvUserService.getUser()) {
+      this.router.navigate(["/signin"]);
+    }
     this.headerService.setHeader(true);
-    this.bill= [
-      new Bill("Media Markt", "05.08.2019", 900, true),
-      new Bill("Schreiner", "14.06.2019", 750, true),
-      new Bill("Zahnarzt", "24.12.2019", 750, true),
-      new Bill("MEWA", "01.01.2020", 750, true),
-      new Bill("Media Markt", "05.08.2019", 900, true),
-      new Bill("Schreiner", "14.06.2019", 750, true),
-      new Bill("Zahnarzt", "24.12.2019", 750, true),
-      new Bill("MEWA", "01.01.2020", 750, true),
-      new Bill("Media Markt", "05.08.2019", 900, true),
-      new Bill("Schreiner", "14.06.2019", 750, true),
-      new Bill("Zahnarzt", "24.12.2019", 750, true),
-      new Bill("MEWA", "01.01.2020", 750, true),
-      new Bill("Lidl", "27.03.2020", 750, true)
-     ];
+    this.detailService.setItems();
+    this.detailService.setPrice();
+    this.detailService.setShortname();
+    this.getPayed();
+    if (this.bill == null) {
+      this.getPayed();
+    }
+  }
+  billClick(id: String) {
+    this.detailService.getDetail(id);
   }
 
+  getPayed() {
+    this.uid = this.prvUserService.getUID();
+    const headers = new HttpHeaders().set("status", "1");
+    this.http
+      .get<{ bills: Bill[] }>(
+        "http://localhost:3000/api/prvusers/" + this.uid + "/bills",
+        { headers }
+      )
+      .subscribe(responseData => {
+        this.bill = responseData.bills;
+      });
+  }
 }
+

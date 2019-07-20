@@ -1,22 +1,28 @@
+const paymentrregister = require("../paymentprovider/paymentprovider");
 const userPaymentMethodModel = (sequelize, type) => {
   return sequelize.define("userPaymentMethod", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
     },
     idUser: {
-      type: type.INTEGER,
-      allownull: false
+      type: type.CHAR(8),
+      allowNull: false
+    },
+    idPaymentMethod: {
+      type: type.CHAR(8),
+      allowNull: false
     },
     name: {
       type: type.STRING,
-      allownull: false
+      allowNull: false
     },
     token: {
       type: type.STRING,
-      allownull: false
+      allowNull: false,
+      defaultValue: paymentrregister.registerPaymentmethod
     },
     isHistorical: {
       type: type.BOOLEAN,

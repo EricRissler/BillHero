@@ -2,7 +2,8 @@
 
 #WeilSebiLaptopKackeIst
 nodePathCommand.txt
-
+/test
+testServer.js
 
 # compiled output
 /dist

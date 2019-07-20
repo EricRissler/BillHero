@@ -1,5 +1,7 @@
 <div class="container">
   <h1>Neue Zahlmethode hinzufügen</h1>
+  <button class="back" routerLink="/settings">Zurück</button>
+
   <hr />
 
   <div class="bankAccount">
@@ -8,13 +10,13 @@
       <span class="caret"></span>
     </button>
 
-    <!-- <form ng-submit="submitBank()"></form> -->
     <ul id="list" *ngIf="newBank">
       <li>
         <input
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [(ngModel)]="name1"
         />
       </li>
 
@@ -24,11 +26,17 @@
           type="text"
           class="form-control"
           placeholder="BIC (Swift-Code)"
+          [(ngModel)]="bic"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="IBAN" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="IBAN"
+          [(ngModel)]="iban"
+        />
       </li>
 
       <li>
@@ -37,11 +45,24 @@
           type="text"
           class="form-control"
           placeholder="Kontoinhaber"
+          [(ngModel)]="owner1"
         />
       </li>
 
       <li>
-        <button id="confirm" type="submit">Bankverbindung hinzufügen</button>
+        <button
+          id="confirm"
+          type="submit"
+          (click)="submitBank()"
+          [disabled]="
+            this.name1 == '' ||
+            this.bic == '' ||
+            this.iban == '' ||
+            this.owner1 == ''
+          "
+        >
+          Bankverbindung hinzufügen
+        </button>
       </li>
     </ul>
   </div>
@@ -64,6 +85,7 @@
           type="text"
           class="form-control"
           placeholder="Name der Zahlmethode"
+          [(ngModel)]="name2"
         />
       </li>
 
@@ -73,19 +95,42 @@
           type="text"
           class="form-control"
           placeholder="Karteninhaber"
+          [(ngModel)]="owner2"
         />
       </li>
 
       <li>
-        <input type="text" class="form-control" placeholder="Kartennummer" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Kartennummer"
+          [(ngModel)]="cardnr"
+        />
       </li>
 
       <li>
-        <input id="date" type="text" class="form-control" />
+        <input
+          type="text"
+          placeholder="Gültig bis"
+          class="form-control"
+          [(ngModel)]="date"
+        />
       </li>
 
       <li>
-        <button id="confirm" type="submit">Kreditkarte hinzufügen</button>
+        <button
+          id="confirm"
+          type="submit"
+          (click)="submitCreditcard()"
+          [disabled]="
+            this.name2 == '' ||
+            this.owner2 == '' ||
+            this.cardnr == '' ||
+            this.date == ''
+          "
+        >
+          Kreditkarte hinzufügen
+        </button>
       </li>
     </ul>
   </div>

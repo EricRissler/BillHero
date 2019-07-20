@@ -4,28 +4,35 @@
   </div>
   <div class="centerTitle">
     <div class="title">
-      <h1>Hallo {{ user }}!</h1>
+      <h1>Hallo {{ firstname }}!</h1>
 
       <h2>Du hast {{ billcount }} neue Rechnungen</h2>
     </div>
     <div class="rightcontainer">
       <div class="billList" *ngFor="let bill of bill">
-        <button class="standardPay">Pay Standard</button>
+        <button class="standardPay" (click)="onPayStandard(bill.id)">
+          {{ nameFavPayOne }}
+        </button>
         <ul class="list-group-item">
-          <li id="billName" class="list-group">{{ bill.name }}</li>
+          <li id="billName" class="list-group">{{ bill.id }}</li>
           <li id="billDeadline" class="list-group">{{ bill.deadline }}</li>
-          <li id="billPrice" class="list-group">{{ bill.price }}€</li>
+          <li id="billPrice" class="list-group">{{ bill.amount }}€</li>
           <li>
             <Button
               id="status"
               class="billStatus"
               disabled="false"
-              [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+              [ngStyle]="{
+                'background-color': bill.paymentStatus == 1 ? 'green' : 'red'
+              }"
             ></Button>
           </li>
         </ul>
-        <button class="alternativePay">Pay alternative</button>
+        <button class="alternativePay" (click)="onAlternativePay(bill.id)">{{ nameFavPayTwo }}</button>
       </div>
+    </div>
+    <div id="payedMessage" class="payedMessage" *ngIf="showMessage">
+      <p class="message">Rechnung wurde bezahlt</p>
     </div>
   </div>
 </div>

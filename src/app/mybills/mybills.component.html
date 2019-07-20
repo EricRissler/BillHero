@@ -1,14 +1,15 @@
 <div class="container">
   <div class="category">
-      <input
+    <input
       type="search"
       style="margin-top:15px"
       class="form-control"
-      placeholder="Rechnung suchen"/>
-      <hr />
-    <p><a id="standard">Unbezahlte Rechnungen</a></p>
-    <p><a id="standard">Bezahlte Rechnungen</a></p>
-    <p><a id="standard">Alle Rechnungen</a></p>
+      placeholder="Rechnung suchen"
+    />
+    <hr />
+    <p><a id="standard" (click)="getAll()">Alle Rechnungen</a></p>
+    <p><a id="standard" (click)="getUnpayed()">Unbezahlte Rechnungen</a></p>
+    <p><a id="standard" (click)="getPayed()">Bezahlte Rechnungen</a></p>
     <hr />
     <input
       type="text"
@@ -24,19 +25,36 @@
       neue Kategorie
     </button>
   </div>
-  
+
   <div class="middlecontainer">
-    <div class="billList" *ngFor="let bill of bill" draggable="true">
+    <div
+      class="billList"
+      *ngFor="let bill of bill"
+      (click)="billClick(bill.id)"
+    >
       <ul class="list-group-item" id="list">
-        <li class="list-group">{{ bill.billnr }}</li>
-        <li class="list-group">{{ bill.name }}</li>
+        <!-- <button type="button" id="categoryDropDown" class="btn btn-primary dropdown-toggle">
+              {{ billCategory }}
+              <span class="caret"></span>
+            </button> -->
+         <!-- <select name="" class="categoryDropDown" id=""
+          >{{
+            billCategory
+          }}
+          <option *ngFor="let category of category" [value]="category.name">
+            {{ category.name }}
+          </option> 
+        </select> -->
+        <li class="list-group">{{ bill.id }}</li>
         <li class="list-group">{{ bill.deadline }}</li>
-        <li class="list-group">{{ bill.price }}€</li>
+        <li class="list-group">{{ bill.amount }}</li>
         <li>
           <Button
             class="billStatus"
             disabled="false"
-            [ngStyle]="{ 'background-color': bill.status ? 'green' : 'red' }"
+            [ngStyle]="{
+              'background-color': bill.paymentStatus == 1 ? 'green' : 'red'
+            }"
           ></Button>
         </li>
       </ul>

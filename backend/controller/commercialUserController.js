@@ -3,10 +3,12 @@ const adress = require("../sequelize").adress;
 const bcrypt = require("bcrypt");
 
 const getUser = function(req, res) {
+  const authdata = req.header("authData").split(":");
   const data = {
-    email: req.body.email,
-    password: req.body.password
+    email: authdata[0],
+    password: authdata[1]
   };
+
   commercialUser
     .findOne({
       where: {
@@ -84,7 +86,6 @@ const postUser = function(req, res) {
             additonal: data.additonal
           })
           .then(function(result) {
-            console.log("Created Adress");
             bcrypt.hash(data.password, BCYRPT_SALTROUNDS).then(
               hash => {
                 commercialUser
@@ -96,7 +97,6 @@ const postUser = function(req, res) {
                     idAdress: result.id
                   })
                   .then(function(result) {
-                    console.log("Created User");
                     res.status(201).json({
                       message: "User created",
                       uid: result.id
@@ -112,12 +112,11 @@ const postUser = function(req, res) {
           })
           .catch(err => {
             res.status(501).json(err);
-            console.log(err);
           });
       }
     });
 };
-//TODO: get commercial and private user
+
 const getByID = function(req, res) {
   const reqID = req.params.uid;
   commercialUser

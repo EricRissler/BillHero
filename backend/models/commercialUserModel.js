@@ -1,7 +1,8 @@
+const paymentProvider = require("../paymentprovider/paymentprovider");
 const commercialUserModel = (seqelize, type) => {
   return seqelize.define("commercialUser", {
     id: {
-      type: type.CHAR(18),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
@@ -23,10 +24,11 @@ const commercialUserModel = (seqelize, type) => {
       allowNull: false
     },
     incomingPaymentToken: {
-      type: type.STRING
+      type: type.STRING,
+      defaultValue: paymentProvider.registerPaymentmethod
     },
     idAdress: {
-      type: type.INTEGER
+      type: type.CHAR(8)
     }
   });
 };
