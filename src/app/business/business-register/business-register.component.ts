@@ -27,7 +27,6 @@ export class BusinessRegisterComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   postComUser() {
-    console.log("YAAAY");
     this.http
       .post<{ message: String }>("http://localhost:3000/api/comusers", {
         country: this.country,
@@ -41,13 +40,11 @@ export class BusinessRegisterComponent implements OnInit {
         city: this.place
       })
       .subscribe(responseData => {
-        console.log(responseData.message);
       });
   }
 
   changestep() {
     this.step = this.step + 1;
-    console.log(this.step);
   }
 
   ngOnInit() {}

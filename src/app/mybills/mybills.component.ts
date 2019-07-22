@@ -15,7 +15,6 @@ import { DetailService } from '../detail.service';
 })
 export class MybillsComponent implements OnInit {
   category: Category[] = [];
-  //billCategory: string = "";
   constructor(private headerService: HeaderService,  private http: HttpClient,
     private prvUserService: PrvUserServiceService, private billService: BillService, private detailService: DetailService,
     private router: Router) { }
@@ -24,21 +23,7 @@ export class MybillsComponent implements OnInit {
   uid: String;
   bill: Bill[];
   bills: Bill[];
-  //= [
-  //   new Bill("Media Markt", "05.08.2019", 900, false),
-  //   new Bill("Schreiner", "14.06.2019", 750, false),
-  //   new Bill("Zahnarzt", "24.12.2019", 750, false),
-  //   new Bill("MEWA", "01.01.2020", 750, false),
-  //   new Bill("Media Markt", "05.08.2019", 900, true),
-  //   new Bill("Schreiner", "14.06.2019", 750, true),
-  //   new Bill("Zahnarzt", "24.12.2019", 750, true),
-  //   new Bill("MEWA", "01.01.2020", 750, false),
-  //   new Bill("Media Markt", "05.08.2019", 900, true),
-  //   new Bill("Schreiner", "14.06.2019", 750, true),
-  //   new Bill("Zahnarzt", "24.12.2019", 750, true),
-  //   new Bill("MEWA", "01.01.2020", 750, false),
-  //   new Bill("Lidl", "27.03.2020", 750, false)
-  // ];
+ 
 
   newCategory() {
     this.category.push((new Category(this.input)));

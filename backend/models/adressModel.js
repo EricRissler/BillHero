@@ -1,7 +1,7 @@
 const adressModel = (seqelize, type) => {
   return seqelize.define("adress", {
     id: {
-      type: type.CHAR(10),
+      type: type.CHAR(8),
       primaryKey: true,
       unique: true,
       defaultValue: type.UUIDV1
