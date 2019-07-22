@@ -45,7 +45,6 @@ export class NewPaymentComponent implements OnInit {
   }
 
   postPayment() {
-    console.log("YAAAY");
     this.http
       .post("http://localhost:3000/api/prvusers/" + this.userID + "/payments", {
         prvID: this.userID,
@@ -54,7 +53,6 @@ export class NewPaymentComponent implements OnInit {
         data: this.data
       })
       .subscribe(responseData => {
-        console.log("success");
       });
 
     this.name1 = "";

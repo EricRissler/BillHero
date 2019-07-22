@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   postUser() {
-    console.log("YAAAY");
     this.http
       .post<{ message: String }>("http://localhost:3000/api/prvusers", {
         country: this.country,
@@ -52,7 +51,6 @@ export class RegisterComponent implements OnInit {
         bdate: this.birth
       })
       .subscribe(responseData => {
-        console.log(responseData.message);
         this.step = this.step + 1;
       });
   }

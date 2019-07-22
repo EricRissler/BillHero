@@ -10,7 +10,6 @@ declare var require: any;
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  // public changer: string = "show";
   public headerChange: boolean = true;
 
   private logo = require("../../assets/img/Logo3.png");

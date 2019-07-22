@@ -67,9 +67,6 @@ export class SettingsComponent implements OnInit {
           "http://localhost:3000/api/prvusers/" + this.userID + "/payments"
         )
         .subscribe(responseData => {
-          console.log("YAY");
-          console.log(responseData);
-
           this.payments = responseData.payment;
         });
     }

@@ -9,9 +9,6 @@ import { FooterComponent } from "./footer/footer.component";
 import { SigninComponent } from "./signin/signin.component";
 import { BillDetailComponent } from "./bill-detail/bill-detail.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { HeaderLoginComponent } from "./header/header-login/header-login.component";
-import { HeaderDashComponent } from "./header/header-dash/header-dash.component";
-import { HomeComponent } from "./home/home.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { MybillsComponent } from "./mybills/mybills.component";
 import { ActivityComponent } from "./activity/activity.component";
@@ -41,9 +38,6 @@ import { HttpClientModule } from "@angular/common/http";
     SigninComponent,
     BillDetailComponent,
     DashboardComponent,
-    HeaderLoginComponent,
-    HeaderDashComponent,
-    HomeComponent,
     LogoutComponent,
     MybillsComponent,
     ActivityComponent,
@@ -69,8 +63,6 @@ import { HttpClientModule } from "@angular/common/http";
       { path: "", component: MiddleComponent },
       { path: "signin", component: SigninComponent },
       { path: "dashboard", component: DashboardComponent },
-      { path: "headerdash", component: HeaderDashComponent },
-      { path: "headerlogin", component: HeaderLoginComponent },
       { path: "logout", component: LogoutComponent },
       { path: "activity", component: ActivityComponent },
       { path: "mybills", component: MybillsComponent },
