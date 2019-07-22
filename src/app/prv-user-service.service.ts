@@ -30,8 +30,6 @@ export class PrvUserServiceService {
 
   Signin(mail, password) {
     const headers = new HttpHeaders().set("authData", mail + ":" + password);
-    //TODO: Prüfen dass pw und user kein ':' enthält
-    console.log(mail + password);
     this.http
       .get<{
         id: string;
@@ -46,9 +44,6 @@ export class PrvUserServiceService {
         nameFavPaymentTwo: string;
       }>("http://localhost:3000/api/prvusers", { headers })
       .subscribe(responseData => {
-        console.log("YAY");
-        console.log(responseData);
-
         this.id = responseData.id;
         this.firstname = responseData.firstname;
         this.lastname = responseData.lastname;
@@ -70,7 +65,6 @@ export class PrvUserServiceService {
   }
 
   getUser() {
-    console.log("Ausm getUser:" + this.firstname);
     return this.firstname;
   }
 

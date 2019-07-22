@@ -13,7 +13,6 @@ export class HeaderService {
   constructor() {
   }
 
-  //--------------------------------------------------------------------
   setHeader(headerChange: boolean) {
     this.changeHeader = headerChange;
   }

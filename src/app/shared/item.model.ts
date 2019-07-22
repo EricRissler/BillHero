@@ -5,8 +5,6 @@ export class Item {
   public itemPrice: number;
   public itemAmount: number;
   constructor(item: string, price: number, amount:number) {
-    // this.item = item;
-    // this.price = price;
     this.itemName=item;
     this.itemPrice=price;
     this.itemAmount=amount;

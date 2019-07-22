@@ -44,7 +44,6 @@ export class PaymentComponent implements OnInit {
     this.uid = this.prvUserService.getUID();
     if (this.paypalCheck) {
       this.router.navigate(["/paypal"]);
-      //-------------------------------------------------------------------------------
     } else if(this.intantCheck) {
       this.http
       .put<{message:String}>("http://localhost:3000/api/prvusers/"+this.uid+"/bills/"+this.billID,{
@@ -55,7 +54,6 @@ export class PaymentComponent implements OnInit {
       });
       if(this.message == "Payment succeeded") {
         this.router.navigate(["/payed"]);
-        //---------------------------------------------------------------------------
       }
       
     }else if(this.creditcardCheck){
@@ -69,7 +67,6 @@ export class PaymentComponent implements OnInit {
       });
       if(this.message == "Payment succeeded") {
         this.router.navigate(["/payed"]);
-        //---------------------------------------------------------------------------
       }
     }
   }

@@ -24,16 +24,11 @@ export class DetailService {
     this.http
       .get<{ bill: Bill, items: Item[] }>("http://localhost:3000/api/prvusers/" + this.uid + "/bills/" + id)
       .subscribe(responseData => {
-        console.log(responseData);
         this.price = responseData.bill.amount;
         this.shortname = responseData.bill.shortname;
         this.items = responseData.items;
         this.billID= responseData.bill.id;
-        console.log(this.items);
-        // console.log(this.bill);
       });
-    // this.items = this.bill.items;
-    //console.log(this.bill.items);
   }
 
   getItems() {
