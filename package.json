@@ -23,7 +23,7 @@
     "@angular/router": "~8.0.0",
     "bcrypt": "^3.0.6",
     "bootstrap": "^3.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mysql2": "^1.6.5",
     "rxjs": "~6.4.0",
     "sequelize": "^5.9.0",
